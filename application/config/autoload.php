@@ -111,6 +111,13 @@ $autoload['language'] = array();
 
 $autoload['model'] = array();
 
+/*
+| -------------------------------------------------------------------
+|  Auto-load Sparks
+| -------------------------------------------------------------------
+|
+*/
+$autoload['sparks'] = array('curl/1.2.1','restclient/2.1.0');
 
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */

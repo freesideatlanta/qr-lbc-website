@@ -2,7 +2,7 @@
 		
 		<footer class="footer">
 			<div class="container">
-				<p>&copy; 2013</p>
+				<p>&copy; <?php echo date('Y'); ?></p>
 			</div>
 		</footer>
 		

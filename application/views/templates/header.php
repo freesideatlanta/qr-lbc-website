@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width" />
         
-        <link rel="stylesheet" type="text/css" href="../../assets/style/bootstrap.min.css" media="screen,projection" />
+        <link rel="stylesheet" type="text/css" href="/assets/style/bootstrap.min.css" media="screen,projection" />
     </head>
 	<body>
 		<div class="navbar">

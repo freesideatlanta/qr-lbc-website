@@ -22,7 +22,7 @@ Class Items extends CI_Controller {
 	}
 	
 	public function index() {
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/footer', $data);
+		$this->load->view('templates/header');
+		$this->load->view('templates/footer');
 	}
 }

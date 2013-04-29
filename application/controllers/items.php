@@ -13,15 +13,11 @@ Class Items extends CI_Controller {
 			show_404();
 		}
 		
-		// Run some setup
-		$this->rest->initialize(array('server' => 'http://localhost:3000'));
-		
 		$data['title'] = ucfirst($page); // Capitalize the first letter
+		$data['items'] = $this->items_model->getAllItems();
 		
 		$this->load->view('templates/header', $data);
-		$this->load->view('pages/'.$page, $data);
-		//print_r($items);
-		var_dump($this->items_model->getAllItems());
+		$this->load->view('items/index', $data);
 		$this->load->view('templates/footer', $data);		
 	}
 	

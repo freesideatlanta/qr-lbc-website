@@ -5,6 +5,7 @@ Class Items extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('items_model');
+		//$this->layout->placeholder("title","Lifecycle Building Center");
 	}
 	
 	public function view($page = "home") {

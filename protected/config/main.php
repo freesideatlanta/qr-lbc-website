@@ -15,7 +15,8 @@ return array(
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
-		'application.components.*',
+        'application.components.*',
+        'application.extensions.EActiveResource.*',
 	),
 
 	'modules'=>array(
@@ -30,6 +31,12 @@ return array(
 
 	// application components
 	'components'=>array(
+        'activeresource'=>array(
+            'class'=>'EActiveResourceConnection',
+            'site'=>'http://localhost:3000/',
+            'contentType'=>'application/json',
+            'acceptType'=>'application/json',
+         ),
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,

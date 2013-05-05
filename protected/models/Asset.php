@@ -14,7 +14,7 @@ class Asset extends EActiveResource
         return CMap::mergeArray(
             parent::rest(),
             array(
-                'resource'=>'assets',
+                'resource'=>'asset',
                 'idProperty'=>'id'
             ));
     }

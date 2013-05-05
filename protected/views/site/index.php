@@ -1,13 +1,10 @@
 <?php
 
-$asset=new Asset();
-$asset->id = 1;
-$asset->tag='A7FID08';
-$asset->name='Chair';
-$asset->quantity=4;
+// header('Content-Type: text/plain');
 
-// POST
-if (!$asset->save())
-{
-    die('FAILURE');
-}
+$asset = new Asset();
+
+$asset->name = "Chair";
+$asset->save();
+
+die('f');

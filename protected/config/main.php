@@ -33,7 +33,7 @@ return array(
 	'components'=>array(
         'activeresource'=>array(
             'class'=>'EActiveResourceConnection',
-            'site'=>'http://localhost:3000/',
+            'site'=>'http://localhost:3000',
             'contentType'=>'application/json',
             'acceptType'=>'application/json',
          ),
@@ -74,7 +74,7 @@ return array(
 			'routes'=>array(
 				array(
 					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
+					'levels'=>'error, warning, info, trace',
 				),
 				// uncomment the following to show log messages on web pages
 				/*

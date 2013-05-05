@@ -37,6 +37,9 @@ return array(
             'contentType'=>'application/json',
             'acceptType'=>'application/json',
          ),
+         'bootstrap'=>array(
+         		'class'=>'bootstrap.components.Bootstrap',
+         ),
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,

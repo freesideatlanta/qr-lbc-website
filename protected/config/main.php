@@ -5,6 +5,11 @@
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
+
+// Define a path alias for the Bootstrap extension as it's used internally.
+// In this example we assume that you unzipped the extension under protected/extensions.
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
+
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'LBC',
@@ -26,6 +31,16 @@ return array(
 			'password'=>'abc',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('*','::1'),
+		),
+	),
+
+	//themes
+	'theme'=>'bootstrap',
+	'modules'=>array(
+		'gii'=>array(
+			'generatorPaths'=>array(
+				'bootstrap.gii',
+			),
 		),
 	),
 

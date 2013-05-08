@@ -1,0 +1,353 @@
+/* ================ Inventory =================== */
+
+
+* {
+	margin: 0;
+	padding: 0;
+}
+img { margin: 0; }
+html {
+	background-color: #fbfbfb;
+}
+body {
+	color: #6E6F71;
+	font-family: 'Trebuchet MS', Helvetica, sans-serif;
+	background-image: url(img/noise.png);
+}
+.clear {
+	clear: both;
+}
+#upper-nav {
+	background-color: #6E6F71;
+	color: white;
+	padding: 15px 5%;
+}
+#upper-nav ul {
+	
+}
+#upper-nav ul li {
+	float: right;
+	list-style: none;
+	margin-left: 40px;;
+	
+}
+#upper-nav ul li a {
+	color:white;
+	text-decoration: none;	
+	
+}
+#upper-nav ul li a:hover{
+	color:white;
+	text-decoration: underline;	
+	
+}
+
+#large-nav {
+	margin-bottom: 75px;
+	background: #EDEDEA url(img/shadow.jpg) repeat-x left top;
+}
+#large-nav #logo {
+	margin: 20px 5%;
+}
+#large-nav ul {
+	float: right;
+	margin-right: 5%;
+}
+#large-nav ul li {
+	list-style: none;
+	text-align: center;
+	float: left;
+	padding: 30px 50px;
+	border-left: 1px solid #E5E5E2;
+	text-transform: uppercase;
+	font-size: 1.2em;
+	letter-spacing: 2px;
+}
+#large-nav ul li:hover {
+	background-color:#e4e4e1;
+}
+#large-nav ul li a{
+	color: #6E6F71;
+	text-decoration: none;	
+}
+#large-nav ul li a:hover{
+	color: #6E6F71;
+	text-decoration: none;	
+}
+#large-nav ul li:last-child {
+	border-right: 1px solid #E5E5E2;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+#large-nav ul li img {
+	display: block;
+	margin: auto auto;
+	margin-bottom: 20px;
+}
+
+#left-column {
+	margin-left: 5%;
+	width: 19%;
+	float: left;
+	margin-bottom: 100px;
+}
+.left-column-menu {
+	border: 1px solid #EDEDEA;
+}
+#search {
+	padding: 10px;
+	font-size: 22px;
+	width: 100%;
+	color: #6E6F71;
+	margin-bottom: 30px;
+}
+#left-column div.column-label {
+	background-color: #F4F4F2;
+	padding: 15px 20px;
+	box-sizing: border-box;
+	border-bottom: 1px solid #EDEDEA;
+	font-size: 1.3em;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+#left-column ul {
+	width: 90%;
+	display: block;
+	margin: 20px auto;
+}
+#left-column li {
+	list-style: none;
+	border-bottom: 1px solid #EDEDEA;
+	padding: 10px 0;
+	font-size: 1.2em;
+}
+#left-column li a{
+	color:#6E6F71;
+	text-decoration:none;
+}
+#left-column li.disabled{
+	color:#CCCCCC;
+}
+#left-column li a:hover{
+	color:#000;
+	text-decoration:none;
+}
+#left-column li:last-child {
+	border-bottom: 0;
+}
+
+
+#right-column {
+	width: 68%;
+	margin-right: 5%;
+	float: right;
+	margin-bottom: 40px;
+}
+#right-column .frame {
+	border: 1px solid #EDEDEA;
+	background-color: white;
+	padding: 15px;
+	margin-bottom: 75px;
+}
+.banner-image img {
+	width: 100%;
+	z-index: -100
+}
+.banner-caption {
+	margin-top: -155px;
+	background-color: rgba(0,0,0,.55);
+	text-align: center;
+	height: 150px;
+	position: relative;
+	z-index: 100;
+	
+}
+.banner-caption h1 {
+	font-size: 4em;
+	color: #F99621;
+	font-weight: bold;
+	padding-top: 20px;
+}
+.banner-caption h2 {
+	color: white;
+	font-size: 1.5em;
+	font-weight: normal;
+}
+
+.thumbnails {
+	
+}
+.thumbnails h2 {
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	border-bottom: 1px solid #EDEDEA;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+}
+.thumbnail {
+	float: left;
+	width: 13%;
+	margin-right: 3.66%;
+}
+.thumbnail img {
+	width: 100%;
+}
+.thumbnail img:nth-child(6) {
+	margin-right: 0;
+}
+.thumbnail .title {
+	height: 50px;
+	background-color: #EDEDEA;
+	text-align: center;
+	font-size: 1.1em;
+	border: 1px solid white;
+	border-top: 0;
+	-webkit-border-radius: 0px 0px 10px 10px;
+	border-radius: 0px 0px 10px 10px;
+	width: 90%;
+	padding-top: 15px;
+	margin: -5px auto 20px auto;
+	display: block;
+}
+.thumbnail .title a{
+	color:#6E6F71;
+	text-decoration:none;
+}
+.thumbnail .title a:hover{
+	color:#FE8E01;
+	text-decoration:none;
+}
+#footer {
+	background-color: #EDEDEA;
+	padding: 50px;
+}
+#footer a{
+	color:#6E6F71;
+	text-decoration:none;
+}
+#footer a:hover{
+	color:#FE8E01;
+	text-decoration:none;
+}
+#copyright {
+	float: left;
+}
+#footer ul {
+	float: right;
+}
+#footer ul li {
+	list-style: none;
+	float: left;
+	margin-right: 30px;
+}
+
+
+/* ================ Inventory details =================== */
+.breadcrumbs {
+	margin-bottom: 40px;
+	font-weight: bold;
+}
+.inventory-item-details h2 {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #EDEDEA;
+}
+.inventory-item-details .left {
+	float: left;
+	width: 48%;
+}
+.inventory-item-details .left .frame {
+	margin-bottom: 0 !important;
+}
+.inventory-item-details .frame img {
+	width: 100%;
+}
+.share-tab {
+	margin-left: 20px;
+	background-color: #EDEDEA;
+	-webkit-border-radius: 0px 0px 10px 10px;
+	border-radius: 0px 0px 10px 10px;
+	border: 2px solid white;
+	border-top: none;
+	padding: 8px;
+	width: 100px;
+	text-align: center;
+}
+.share-tab img {
+	vertical-align: middle;
+}
+.inventory-item-details .right {
+	float: right;
+	width: 48%;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+.inventory-item-details .description {
+	line-height: 1.5em;
+	font-size: 1.2em;
+	
+	border-bottom: 1px solid #EDEDEA;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+}
+.inventory-item-details .specifications {
+	font-size: 1.2em;
+	line-height: 1.6em;
+}
+.inventory-item-details .specifications p {
+	margin: 10px 0;
+}
+.inventory-item-details .specifications p img {
+	vertical-align: middle;
+}
+.purchase-button {
+	background-color: #F99621;
+	color: white;
+	text-transform: uppercase;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	font-size: 1.2em;
+	text-align: center;
+	padding: 8px;
+	width: 110px;
+	margin-bottom: 15px;
+	cursor: pointer;
+}
+.purchase-button a{
+	color: white;
+	text-decoration:none;
+	
+}
+.contact-button {
+	background-color: #eeeeeb;
+	border: 2px solid #E5E5E2;
+	color: #6E6F71;
+	text-transform: uppercase;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	font-size: 1.2em;
+	text-align: center;
+	padding: 8px;
+	width: 135px;
+	cursor: pointer;
+}
+.contact-button a{
+	color: #6E6F71;
+	text-decoration:none;
+}
+.hours {
+	margin-top: 20px;
+}
+.hours h3 {
+	color: #6E6F71;
+}
+.hours p {
+	color: black;
+	font-weight: bold;
+}
+
+
+/* ================ Form =================== */
+ .smaller {
+	font-size: .9em;
+}

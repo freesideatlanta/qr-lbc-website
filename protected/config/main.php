@@ -5,6 +5,11 @@
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
+
+// Define a path alias for the Bootstrap extension as it's used internally.
+// In this example we assume that you unzipped the extension under protected/extensions.
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
+
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'LBC',
@@ -29,6 +34,16 @@ return array(
 		),
 	),
 
+	//themes
+	'theme'=>'bootstrap',
+	'modules'=>array(
+		'gii'=>array(
+			'generatorPaths'=>array(
+				'bootstrap.gii',
+			),
+		),
+	),
+
 	// application components
 	'components'=>array(
         'activeresource'=>array(
@@ -36,6 +51,9 @@ return array(
             'site'=>'http://localhost:3000',
             'contentType'=>'application/json',
             'acceptType'=>'application/json',
+         ),
+         'bootstrap'=>array(
+         		'class'=>'bootstrap.components.Bootstrap',
          ),
 		'user'=>array(
 			// enable cookie-based authentication

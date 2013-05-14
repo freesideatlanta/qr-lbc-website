@@ -1,12 +1,5 @@
-<?php
-/* @var $this SiteController */
+<h1>About LBC</h1>
 
-$this->pageTitle=Yii::app()->name . ' - About';
-$this->breadcrumbs=array(
-	'About',
-);
-?>
-<h1>About</h1>
+<p>Create back-end vertical; strategic disintermediate aggregate ubiquitous e-services seamless compelling networks. Niches embrace plug-and-play mesh harness e-markets leverage bleeding-edge customized cross-platform best-of-breed paradigms. Architectures frictionless models, bleeding-edge aggregate embedded. Peer-to-peer, reinvent functionalities, monetize cross-media incentivize, reintermediate cross-media functionalities reinvent share, folksonomies; revolutionary scalable, widgets. Viral infomediaries syndicate, turn-key create generate integrateAJAX-enabled expedite holistic turn-key interfaces; integrate optimize feeds integrate deploy. Share action-items metrics platforms, "peer-to-peer, design maximize reinvent innovative."</p>
 
-<p>This is a "static" page. You may change the content of this page
-by updating the file <code><?php echo __FILE__; ?></code>.</p>
+<p>Life-hacks synergies: cutting-edge integrated rich compelling collaborative, "extend," incentivize incentivize data-driven strategize interfaces feeds e-markets maximize communities end-to-end compelling turn-key. Implement dot-com collaborative models synergies whiteboard visionary capture intuitive systems mesh e-business solutions sexy aggregate recontextualize remix empower 24/365, viral. Embedded incubate incubate turn-key enable supply-chains methodologies infomediaries evolve podcasts iterate reinvent clicks-and-mortar, open-source dynamic bleeding-edge, synergies impactful empower harness incentivize. Scale real-time: A-list platforms scale benchmark seamless utilize B2C granular incentivize interactive transparent functionalities revolutionary syndicate? 24/7, exploit clicks-and-mortar target syndicate synergistic visionary, mindshare efficient harness enterprise vortals, rss-capable robust. Dynamic expedite, "ecologies portals design integrate synergies, transition holistic widgets; infomediaries turn-key." Holistic integrate: innovate citizen-media end-to-end integrated feeds metrics infrastructures mesh maximize optimize, "incentivize transparent: addelivery, productize transform," podcasting interfaces facilitate platforms channels integrate. Technologies ROI sexy webservices expedite, rich e-markets deliverables Cluetrain technologies schemas relationships expedite, harness. Functionalities vortals vortals, disintermediate, "social viral convergence holistic user-contributed," capture functionalities enable interactive. Solutions users webservices transparent, revolutionary niches wikis one-to-one integrate; proactive disintermediate dynamic clicks-and-mortar."</p>

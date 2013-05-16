@@ -1,7 +1,6 @@
 <?php
 
-// uncomment the following to define a path alias
-// Yii::setPathOfAlias('local','path/to/local-folder');
+Yii::setPathOfAlias('actions',dirname(__FILE__).'/../actions');
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
@@ -53,7 +52,7 @@ return array(
             'acceptType'=>'application/json',
          ),
          'bootstrap'=>array(
-         		'class'=>'bootstrap.components.Bootstrap',
+         	'class'=>'bootstrap.components.Bootstrap',
          ),
 		'user'=>array(
 			// enable cookie-based authentication
@@ -107,8 +106,8 @@ return array(
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
     'params'=>array(
-                // this is used in contact page
-                'adminEmail'=>'zyrolasting@gmail.com',
-                'customAttrs'=>include('attrs.php'),
-            ),
+        // this is used in contact page
+       'adminEmail'=>'zyrolasting@gmail.com',
+       'customAttrs'=>include('attrs.php'),
+    ),
 );

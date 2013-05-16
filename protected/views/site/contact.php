@@ -11,6 +11,7 @@ $this->breadcrumbs=array(
 
 <h1>Contact Us</h1>
 
+
 <?php if(Yii::app()->user->hasFlash('contact')): ?>
 
 <div class="flash-success">
@@ -19,6 +20,17 @@ $this->breadcrumbs=array(
 
 <?php else: ?>
 
+
+<h2>LBC Contacts</h2>
+
+<ul>
+<li>Adam Deck, Director of Operations:
+ <a href="mailto:adam@lifecyclebuildingcenter.org">adam@lifecyclebuildingcenter.org</a>
+- 404.997.3873</li>
+<li>Shannon Goodman, Executive Director:
+<a href="mailto:shannon@lifecyclebuildingcenter.org">shannon@lifecyclebuildingcenter.org</a>
+- 678.592.0417</li>
+</ul>
 <p>
 If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
 </p>

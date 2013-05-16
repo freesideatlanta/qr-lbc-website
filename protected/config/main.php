@@ -12,6 +12,7 @@ Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'LBC',
+	'theme'=>'bootstrap',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -30,13 +31,6 @@ return array(
 			'password'=>'abc',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('*','::1'),
-		),
-	),
-
-	//themes
-	'theme'=>'bootstrap',
-	'modules'=>array(
-		'gii'=>array(
 			'generatorPaths'=>array(
 				'bootstrap.gii',
 			),

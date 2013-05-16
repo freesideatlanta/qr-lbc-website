@@ -8,6 +8,8 @@ class Contact extends CAction
 
     public function run()
     {
+        $this->controller->layout = '//layouts/main';
+
         $model=new ContactForm;
 
         if(isset($_POST['ContactForm']))

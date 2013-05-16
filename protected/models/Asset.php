@@ -22,15 +22,21 @@ class Asset extends EActiveResource
 
     public function properties()
     {
-        return array(
-            'tag'=>array('type'=>'string'),
-            'category'=>array('type'=>'string'),
-            'description'=>array('type'=>'string'),
-            'size'=>array('type'=>'string'),
-            'quantity'=>array('type'=>'integer'),
-            'condition'=>array('type'=>'string'),
-            'color'=>array('type'=>'string'),
-            'name'=>array('type'=>'string'),
+        return array_merge(
+            array(
+                'tag'=>array('type'=>'string'),
+                'category'=>array('type'=>'string'),
+                'description'=>array('type'=>'string'),
+                'size'=>array('type'=>'string'),
+                'quantity'=>array('type'=>'integer'),
+                'condition'=>array('type'=>'string'),
+                'color'=>array('type'=>'string'),
+                'name'=>array('type'=>'string'),
+                'featured'=>array('type'=>'boolean')
+            ),
+            // These attributes are set via protected/confi/attrs.php
+            // End user can update attrs.php using the form @ /site/attributes
+            Yii::app()->params["customAttrs"]
         );
     }
 

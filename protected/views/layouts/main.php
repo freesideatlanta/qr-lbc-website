@@ -45,6 +45,25 @@
 
 	<?php echo $content; ?>
 
+	<ul class="categories">
+		<li class="disabled">Appliances</li>
+		<li><a href="inventory-detail_travertine_panels.html">Architectural Items</a></li>
+		<li><a href="inventory-detail_display_cabinets.html">Cabinets</a></li>
+		<li class="disabled">Ceiling</li>
+		<li><a href="inventory-detail_mahogany_doors.html">Doors</a></li>
+		<li class="disabled">Electrical</li>
+		<li><a href="inventory-detail_carpet_tile.html">Flooring</a></li>
+		<li class="disabled">Hardware</li>
+		<li class="disabled">Life Safety</li>
+		<li class="disabled">Lighting</li>
+		<li><a href="inventory-detail_tji_joists.html">Lumber / Wood</a></li>
+		<li><a href="inventory-detail_rollup_cabinets.html">Office Furniture</a></li>
+		<li class="disabled">Paint</li>
+		<li><a href="inventory-detail_plumbing.html">Plumbing</a></li>
+	    <li><a href="inventory-detail_harvest_bins.html">Storage</a></li>
+		<li class="disabled">Window</li>
+	</ul>
+	
 	<div class="clear"></div>
 
 	<div id="footer">

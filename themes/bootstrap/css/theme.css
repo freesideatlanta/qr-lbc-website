@@ -1,0 +1,38 @@
+/*
+ * Theme.css
+ *
+ * In SMACSS, theme styles determine decorative styles for
+ * the site without defining what styles elements should have.
+ * For example, a dialog might have a border defined in modules.css,
+ * but this file would determine what it's color is.
+ *
+ * This file also specifies rules on typography.
+ **/
+
+.footer {
+    background:#EDEDEA;
+}
+
+.logo-bar {
+    background:#EDEDED;
+}
+
+.large-nav > .pic-link {
+    border-left:#E5E5E2;
+}
+
+.large-nav > .pic-link:hover {
+	background-color:#e4e4e1;
+}
+
+.large-nav {
+    list-style:none;
+    text-transform:uppercase;
+}
+
+.large-nav > .pic-link {
+    text-align:center;
+    font-size:1.2em;
+    letter-spacing:2px;
+}
+

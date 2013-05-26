@@ -8,10 +8,15 @@
     <?php
     $yapp = Yii::app();
 
+    $css = $yapp->theme->baseUrl . "/css";
+    $yapp->clientScript->registerCssFile($css."/base.css");
+
     $yapp->bootstrap->register();
 
-    $css = $yapp->theme->baseUrl . "/css/styles.css";
-    $yapp->clientScript->registerCssFile($css);
+    $yapp->clientScript->registerCssFile($css."/modules.css");
+    $yapp->clientScript->registerCssFile($css."/state.css");
+    $yapp->clientScript->registerCssFile($css."/theme.css");
+    $yapp->clientScript->registerCssFile($css."/layout.css");
     ?>
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>

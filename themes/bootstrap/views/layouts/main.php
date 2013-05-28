@@ -9,10 +9,9 @@
     $yapp = Yii::app();
 
     $css = $yapp->theme->baseUrl . "/css";
-    $yapp->clientScript->registerCssFile($css."/base.css");
 
     $yapp->bootstrap->register();
-
+    $yapp->clientScript->registerCssFile($css."/base.css");
     $yapp->clientScript->registerCssFile($css."/modules.css");
     $yapp->clientScript->registerCssFile($css."/state.css");
     $yapp->clientScript->registerCssFile($css."/theme.css");
@@ -83,15 +82,15 @@
             <div class="span8">
                 <ul class="large-nav visible-desktop">
                     <li class="pic-link">
-                        <img src="/images/shop.png"/>
+                        <img src="/images/shop.png" class="icon" />
                         Shop
                     </li>
                     <li class="pic-link">
-                        <img src="/images/donate.png"/>
+                        <img src="/images/donate.png" class="icon" />
                         Donate
                     </li>
                     <li class="pic-link">
-                        <img src="/images/request-materials.png"/>
+                        <img src="/images/request-materials.png" class="icon" />
                         Request
                     </li>
                 </ul>

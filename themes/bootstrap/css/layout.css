@@ -72,3 +72,25 @@ margin:20px 70px;
 .content {
     margin-top:20px;
 }
+
+/*
+ * For sidebar categories list
+ */
+
+.sidebar-widget-label {
+    padding:15px 20px;
+    box-sizing:border-box;
+    border-bottom-width:1px;
+}
+
+.inv-categories {
+    margin:20px auto;
+    width:90%;
+    display:block;
+    border-color:#EDEDEA;
+    border-style:solid;
+}
+
+.inv-categories > li {
+    border-bottom-width:1px;
+}

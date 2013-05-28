@@ -38,3 +38,33 @@
     letter-spacing:2px;
 }
 
+
+.sidebar {
+    margin-left:24px;
+}
+
+.sidebar-widget-label {
+    background-color:#F4F4F2;
+    border-bottom-color:#EDEDEA;
+    font-size:1.3em;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+.inv-categories {
+    list-style:none;
+    border-width:1px;
+}
+
+.inv-categories > li {
+    font-size:1.2em;
+    box-sizing:border-box;
+    border-bottom-style:solid;
+    border-bottom-color:#EDEDEA;
+    padding:10px 20px;
+}
+
+
+.search {
+ width:100%;
+}

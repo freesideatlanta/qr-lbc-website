@@ -11,7 +11,8 @@
 .large-nav > .pic-link {
     float:left;
     padding:30px 50px;
-    border-left:1px solid;
+    border-left-width:1px;
+    border-left-style:solid;
     cursor:pointer;
 }
 

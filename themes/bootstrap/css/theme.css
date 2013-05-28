@@ -18,11 +18,13 @@
 }
 
 .large-nav > .pic-link {
-    border-left:#E5E5E2;
+    border-left-color:#E5E5E2;
+    color:#333;
 }
 
 .large-nav > .pic-link:hover {
 	background-color:#e4e4e1;
+    text-decoration:none;
 }
 
 .large-nav {

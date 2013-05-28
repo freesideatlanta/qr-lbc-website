@@ -81,18 +81,24 @@
             </div>
             <div class="span8">
                 <ul class="large-nav visible-desktop">
-                    <li class="pic-link">
-                        <img src="/images/shop.png" class="icon" />
-                        Shop
-                    </li>
-                    <li class="pic-link">
-                        <img src="/images/donate.png" class="icon" />
-                        Donate
-                    </li>
-                    <li class="pic-link">
-                        <img src="/images/request-materials.png" class="icon" />
-                        Request
-                    </li>
+                    <a class="pic-link" href="/shop">
+                        <li>
+                            <img src="/images/shop.png" class="icon" />
+                            Shop
+                        </li>
+                    </a>
+                    <a class="pic-link" href="/site/donate">
+                        <li>
+                            <img src="/images/donate.png" class="icon" />
+                            Donate
+                        </li>
+                    </a>
+                    <a class="pic-link" href="/site/request">
+                        <li>
+                            <img src="/images/request-materials.png" class="icon" />
+                            Request
+                        </li>
+                    </a>
                 </ul>
             </div>
         </div>

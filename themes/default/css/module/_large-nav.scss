@@ -1,0 +1,24 @@
+.large-nav-pic-link
+{
+    float:left;
+    padding:30px 50px;
+    border-left-width:1px;
+    border-left-style:solid;
+    cursor:pointer;
+    
+    /* keeps border from overlapping logo
+       on smaller browser widths. */
+
+    &:first-child
+    {
+        border:none;
+    }
+}
+
+.large-nav-icon
+{
+    margin:auto;
+    display:block;
+    margin-bottom:20px;
+}
+

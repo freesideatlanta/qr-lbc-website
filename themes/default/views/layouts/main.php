@@ -11,11 +11,7 @@
     $css = $yapp->theme->baseUrl . "/css";
 
     $yapp->bootstrap->register();
-    $yapp->clientScript->registerCssFile($css."/base.css");
-    $yapp->clientScript->registerCssFile($css."/modules.css");
-    $yapp->clientScript->registerCssFile($css."/state.css");
-    $yapp->clientScript->registerCssFile($css."/theme.css");
-    $yapp->clientScript->registerCssFile($css."/layout.css");
+    $yapp->clientScript->registerCssFile($css."/style.css");
     ?>
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
@@ -23,7 +19,7 @@
 </head>
 
 <body>
-<div class="footer-pusher">
+<div class="l-footer-pusher">
 
     <?php $this->widget('bootstrap.widgets.TbNavbar',array(
         'type'=>'inverse',
@@ -81,21 +77,21 @@
             </div>
             <div class="span8">
                 <ul class="large-nav visible-desktop">
-                    <a class="pic-link" href="/shop">
+                    <a class="large-nav-pic-link" href="/shop">
                         <li>
-                            <img src="/images/shop.png" class="icon" />
+                            <img src="/images/shop.png" class="large-nav-icon" />
                             Shop
                         </li>
                     </a>
-                    <a class="pic-link" href="/site/donate">
+                    <a class="large-nav-pic-link" href="/site/donate">
                         <li>
-                            <img src="/images/donate.png" class="icon" />
+                            <img src="/images/donate.png" class="large-nav-icon" />
                             Donate
                         </li>
                     </a>
-                    <a class="pic-link" href="/site/request">
+                    <a class="large-nav-pic-link" href="/site/request">
                         <li>
-                            <img src="/images/request-materials.png" class="icon" />
+                            <img src="/images/request-materials.png" class="large-nav-icon" />
                             Request
                         </li>
                     </a>
@@ -114,7 +110,7 @@
     </div>
 
 
-    <div class="container-fluid content">
+    <div class="container-fluid l-content">
         <div class="row-fluid">
             <?php
                 // put bootstrap breadcrumbs and spans in layout/views
@@ -122,10 +118,10 @@
             ?>
         </div>
     </div>
-    <div class="pusher"></div>
+    <div class="l-pusher"></div>
 </div>
 
-<div class="footer">
+<div class="l-footer">
     <div class="container-fluid">
     &copy; <?php echo date('Y'); ?> Lifecycle Building Center.
     </div>

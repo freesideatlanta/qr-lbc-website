@@ -1,0 +1,25 @@
+// See http://twitter.github.io/bootstrap/examples/sticky-footer.html
+
+.l-footer-pusher
+{
+    min-height:100%;
+    height:auto !important;
+    height:100%;
+    margin:0 auto -$height-footer; // negative indent
+}
+
+.l-pusher, .l-footer
+{
+    height:$height-footer;
+}
+
+@media (max-width: $width-tablet-max)
+{
+    .l-footer
+    {
+        margin-left:-20px;
+        margin-right:-20px;
+        padding-left:20px;
+        padding-right:20px;
+    }
+}

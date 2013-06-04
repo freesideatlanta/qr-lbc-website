@@ -1,2 +1,3 @@
 php_errors.log
-
+themes/default/css/style.css
+*.sass-cache*

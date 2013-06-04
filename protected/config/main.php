@@ -12,7 +12,7 @@ Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'LBC',
-	'theme'=>'bootstrap',
+	'theme'=>'default',
 
 	// preloading 'log' component
 	'preload'=>array('log'),

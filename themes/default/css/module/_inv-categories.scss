@@ -1,0 +1,11 @@
+.inv-categories
+{
+    border:none;
+    margin:0;
+
+    & > li
+    {
+        border-bottom:1px solid;
+    }
+}
+

@@ -88,8 +88,23 @@ CONVENTIONS
   will be compressed. No comments are to appear in it, and it will
   have UNIX line endings. The compile script handles this for you.
 
-- Variable names are descriptive, all lower case and separated by hypens.
-  Ex. $sidebar-width
+- Variable names are descriptive, and in camelCase.
+
+- Variables that represent common properties
+  must have those properties as the first words.
+
+  Ex. 
+    $widthSidebar;
+    $widthImage;
+    $widthSpan;
+
+    $heightFooter;
+    $heightNavbar;
+
+    $fontSizeLarge;
+    $fontSizeMid;
+
+    etc. 
 
 - Tabs are 4 spaces
 

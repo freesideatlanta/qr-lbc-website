@@ -1,0 +1,115 @@
+// IE10 Metro responsive for Windows 8 Metro split-screen snapping
+// See http://timkadlec.com/2012/10/ie10-snap-mode-and-responsive-design/
+
+@-ms-viewport
+{
+    width: device-width;
+}
+
+// Hide from both screenreaders and browsers
+.is-hidden
+{
+    display: none;
+    visibility: hidden;
+}
+
+// Visibility utilities
+
+// For desktops
+.is-visible-phone
+{
+    display: none !important;
+}
+
+.is-visible-tablet
+{
+    display: none !important;
+}
+
+.is-hidden-phone
+{
+}
+
+.is-hidden-tablet
+{
+}
+
+.is-hidden-desktop
+{
+    display: none !important;
+}
+
+.is-visible-desktop
+{
+    display: inherit !important;
+}
+
+.is-visible-print
+{
+    display: none !important;
+}
+
+.is-hidden-print
+{
+}
+
+
+@media (min-width: $widthTabletMin) and (max-width: $widthTabletMax)
+{
+    .is-hidden-desktop
+    {
+        display: inherit !important;
+    }
+
+    .is-visible-desktop
+    {
+        display: none !important;
+    }
+
+    .is-visible-tablet
+    {
+        display: inherit !important;
+    }
+
+    .is-hidden-tablet
+    {
+        display: none !important;
+    }
+}
+
+// Phones
+@media (max-width: $widthPhoneMax)
+{
+    .is-hidden-desktop
+    {
+        display: inherit !important;
+    }
+
+    .is-visible-desktop
+    {
+        display: none !important;
+    }
+
+    .is-visible-phone
+    {
+        display: inherit !important;
+    }
+
+    .is-hidden-phone
+    {
+        display: none !important;
+    }
+}
+
+@media print
+{
+    .is-visible-print
+    {
+        display: inherit !important;
+    }
+
+    .is-hidden-print
+    {
+        display: none !important;
+    }
+}

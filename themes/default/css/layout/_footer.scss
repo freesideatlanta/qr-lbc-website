@@ -5,15 +5,15 @@
     min-height:100%;
     height:auto !important;
     height:100%;
-    margin:0 auto -$height-footer; // negative indent
+    margin:0 auto -$heightFooter; // negative indent
 }
 
 .l-pusher, .l-footer
 {
-    height:$height-footer;
+    height:$heightFooter;
 }
 
-@media (max-width: $width-tablet-max)
+@media (max-width: $widthTabletMax)
 {
     .l-footer
     {

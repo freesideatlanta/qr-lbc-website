@@ -88,7 +88,7 @@ CONVENTIONS
   will be compressed. No comments are to appear in it, and it will
   have UNIX line endings. The compile script handles this for you.
 
-- Variable names are descriptive, and in camelCase.
+- Variable names are descriptive, and are in camelCase.
 
 - Variables that represent common properties
   must have those properties as the first words.
@@ -112,6 +112,8 @@ CONVENTIONS
 
 - Comply with SMACSS
 
+- Use the SCSS syntax in Sass
+
 - Make a new file in the appropriate location when a new set
   of styles pertaining to a particular module or concept is
   needed. So, if you are making a new module, make a new file
@@ -119,7 +121,7 @@ CONVENTIONS
   need a subdirectory.
 
 - Start all file names with an underscore and give it the .scss extension.
-  Only "styles.scss" may break this convention.
+  Only "styles.scss" may omit the underscore.
   This configuration prevents more than one CSS file from being output
   in compilation. See "Partials" in Sass reference for more information.
 

@@ -6,25 +6,24 @@ Know both before touching anything. Neither are complicated.
 You will gain much productivity in this system, but only
 if you do things in a certain way.
 
-SASS SETUP
+SETUP
 ===============
 $ (apt-get|yum) install ruby ruby-devel rubygems
-$ gem install sass
+$ gem install sass compass zen-grids
 
-./COMPILE
+DEPLOYMENT
 ===============
-There is a script in the style directory that compiles
-the site style information to CSS either in discrete
-bursts or in real time.
-
-Run it without options for usage details.
+Run 'compass compile' in /themes/default to compile the source,
+or 'compass watch' to compile in real time. Run it without options
+for usage details.
 
 DIRECTORY STRUCTURE AND LOADING CONVENTIONS
 ===========================================
 
-"style.scss" combines all styles in the entire system,
-and it imports "index files" from top level SMACSS directories
-(hence-forth "top level directories" or TLDs)
+The SCSS files in the sass directory without underscores
+will be referred to as "aggregator files." All these
+files do is import partials named "_index.scss"
+from top level SMACSS directories (henceforth TLDs)
 
     /<theme root>
         style.scss
@@ -84,10 +83,6 @@ CONVENTIONS
   Subdirectories of TLDs are permissible, but must
   be justified.
 
-- The output style sheet of the entire system is named "styles.css" and
-  will be compressed. No comments are to appear in it, and it will
-  have UNIX line endings. The compile script handles this for you.
-
 - Variable names are descriptive, and are in camelCase.
 
 - Variables that represent common properties
@@ -112,7 +107,9 @@ CONVENTIONS
 
 - Comply with SMACSS
 
-- Use the SCSS syntax in Sass
+- Use the SCSS syntax
+
+- Deploy with compass
 
 - Make a new file in the appropriate location when a new set
   of styles pertaining to a particular module or concept is
@@ -121,8 +118,8 @@ CONVENTIONS
   need a subdirectory.
 
 - Start all file names with an underscore and give it the .scss extension.
-  Only "styles.scss" may omit the underscore.
-  This configuration prevents more than one CSS file from being output
+  Only aggregator scss files (print, screen, ie, etc) may omit underscores.
+  This configuration prevents excess CSS files from being output
   in compilation. See "Partials" in Sass reference for more information.
 
 - @import all files in any directory inside the "_index.scss" file in that

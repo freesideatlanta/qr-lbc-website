@@ -1,0 +1,11 @@
+@import "zen";
+
+$zen-column-count: $gridColumnCount;
+$zen-gutter-width: $gridGutterWidth;
+
+.l-grid
+{
+    @include zen-grid-container;
+}
+
+

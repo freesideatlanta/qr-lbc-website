@@ -33,11 +33,8 @@
 
 <p>Shannon Goodman<br>Executive Director</p>
 
-<p><a href="https://usgbcga.memberclicks.net/index.php?option=com_mc&amp;view=mc&amp;mcid=form_109143" target="_blank"><img src="/images/about/take-action.bmp"></a></p>
-
 <h2>Press</h2>
 
-<p><a href="http://clatl.com/atlanta/waste-becomes-wealth-in-southwest-atlanta/Content?oid=7590785" target="_blank"><img src="/images/about/cl-logo.png" alt=""></a></p>
 <p><a href="http://clatl.com/atlanta/waste-becomes-wealth-in-southwest-atlanta/Content?oid=7590785" target="_blank">Thomas Wheatley's LBC article in Creative Loafing</a></p>
 <p> <a href="http://thedecaturminute.com/2013/04/02/salvaged-materials-from-beacon-school-complex-find-new-homes-with-the-lifecycle-building-center/" target="_blank">The Decatur Minute - "</a><a href="http://thedecaturminute.com/2013/04/02/salvaged-materials-from-beacon-school-complex-find-new-homes-with-the-lifecycle-building-center/" target="_blank">Salvaged Materials from Beacon School Complex Find New Homes with the Lifecycle Building Center"</a></p>
 

@@ -23,3 +23,19 @@
         padding-right:20px;
     }
 }
+
+.l-footer
+{
+    padding-top:1em;
+    @include zen-grid-container;
+}
+
+.l-meta
+{
+    @include zen-grid-item(4, 1);
+}
+
+.l-footer-nav
+{
+    @include zen-grid-item(8, 5);
+}

@@ -1,0 +1,9 @@
+All widgets are stored here.
+
+When making views for widgets, store them
+in the views/ subdirectory of the file
+containing the widget class file. Yii
+will look for views there when you
+call CWidget::render()
+
+Note that no layout is applied to widget views.

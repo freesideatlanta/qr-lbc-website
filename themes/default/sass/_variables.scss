@@ -3,8 +3,9 @@
 $gridColumnCount:12;
 $gridGutterWidth:30px;
 
-$heightFooter:120px;
 $baseFontSize:14px;
+$heightBaseline:22px;
+$heightFooter:$heightBaseline * 6;
 
 // Media query metrics
 

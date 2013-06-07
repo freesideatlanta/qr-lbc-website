@@ -1,3 +1,8 @@
+.large-nav
+{
+    float:right;
+}
+
 .large-nav-pic-link
 {
     float:left;
@@ -5,7 +10,8 @@
     border-left-width:1px;
     border-left-style:solid;
     cursor:pointer;
-    
+    text-decoration:none;
+
     /* keeps border from overlapping logo
        on smaller browser widths. */
 
@@ -20,5 +26,9 @@
     margin:auto;
     display:block;
     margin-bottom:20px;
+    width:62px;
 }
 
+.large-nav-icon-caption
+{
+}

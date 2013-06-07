@@ -5,11 +5,9 @@
 
     & > li
     {
-        font-size:1.2em;
-        box-sizing:border-box;
         border-bottom-style:solid;
         border-bottom-color:#EDEDEA;
-        padding:10px 20px;
+        padding:($heightBaseline/2) 1em (($heightBaseline/2) - 1) 1em;
     }
 }
 

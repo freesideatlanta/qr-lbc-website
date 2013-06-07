@@ -6,3 +6,14 @@ html, body
     margin:0;
     padding:0;
 }
+
+// prevent images from going over parent bounds
+img
+{
+    width:100%;
+}
+
+*
+{
+    box-sizing:border-box;
+}

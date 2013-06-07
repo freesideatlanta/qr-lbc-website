@@ -1,11 +1,7 @@
-.logo-bar
-{
-    height:170px;
-}
-
 .logo
 {
     margin:20px 70px;
+    width:300px;
 
     // Center logo on smaller displays
     @media screen and (max-width:$widthTabletMax)

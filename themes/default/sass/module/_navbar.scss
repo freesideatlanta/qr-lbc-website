@@ -1,0 +1,23 @@
+.navmenu
+{
+    list-style:none;
+    height:$heightBaseline * 2;
+    margin-right:1em;
+
+    & > li
+    {
+        float:right;
+        margin:$heightBaseline 0 $heightBaseline 2em;
+
+        & > a
+        {
+            color:white;
+            text-decoration:none;
+
+            &:hover
+            {
+                text-decoration:underline;
+            }
+        }
+    }
+}

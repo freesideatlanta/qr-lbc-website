@@ -1,5 +1,3 @@
-@import "zen";
-
 $zen-column-count: $gridColumnCount;
 $zen-gutter-width: $gridGutterWidth;
 
@@ -8,4 +6,46 @@ $zen-gutter-width: $gridGutterWidth;
     @include zen-grid-container;
 }
 
+.l-navbar
+{
+    @include zen-grid-item(12,1);
+    padding:0; // respects original metrics
+    opacity:0.5;
+}
+
+.l-brand-bar
+{
+    @include zen-clear();
+    @include zen-nested-container();
+    opacity:0.5;
+    height:$heightBaseline * 8;
+}
+
+.l-brand
+{
+    @include zen-grid-item(3, 1);
+}
+
+.l-large-nav
+{
+    @include zen-grid-item(7, 5);
+}
+
+// contains sidebar and content, but not footer.
+
+.l-body
+{
+    margin-top:$heightBaseline;
+}
+
+.l-sidebar
+{
+    @include zen-clear();
+    @include zen-grid-item(4, 1);
+}
+
+.l-content
+{
+    @include zen-grid-item(8, 5);
+}
 

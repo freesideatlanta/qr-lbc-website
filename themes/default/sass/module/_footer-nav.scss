@@ -1,0 +1,21 @@
+.footer-navmenu
+{
+    list-style:none;
+
+    & > li
+    {
+        float:right;
+        margin-right:1em;
+
+        & > a
+        {
+            text-decoration:none;
+            color:#6E6F71;
+
+            &:hover
+            {
+                color:#FE8E01;
+            }
+        }
+    }
+}

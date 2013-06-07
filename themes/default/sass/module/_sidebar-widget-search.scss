@@ -1,8 +1,9 @@
 .sidebar-widget .sidebar-widget-search
 {
     box-sizing:border-box;
-    font-size:1.5em;
-    padding:1.2em 0.3em;
+    margin:0;
+    border:none;
+    padding:$heightBaseline/2 1em;
+    font:inherit; // prevent user agent interference
     width:100%;
-    line-height:normal;
 }

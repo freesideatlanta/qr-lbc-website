@@ -11,7 +11,7 @@ html > body
     font-family:'Trebuchet MS', Helvetica, sans-serif;
     line-height:$base-line-height;
     @include establish-baseline($base-font-size);
-    @include baseline-grid-background($base-line-height, #FDD);
+//    @include baseline-grid-background($base-line-height, #FDD);
 }
 
 p

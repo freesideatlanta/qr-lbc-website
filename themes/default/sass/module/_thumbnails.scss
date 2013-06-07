@@ -1,0 +1,14 @@
+.thumbnails
+{
+    & > li
+    {
+        float:left;
+        margin-right:2.5em;
+
+        & img
+        {
+            width:168px;
+            height:auto;
+        }
+    }
+}

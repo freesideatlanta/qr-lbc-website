@@ -10,14 +10,12 @@ $zen-gutter-width: $gridGutterWidth;
 {
     @include zen-grid-item(12,1);
     padding:0; // respects original metrics
-    opacity:0.5;
 }
 
 .l-brand-bar
 {
     @include zen-clear();
     @include zen-nested-container();
-    opacity:0.5;
     height:$heightBaseline * 8;
 }
 

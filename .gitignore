@@ -1,4 +1,5 @@
 php_errors.log
 themes/default/css/*
 themes/default/sass/*.css
+images/thumbs/
 *.sass-cache*

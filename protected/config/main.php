@@ -5,10 +5,6 @@ Yii::setPathOfAlias('actions',dirname(__FILE__).'/../actions');
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 
-// Define a path alias for the Bootstrap extension as it's used internally.
-// In this example we assume that you unzipped the extension under protected/extensions.
-Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
-
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'LBC',
@@ -28,11 +24,13 @@ return array(
 		// uncomment the following to enable the Gii tool
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
-			'password'=>'abc',
-			// If removed, Gii defaults to localhost only. Edit carefully to taste.
+            'password'=>'abc',
+            'newFileMode'=>0666,
+            'newDirMode'=>0777,
+			// If removed, Gii defaults to localhost only.
 			'ipFilters'=>array('*','::1'),
-			'generatorPaths'=>array(
-				'bootstrap.gii',
+            'generatorPaths'=>array(
+                'ext.gtc'
 			),
 		),
 	),
@@ -44,9 +42,6 @@ return array(
             'site'=>'http://localhost:3000',
             'contentType'=>'application/json',
             'acceptType'=>'application/json',
-         ),
-         'bootstrap'=>array(
-         	'class'=>'bootstrap.components.Bootstrap',
          ),
 		'user'=>array(
 			// enable cookie-based authentication

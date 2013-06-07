@@ -24,6 +24,11 @@ $zen-gutter-width: $gridGutterWidth;
 .l-brand
 {
     @include zen-grid-item(3, 1);
+
+    @media screen and (max-width: $widthTabletMax)
+    {
+        @include zen-grid-item(12, 1);
+    }
 }
 
 .l-large-nav

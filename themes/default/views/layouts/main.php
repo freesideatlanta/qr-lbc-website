@@ -62,14 +62,14 @@
             <div class="l-brand">
                 <a href="/">
                     <img
-                    class="logo is-visible-desktop"
+                    class="logo"
                     src="/images/logo.jpg"
                     alt="Lifecyle Building Center Logo" />
                 </a>
             </div>
 
-            <div class="l-large-nav">
-            <ul class="large-nav is-visible-desktop">
+            <div class="l-large-nav is-visible-desktop">
+            <ul class="large-nav">
                 <a class="large-nav-pic-link" href="/shop">
                     <li>
                         <img

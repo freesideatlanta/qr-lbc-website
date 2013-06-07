@@ -66,3 +66,9 @@ $zen-gutter-width: $gridGutterWidth;
     }
 }
 
+.l-full-row
+{
+    @include zen-clear();
+    @include zen-grid-item(12,1);
+}
+

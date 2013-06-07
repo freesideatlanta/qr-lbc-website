@@ -3,6 +3,8 @@
 /* @var $model ContactForm */
 /* @var $form TbActiveForm */
 
+$this->layout = '//layouts/column1';
+
 $this->pageTitle=Yii::app()->name . ' - Contact Us';
 $this->breadcrumbs=array(
 	'Contact',

@@ -15,7 +15,7 @@ or `compass watch` to compile in real time.
 
 The SCSS files in the sass directory without underscores
 will be referred to as "aggregator files." All these
-files do is import partials named "_index.scss"
+files do is import partials named `_index.scss`
 from top level SMACSS directories (henceforth TLDs)
 
 ```
@@ -83,7 +83,6 @@ For reasons why underscores prefix file names, see Conventions.
 * Variables that represent common properties
   must have those properties as the first words.
 
-        ```
         $widthSidebar;
         $widthImage;
         $widthSpan;
@@ -93,7 +92,6 @@ For reasons why underscores prefix file names, see Conventions.
 
         $fontSizeLarge;
         $fontSizeMid;
-        ``` 
 
 * Tabs are 4 spaces
 
@@ -108,16 +106,17 @@ For reasons why underscores prefix file names, see Conventions.
 * Make a new file in the appropriate location when a new set
   of styles pertaining to a particular module or concept is
   needed. So, if you are making a new module, make a new file
-  just for it in "modules/". Grouped collections of modules may
+  just for it in `modules/`. Grouped collections of modules may
   need a subdirectory.
 
 * Start all file names with an underscore and give it the .scss extension.
   Only aggregator scss files (print, screen, ie, etc) may omit underscores.
   This configuration prevents excess CSS files from being output
-  in compilation. See "Partials" in Sass reference for more information.
+  in compilation. See ["Partials" in Sass reference](http://is.gd/BbFPaZ)
+  for more information.
 
-* @import all files in any directory inside the "_index.scss" file in that
-  ssme directory. Order the imports according to CSS declarations.
+* `@import` all files in any directory inside the `_index.scss` file
+  in that same directory. Order the imports according to CSS declarations.
   But if you are really good with CSS, order should not matter.
-  Always @import "_index.scss" in subdirectories in the immediate parent
-  directory's "_index.scss"
+  Always @import `_index.scss` in subdirectories in the immediate parent
+  directory's `_index.scss`

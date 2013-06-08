@@ -1,5 +1,5 @@
-The styles are organized according to SMACSS (http://www.smacss.com/)
-and are defined with Sass v3.2.9 SCSS syntax. (http://www.sass-lang.com)
+The styles are organized according to [SMACSS](http://www.smacss.com/)
+and are defined with [Sass](http://www.sass-lang.com) v3.2.9 SCSS syntax. 
 
 Know both before touching anything. Neither are complicated.
 
@@ -118,5 +118,5 @@ For reasons why underscores prefix file names, see Conventions.
 * `@import` all files in any directory inside the `_index.scss` file
   in that same directory. Order the imports according to CSS declarations.
   But if you are really good with CSS, order should not matter.
-  Always @import `_index.scss` in subdirectories in the immediate parent
-  directory's `_index.scss`
+  Always `@import "<subdir>/_index.scss"` in a  parent directory's
+  `_index.scss`

@@ -106,7 +106,7 @@ For reasons why underscores prefix file names, see Conventions.
 * Make a new file in the appropriate location when a new set
   of styles pertaining to a particular module or concept is
   needed. So, if you are making a new module, make a new file
-  just for it in `modules/`. Grouped collections of modules may
+  just for it in `module/`. Grouped collections of modules may
   need a subdirectory.
 
 * Start all file names with an underscore and give it the .scss extension.

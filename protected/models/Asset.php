@@ -22,22 +22,9 @@ class Asset extends EActiveResource
 
     public function properties()
     {
-        return array_merge(
-            array(
-                'tag'=>array('type'=>'string'),
-                'category'=>array('type'=>'string'),
-                'description'=>array('type'=>'string'),
-                'size'=>array('type'=>'string'),
-                'quantity'=>array('type'=>'integer'),
-                'condition'=>array('type'=>'string'),
-                'color'=>array('type'=>'string'),
-                'name'=>array('type'=>'string'),
-                'featured'=>array('type'=>'boolean')
-            ),
-            // These attributes are set via protected/confi/attrs.php
-            // End user can update attrs.php using the form @ /site/attributes
-            Yii::app()->params["customAttrs"]
-        );
+        // Extra attributes set in protected/config/attrs.php
+        $custom_attr = Yii::app()->params["customAttrs"];
+        return array_column( $custom_attr, "properties", "name" );
     }
 
     public function rules()
@@ -49,16 +36,8 @@ class Asset extends EActiveResource
 
      public function attributeLabels()
      {
-         return array(
-            'name'=>'Name',
-            'category'=>'Category',
-            'description'=>'Description',
-            'size'=>'Size',
-            'quantity'=>'Quantity',
-            'condition'=>'Condition',
-            'color'=>'Color',
-            'tag'=>'Tag',
-         );
+         $custom_attr = Yii::app()->params["customAttrs"];
+         return array_column( $custom_attr, "label", "name" );
      }
 
 }

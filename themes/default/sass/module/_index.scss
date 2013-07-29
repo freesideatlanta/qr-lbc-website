@@ -1,4 +1,26 @@
+// 3rd party
+// Use fancy-buttons ( color, font-size, border-radius, border-size )
+@import "fancy-buttons";
+
+$button-font-size: 1.2em;
+$button-border-radius: 8px;
+$button-border-size: 3px;
+
+@mixin lbc-button($color)
+{
+    @include fancy-button(
+            $color,
+            $button-font-size,
+            $button-border-radius,
+            $button-border-size
+        );
+
+    display: block;
+    width: 180px;
+    text-align: center;
+    @include margin-leader(1);
+}
+
 @import "data/index";
 @import "decor/index";
 @import "gui/index";
-

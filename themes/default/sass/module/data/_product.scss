@@ -16,10 +16,10 @@
 
 .product-buy-button
 {
-    @include lbc-button(#F99621, #FFF);
+    @include lbc-button(#F99621);
 }
 
 .product-contact-button
 {
-    @include lbc-button(#EEEEEB, #6E6F71);
+    @include lbc-button(#EEEEEB);
 }

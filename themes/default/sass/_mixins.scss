@@ -4,18 +4,3 @@
  */
 
 
-@mixin lbc-button($bg-color, $fg-color)
-{
-    @include border-radius(8px);
-    display:block;
-    background: $bg-color;
-    color: $fg-color;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-size: 1.2em;
-    text-align: center;
-    padding: 8px;
-    margin: 12px 0;
-    width: 180px;
-    cursor: pointer;
-}

@@ -15,6 +15,20 @@ be happy they are there later.
 Run `compass compile` in `/themes/default` to compile the source,
 or `compass watch` to compile in real time.
 
+# Dependencies
+
+Zen Grids
+
+
+## Setup
+
+First, install ruby on whatever distro you are on. Use RVM or whatever,
+and make sure to grab the ruby-devel and rubygems packages. These
+instructions are for Red Hat distros
+
+$ sudo yum install -y ruby ruby-devel rubygems
+$ sudo gem install sass compass zen-grids fancy-buttons
+
 # Directory Structure and Loading Conventions
 
 ```

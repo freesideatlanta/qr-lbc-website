@@ -46,12 +46,12 @@
                     ),
                     array(
                         'label'=>'Login',
-                        'url'=>array('/site/login'),
+                        'url'=>array('/user/login'),
                         'visible'=>$yapp->user->isGuest,
                     ),
                     array(
                         'label'=>'Logout ('.$yapp->user->name.')', 
-                        'url'=>array('/site/logout'),
+                        'url'=>array('/user/logout'),
                         'visible'=>!$yapp->user->isGuest,
                     ),
                 ),

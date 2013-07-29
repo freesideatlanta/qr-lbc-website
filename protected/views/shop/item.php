@@ -13,10 +13,10 @@ $this->breadcrumbs=array(
 
 <div class="product">
     <div class="product-display">
-        <h1>Barbie's Playhouse</h1>
         <img src="http://inventory.lifecyclebuildingcenter.org/img/display-cabinet-md.jpg" alt="Mahogany Doors" /> 
     </div>
     <div class="product-meta">
+        <h1>Barbie's Playhouse</h1>
         <p class="product-summary">Residential Corner Cabinets:  Solid hardwood with glass insets</p>
         <table class="product-attributes">
             <thead></thead>

@@ -1,0 +1,15 @@
+form
+{
+}
+
+label
+{
+    margin-top:$base-line-height;
+}
+
+input:not([type="checkbox"]),
+textarea,
+select
+{
+    display:block;
+}

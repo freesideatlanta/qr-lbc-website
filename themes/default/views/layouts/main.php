@@ -105,59 +105,61 @@
         <?php echo $content; ?>
         </div>
     </div>
-    <div class="l-pusher"></div>
+    <div class="l-footer-pusher-root"></div>
 </div>
 
 <div class="l-footer">
-    <div class="l-meta">
-        &copy; <?php echo date('Y'); ?> Lifecycle Building Center.
-    </div>
-    <div class="l-footer-nav">
-        <?php
-        $this->widget('zii.widgets.CMenu', array(
-            'htmlOptions'=>array(
-                'class'=>'footer-navmenu'
-            ),
-            'items'=>array(
-                array(
-                    'label'=>'Contact',
-                    'url'=>array('/site/contact'),
+    <div class="l-grid">
+        <div class="l-meta">
+            &copy; <?php echo date('Y'); ?> Lifecycle Building Center.
+        </div>
+        <div class="l-footer-nav">
+            <?php
+            $this->widget('zii.widgets.CMenu', array(
+                'htmlOptions'=>array(
+                    'class'=>'footer-navmenu'
                 ),
-                array(
-                    'label'=>'About',
-                    'url'=>array(
-                            '/site/page',
-                            'view'=>'about',
-                           ),
+                'items'=>array(
+                    array(
+                        'label'=>'Contact',
+                        'url'=>array('/site/contact'),
+                    ),
+                    array(
+                        'label'=>'About',
+                        'url'=>array(
+                                '/site/page',
+                                'view'=>'about',
+                               ),
+                    ),
+                    array(
+                        'label'=>'Register',
+                        'url'=>array('/site/register'),
+                    ),
+                    array(
+                        'label'=>'Login',
+                        'url'=>array('/site/login'),
+                        'visible'=>$yapp->user->isGuest,
+                    ),
+                    array(
+                        'label'=>'Logout ('.$yapp->user->name.')', 
+                        'url'=>array('/site/logout'),
+                        'visible'=>!$yapp->user->isGuest,
+                    ),
+                    array(
+                        'label'=>'Shop',
+                        'url'=>array('/shop'),
+                    ),
+                    array(
+                        'label'=>'Donate Materials',
+                        'url'=>array('/shop/donate'),
+                    ),
+                    array(
+                        'label'=>'Request Materials',
+                        'url'=>array('/shop/request'),
+                    ),
                 ),
-                array(
-                    'label'=>'Register',
-                    'url'=>array('/site/register'),
-                ),
-                array(
-                    'label'=>'Login',
-                    'url'=>array('/site/login'),
-                    'visible'=>$yapp->user->isGuest,
-                ),
-                array(
-                    'label'=>'Logout ('.$yapp->user->name.')', 
-                    'url'=>array('/site/logout'),
-                    'visible'=>!$yapp->user->isGuest,
-                ),
-                array(
-                    'label'=>'Shop',
-                    'url'=>array('/shop'),
-                ),
-                array(
-                    'label'=>'Donate Materials',
-                    'url'=>array('/shop/donate'),
-                ),
-                array(
-                    'label'=>'Request Materials',
-                    'url'=>array('/shop/request'),
-                ),
-            ),
-        )); ?>
+            )); ?>
+        </div>
     </div>
 </div>
 

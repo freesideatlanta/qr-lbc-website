@@ -1,35 +1,11 @@
-// See http://twitter.github.io/bootstrap/examples/sticky-footer.html
+@import "compass/layout/sticky-footer";
 
-.l-footer-pusher
-{
-    min-height:100%;
-    height:auto !important;
-    height:100%;
-    margin:0 auto -$heightFooter; // negative indent
-}
 
-.l-pusher, .l-footer
-{
-    height:$heightFooter;
-}
-
-@media (max-width: $widthTabletMax)
-{
-    .l-footer
-    {
-        // this pushes the layout to the left. Not cool.
-        // margin-left:-20px;
-        // margin-right:-20px;
-
-        padding-left:20px;
-        padding-right:20px;
-    }
-}
+@include sticky-footer($base-line-height*8, ".l-footer-pusher", ".l-footer-pusher-root", "l-footer");
 
 .l-footer
 {
-    padding-top:1em;
-    @include zen-grid-container;
+    @include padding-leader(1);
 }
 
 .l-meta

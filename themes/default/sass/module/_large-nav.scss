@@ -1,12 +1,12 @@
 .large-nav
 {
-    float:right;
 }
 
 .large-nav-pic-link
 {
     float:left;
-    padding:30px 50px;
+    padding:rhythm(1.5) rhythm(1);
+    height: $brand-bar-height;
     border-left-width:1px;
     border-left-style:solid;
     cursor:pointer;

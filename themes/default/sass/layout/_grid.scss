@@ -1,5 +1,44 @@
-$zen-column-count: $gridColumnCount;
-$zen-gutter-width: $gridGutterWidth;
+@include establish-baseline($base-font-size);
+
+html
+{
+    font-family:'Trebuchet MS', Helvetica, sans-serif;
+}
+
+p
+{
+    @include margin-leader(1);
+}
+
+h1
+{
+    @include adjust-font-size-to($base-font-size * 4);
+}
+
+h2
+{
+    @include adjust-font-size-to($base-font-size * 3.5);
+}
+
+h3
+{
+    @include adjust-font-size-to($base-font-size * 3);
+}
+
+h4
+{
+    @include adjust-font-size-to($base-font-size * 2.5);
+}
+
+h5
+{
+    @include adjust-font-size-to($base-font-size * 2);
+}
+
+h6
+{
+    @include adjust-font-size-to($base-font-size * 1.5);
+}
 
 .l-grid
 {
@@ -16,12 +55,12 @@ $zen-gutter-width: $gridGutterWidth;
 {
     @include zen-clear();
     @include zen-nested-container();
-    height:$heightBaseline * 8;
+    height:$base-line-height * 8;
 }
 
 .l-brand
 {
-    @include zen-grid-item(3, 1);
+    @include zen-grid-item(5, 1);
 
     @media screen and (max-width: $widthTabletMax)
     {
@@ -31,14 +70,14 @@ $zen-gutter-width: $gridGutterWidth;
 
 .l-large-nav
 {
-    @include zen-grid-item(7, 5);
+    @include zen-grid-item(6, 6);
 }
 
 // contains sidebar and content, but not footer.
 
 .l-body
 {
-    margin-top:$heightBaseline;
+    margin-top:$base-line-height;
 }
 
 .l-sidebar
@@ -62,6 +101,9 @@ $zen-gutter-width: $gridGutterWidth;
         @include zen-clear();
         @include zen-grid-item(12,1);
     }
+
+    $zen-column-count: 4;
+    @include zen-nested-container();
 }
 
 .l-full-row
@@ -69,4 +111,3 @@ $zen-gutter-width: $gridGutterWidth;
     @include zen-clear();
     @include zen-grid-item(12,1);
 }
-

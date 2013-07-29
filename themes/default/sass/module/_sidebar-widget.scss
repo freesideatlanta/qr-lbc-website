@@ -3,12 +3,12 @@
     box-sizing:border-box;
 
     // -1 is there to account for 1px widget border
-    margin:0 auto ($heightBaseline - 1) auto;
+    margin:0 auto ($base-line-height - 1) auto;
     display:block;
 }
 
 .sidebar-widget-label
 {
-    padding:($heightBaseline/2) 1em;
+    padding:($base-line-height/2) 1em;
     border-bottom-width:1px;
 }

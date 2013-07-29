@@ -2,8 +2,7 @@
 {
     box-sizing:border-box;
     margin:0;
-    border:none;
-    padding:$heightBaseline/2 1em;
+    padding:$base-line-height/2 1em;
     font:inherit; // prevent user agent interference
     width:100%;
 }

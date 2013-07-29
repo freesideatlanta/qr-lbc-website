@@ -1,0 +1,14 @@
+.contact-form
+{
+    input[type="text"], textarea
+    {
+        display:block;
+    }
+
+    textarea
+    {
+        resize:none;
+        width: 600px;
+        height: $base-line-height * 10;
+    }
+}

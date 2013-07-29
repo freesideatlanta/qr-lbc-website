@@ -1,0 +1,25 @@
+.product
+{
+    $zen-column-count: 2;
+    @include zen-nested-container();
+}
+
+.product-display
+{
+    @include zen-grid-item(1, 1);
+}
+
+.product-meta
+{
+    @include zen-grid-item(1, 2);
+}
+
+.product-buy-button
+{
+    @include lbc-button(#F99621, #FFF);
+}
+
+.product-contact-button
+{
+    @include lbc-button(#EEEEEB, #6E6F71);
+}

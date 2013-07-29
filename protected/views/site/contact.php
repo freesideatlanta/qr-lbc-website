@@ -22,11 +22,15 @@ $this->breadcrumbs=array(
 - 678.592.0417</li>
 </ul>
 
+<p>The Lifecycle Building Center warehouse is located at <a href="http://goo.gl/maps/w8vMw">1116 Murphy Avenue SW, Atlanta, GA 30310</a></p>
+
+<p>Please direct all mail correspondence to: P.O. Box 7661, Atlanta, GA 30357</p>
+
 <p>If you have business inquiries or other questions,
 please fill out the following form to contact us.
 Thank you.</p>
 
-<div class="form">
+<div class="form contact-form">
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'enableClientValidation'=>true,
 	'clientOptions'=>array(
@@ -36,7 +40,45 @@ Thank you.</p>
 
 <p class="note">Fields with <span class="required">*</span> are required.</p>
 
-<?php echo $form->errorSummary($model); ?>
+<?php
+echo $form->errorSummary($model);
+
+$attr = 'name';
+echo $form->labelEx($model, $attr);
+echo $form->textField($model, $attr);
+echo $form->error($model, $attr);
+
+$attr = 'email';
+echo $form->labelEx($model, $attr);
+echo $form->textField($model, $attr);
+echo $form->error($model, $attr);
+
+$attr = 'subject';
+echo $form->labelEx($model, $attr);
+echo $form->textField($model, $attr);
+echo $form->error($model, $attr);
+
+$attr = 'body';
+echo $form->labelEx($model, $attr);
+echo $form->textArea($model, $attr);
+echo $form->error($model, $attr);
+
+echo CHtml::tag('p',array(),"Please type the code below to prove you are human.");
+
+$attr = 'verifyCode';
+$this->widget('CCaptcha', array(
+            'imageOptions'=>array(
+                'class'=>'captcha-image',
+            ),
+            'buttonOptions'=>array(
+                'class'=>'captcha-button',
+            ),
+        ));
+echo $form->labelEx($model, $attr);
+echo $form->textField($model, $attr);
+echo $form->error($model, $attr);
+
+?>
 
 <div class="form-actions">
     <input type="submit" value="Send" />

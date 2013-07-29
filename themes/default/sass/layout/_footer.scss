@@ -3,17 +3,24 @@
 
 @include sticky-footer($base-line-height*8, ".l-footer-pusher", ".l-footer-pusher-root", "l-footer");
 
+.l-footer-grid
+{
+    $zen-column-count: 4;
+    @include zen-grid-container;
+}
+
 .l-footer
 {
     @include padding-leader(1);
+    height:$base-line-height*8;
 }
 
 .l-meta
 {
-    @include zen-grid-item(4, 1);
+    @include zen-grid-item(1, 1);
 }
 
 .l-footer-nav
 {
-    @include zen-grid-item(8, 5);
+    @include zen-grid-item(3, 2);
 }

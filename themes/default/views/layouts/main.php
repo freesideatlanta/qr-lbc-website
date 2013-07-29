@@ -109,7 +109,7 @@
 </div>
 
 <div class="l-footer">
-    <div class="l-grid">
+    <div class="l-footer-grid">
         <div class="l-meta">
             &copy; <?php echo date('Y'); ?> Lifecycle Building Center.
         </div>

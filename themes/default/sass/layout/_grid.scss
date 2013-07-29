@@ -1,5 +1,13 @@
 @include establish-baseline($base-font-size);
 
+/*
+These function as a hybrid of both layout and base styles.
+But since their intended use is to establish vertical
+rhythm, they are categorized under layout.
+ */
+
+// <base-layout>
+
 html
 {
     font-family:'Trebuchet MS', Helvetica, sans-serif;
@@ -40,9 +48,18 @@ h6
     @include adjust-font-size-to($base-font-size * 1.5);
 }
 
+// </base-layout>
+
 .l-grid
 {
+    $zen-column-count:12;
     @include zen-grid-container;
+}
+
+.l-full-row
+{
+    @include zen-clear();
+    @include zen-grid-item(12,1);
 }
 
 .l-navbar
@@ -104,10 +121,4 @@ h6
 
     $zen-column-count: 4;
     @include zen-nested-container();
-}
-
-.l-full-row
-{
-    @include zen-clear();
-    @include zen-grid-item(12,1);
 }

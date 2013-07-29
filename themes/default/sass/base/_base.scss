@@ -17,3 +17,18 @@ img
 {
     box-sizing:border-box;
 }
+
+ol
+{
+    list-style: decimal;
+}
+
+ul
+{
+    list-style: disc;
+}
+
+ul, ol
+{
+    margin-left: 2em;
+}

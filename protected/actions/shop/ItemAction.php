@@ -24,6 +24,8 @@ class ItemAction extends CAction
 
     public function run()
     {
+        $this->controller->layout = '//layouts/column2';
         // place the action logic here
+        $this->controller->render('item');
     }
 }

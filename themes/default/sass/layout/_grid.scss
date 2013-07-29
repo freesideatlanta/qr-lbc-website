@@ -1,10 +1,7 @@
 @include establish-baseline($base-font-size);
 
-/*
-These function as a hybrid of both layout and base styles.
-But since their intended use is to establish vertical
-rhythm, they are categorized under layout.
- */
+$base-font-size: 16px;
+$base-line-height: floor($base-font-size * 1.618);
 
 // <base-layout>
 
@@ -25,27 +22,12 @@ h1
 
 h2
 {
-    @include adjust-font-size-to($base-font-size * 3.5);
+    @include adjust-font-size-to($base-font-size * 3);
 }
 
 h3
 {
-    @include adjust-font-size-to($base-font-size * 3);
-}
-
-h4
-{
-    @include adjust-font-size-to($base-font-size * 2.5);
-}
-
-h5
-{
     @include adjust-font-size-to($base-font-size * 2);
-}
-
-h6
-{
-    @include adjust-font-size-to($base-font-size * 1.5);
 }
 
 // </base-layout>

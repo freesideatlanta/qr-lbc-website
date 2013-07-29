@@ -6,6 +6,12 @@
     & > li
     {
         border-bottom:1px solid;
+
+        @media screen and (max-width: $widthTabletMax)
+        {
+            float:left;
+            border: none;
+        }
     }
 }
 

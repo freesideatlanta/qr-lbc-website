@@ -1,12 +1,15 @@
 <?php
 
-Yii::setPathOfAlias('actions',dirname(__FILE__).'/../actions');
+$this_file = dirname(__FILE__);
+
+Yii::setPathOfAlias('actions',$this_file.'/../actions');
+Yii::setPathOfAlias('filters',$this_file.'/../filters');
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 
 return array(
-	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
+	'basePath'=>$this_file.'/..',
 	'name'=>'LBC',
 	'theme'=>'default',
 
@@ -33,7 +36,15 @@ return array(
                 'ext.gtc'
 			),
 		),
-	),
+    ),
+
+    'behaviors'=>array(
+        'MailBehavior'=>array(
+            'class'=>'application.behaviors.MailBehavior',
+            'from'=>'no-reply@qratitude',
+            'subject_prefix'=>'QRatitude - ',
+        ),
+    ),
 
 	// application components
 	'components'=>array(
@@ -58,9 +69,13 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
+        'email'=>array(
+            'class'=>'ext.email.Email',
+            'delivery'=>'php', //Use php mailer. 'debug' dumps a view.
+        ),
 		'db'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		),
+			'connectionString' => 'sqlite:'.$this_file.'/../data/testdrive.db',
+        ),
 		// uncomment the following to use a MySQL database
 		/*
 		'db'=>array(

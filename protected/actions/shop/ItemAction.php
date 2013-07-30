@@ -25,14 +25,22 @@ class ItemAction extends CAction
     {
         $this->controller->layout = '//layouts/column2';
 
-        $rest = new RestCurlClient();
-        
-        $url = Yii::app()->params['apiPrefix'];
+        $asset = Yii::app()->get("/asset/$id");
 
-        $asset = json_decode($rest->get($url."/asset/$id"), true);
+        /*
+        $json = json_encode(array(
+            'id'=>'ss',
+            'name'=>'asasd',
+            'attributes'=>array('foo'=>'bar'),
+            'photos'=>array('asas','asfdgdf')
+        ));
 
-  //      header('Content-Type: text/plain');
-//        var_dump($asset);
+        $post = Yii::app()->post("/asset", $json);
+
+        header('Content-Type: text/plain');
+        print_r($post);
+         */
+
 
         $this->controller->render('item', array('asset'=>$asset));
     }

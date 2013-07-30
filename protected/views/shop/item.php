@@ -16,7 +16,7 @@ $this->breadcrumbs=array(
     <img src="<?php echo $asset['photos'][0]; ?>" class="product-image" /> 
     </div>
     <div class="product-meta">
-    <h1 class="product-name"><?php echo $asset['attributes']['name']; ?></h1>
+    <h1 class="product-name"><?php echo $asset['name']; ?></h1>
         <p class="product-summary">Residential Corner Cabinets:  Solid hardwood with glass insets</p>
         <table class="product-attributes">
             <thead></thead>

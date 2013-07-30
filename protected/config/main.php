@@ -48,6 +48,10 @@ return array(
             'class'=>'application.behaviors.UrlCryptBehavior',
             'key'=>'f$%*dgB08Ef95oxz@$'
         ),
+        'JsonRestClientBehavior'=>array(
+            'class'=>'application.behaviors.JsonRestClientBehavior',
+            'api_prefix'=>'http://localhost:8080/qratitude-service/api',
+        ),
     ),
 
 	// application components
@@ -116,6 +120,5 @@ return array(
     'params'=>array(
         // this is used in contact page
        'adminEmail'=>'zyrolasting@gmail.com',
-       'apiPrefix'=>'http://localhost:8080/qratitude-service/api',
     ),
 );

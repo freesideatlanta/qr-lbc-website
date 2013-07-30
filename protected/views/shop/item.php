@@ -13,30 +13,23 @@ $this->breadcrumbs=array(
 
 <div class="product">
     <div class="product-display">
-        <img src="http://inventory.lifecyclebuildingcenter.org/img/display-cabinet-md.jpg" alt="Mahogany Doors" /> 
+    <img src="<?php echo $asset->photos[0]; ?>" /> 
     </div>
     <div class="product-meta">
-        <h1>Barbie's Playhouse</h1>
+    <h1><?php echo $asset->name; ?></h1>
         <p class="product-summary">Residential Corner Cabinets:  Solid hardwood with glass insets</p>
         <table class="product-attributes">
             <thead></thead>
             <tbody>
-                <tr>
-                    <th>Size</th>
-                    <td>3' x 3' x 95 3/4"H.</td>
-                </tr>
-                <tr>
-                    <th>Quantity Available</th>
-                    <td>2</td>
-                </tr>
-                <tr>
-                    <th>Color</th>
-                    <td>White/Pink</td>
-                </tr>
-                <tr>
-                    <th>Price</th>
-                    <td>$225</td>
-                </tr>
+            <?php
+                    $attrs = $asset->getAttributes();
+                    foreach ($attrs as $k=>$v) {
+                        $tr  = CHtml::tag('th', array(), $k);
+                        $tr .= CHtml::tag('td', array(), $v);
+                        echo CHtml::tag('tr', array(), $tr);
+                    }
+
+                ?>
             </tbody>
         </table>
     <div class="product-actions">

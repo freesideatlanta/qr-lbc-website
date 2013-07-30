@@ -63,4 +63,10 @@ return array(
 			'type'=>'boolean'
 		),
     ),
+    array(
+        'name'=>'photos',
+        'properties'=>array(
+            'type'=>'string'
+        ),
+    ),
 );

@@ -54,7 +54,7 @@ return array(
 	'components'=>array(
         'activeresource'=>array(
             'class'=>'EActiveResourceConnection',
-            'site'=>'http://localhost:3000',
+            'site'=>'http://localhost:8080/qratitude-service/api',
             'contentType'=>'application/json',
             'acceptType'=>'application/json',
          ),

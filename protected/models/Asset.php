@@ -20,6 +20,12 @@ class Asset extends EActiveResource
     }
 
 
+    public function array_column($array)
+    {
+        
+
+    }
+
     public function properties()
     {
         // Extra attributes set in protected/config/attrs.php

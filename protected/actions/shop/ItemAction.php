@@ -21,11 +21,10 @@
 
 class ItemAction extends CAction
 {
-
-    public function run()
+    public function run($id)
     {
         $this->controller->layout = '//layouts/column2';
-        // place the action logic here
-        $this->controller->render('item');
+        $asset = Asset::model()->findById($id);
+        $this->controller->render('item', array('asset'=>$asset));
     }
 }

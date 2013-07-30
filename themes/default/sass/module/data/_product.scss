@@ -17,9 +17,53 @@
 .product-buy-button
 {
     @include lbc-button(#F99621);
+    display: inline-block;
 }
 
 .product-contact-button
 {
     @include lbc-button(#EEEEEB);
+    display: inline-block;
+}
+
+.product-name
+{
+    text-align: center;
+}
+
+.product-summary
+{
+    padding: 1em;
+    background: #fafafa;
+    margin: 0.5em 0;
+    border: 1px #666 solid;
+    @include border-radius(16px);
+}
+
+.product-attributes
+{
+    border: 2px solid #111;
+
+    & tr
+    {
+        border-bottom: 1px dotted #111;
+    }
+
+    & th
+    {
+        background: #222;
+        color: #f99621;
+        padding: 0 1em 0 1em;
+        font-weight: bold;
+    }
+
+    & td
+    {
+        padding: 1em 0 1em 1em;
+    }
+}
+
+.product-image
+{
+    @include border-radius(30px);
 }

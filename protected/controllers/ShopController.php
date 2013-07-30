@@ -14,6 +14,7 @@ class ShopController extends Controller
 		// return external action classes, e.g.:
 		return array(
             'index'   =>'actions.shop.IndexAction',
+            'category'=>'actions.shop.CategoryAction',
             'donate'  =>'actions.shop.DonateAction',
             'request' =>'actions.shop.RequestAction',
             'item'    =>'actions.shop.ItemAction'

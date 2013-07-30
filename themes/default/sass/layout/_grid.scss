@@ -101,6 +101,7 @@ h3
         @include zen-grid-item(12,1);
     }
 
+    padding-bottom: 1em;
     $zen-column-count: 4;
     @include zen-nested-container();
 }

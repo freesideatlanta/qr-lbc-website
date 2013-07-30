@@ -52,12 +52,6 @@ return array(
 
 	// application components
 	'components'=>array(
-        'activeresource'=>array(
-            'class'=>'EActiveResourceConnection',
-            'site'=>'http://localhost:8080/qratitude-service/api',
-            'contentType'=>'application/json',
-            'acceptType'=>'application/json',
-         ),
 		'user'=>array(
 			// enable cookie-based authentication
             'allowAutoLogin'=>true,
@@ -122,6 +116,6 @@ return array(
     'params'=>array(
         // this is used in contact page
        'adminEmail'=>'zyrolasting@gmail.com',
-       'customAttrs'=>include('attrs.php'),
+       'apiPrefix'=>'http://localhost:8080/qratitude-service/api',
     ),
 );

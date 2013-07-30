@@ -24,7 +24,16 @@ class ItemAction extends CAction
     public function run($id)
     {
         $this->controller->layout = '//layouts/column2';
-        $asset = Asset::model()->findById($id);
+
+        $rest = new RestCurlClient();
+        
+        $url = Yii::app()->params['apiPrefix'];
+
+        $asset = json_decode($rest->get($url."/asset/$id"), true);
+
+  //      header('Content-Type: text/plain');
+//        var_dump($asset);
+
         $this->controller->render('item', array('asset'=>$asset));
     }
 }

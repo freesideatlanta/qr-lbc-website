@@ -26,12 +26,6 @@ class SiteController extends Controller
             'contact'=>array(
                 'class'=>'actions.site.Contact',
              ),
-            'login'=>array(
-                'class'=>'actions.site.Login',
-             ),
-            'logout'=>array(
-                'class'=>'actions.site.Logout',
-             ),
             'attributes'=>array(
                 'class'=>'actions.site.Attributes',
              ),

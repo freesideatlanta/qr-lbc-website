@@ -44,6 +44,10 @@ return array(
             'from'=>'no-reply@qratitude',
             'subject_prefix'=>'QRatitude - ',
         ),
+        'UrlCryptBehavior'=>array(
+            'class'=>'application.behaviors.UrlCryptBehavior',
+            'key'=>'f$%*dgB08Ef95oxz@$'
+        ),
     ),
 
 	// application components
@@ -56,8 +60,14 @@ return array(
          ),
 		'user'=>array(
 			// enable cookie-based authentication
-			'allowAutoLogin'=>true,
+            'allowAutoLogin'=>true,
+            'loginUrl'=>array('user/login'),
 		),
+        'hasher'=>array (
+            'class'=>'ext.phpass.Phpass',
+            'hashPortable'=>false,
+            'hashCostLog2'=>10,
+        ),
 		// uncomment the following to enable URLs in path-format
 		'urlManager'=>array(
             'urlFormat'=>'path',

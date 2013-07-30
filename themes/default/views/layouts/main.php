@@ -42,7 +42,7 @@
                     ),
                     array(
                         'label'=>'Register',
-                        'url'=>array('/site/register'),
+                        'url'=>array('/user/register'),
                     ),
                     array(
                         'label'=>'Login',

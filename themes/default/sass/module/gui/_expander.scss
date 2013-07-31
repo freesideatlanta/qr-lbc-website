@@ -1,0 +1,8 @@
+.expander
+{
+    @include lbc-button(#000);
+    display:inline-block;
+    text-align:center;
+    width:50px;
+    padding: 2px 8px;
+}

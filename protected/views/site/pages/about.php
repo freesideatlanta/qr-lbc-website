@@ -1,5 +1,4 @@
 <h1>About</h1>
-<h2>Mission</h2>
 <p>The mission of the LBC is to make the lifecycle use of the built environment increasingly efficient and sustainable. This mission will be enacted in three ways.</p>
 
 <ol>

@@ -1,15 +1,24 @@
-.thumbnails
+.featured-list
 {
     list-style:none;
+    margin: 0;
+
     & > li
     {
         float:left;
-        margin-right:2.5em;
-
-        & img
-        {
-            width:168px;
-            height:auto;
-        }
+        width: 25%;
+        padding:0 4px 4px 0;
     }
 }
+
+.featured-item-thumbnail
+{
+}
+
+.featured-item-name
+{
+    font-size: 1em;
+    text-align: center;
+}
+
+

@@ -10,26 +10,9 @@
             class="sidebar-widget-search" />
     </form>
 
-    <div class="sidebar-widget is-bordered">
-        <div class="sidebar-widget-label">Categories</div>
-        <ul class="inv-categories">
-        <?php
-            $res = Yii::app()->get('/category');
-
-            foreach ($res['categories'] as $c)
-            {
-                $a = CHtml::link($c, array(
-                    '/shop',
-                    'category'=>$c
-                 ));
-
-                echo CHtml::tag('li',array(),$a);
-            }
-        
-        ?>
-        </ul>
-    </div>
+    <?php $this->widget('application.widgets.categories.CategoriesWidget'); ?>
 </div>
+
 <div class="l-content">
     <?php echo $content; ?>
 </div>

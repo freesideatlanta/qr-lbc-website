@@ -1,36 +1,40 @@
-@include establish-baseline($base-font-size);
+@mixin baseline($bfs, $max-width)
+{
+    @media screen and (max-width: $max-width)
+    {
+        $base-font-size: $bfs;
+        $base-line-height: floor($base-font-size * 1.618);
+        @include establish-baseline($base-font-size);
 
-$base-font-size: 16px;
-$base-line-height: floor($base-font-size * 1.618);
+        p
+        {
+            @include margin-leader(1);
+        }
 
-// <base-layout>
+        h1
+        {
+            @include adjust-font-size-to($base-font-size * 4);
+        }
+
+        h2
+        {
+            @include adjust-font-size-to($base-font-size * 3);
+        }
+
+        h3
+        {
+            @include adjust-font-size-to($base-font-size * 2);
+        }
+    }
+}
+
+@include baseline(16px, 1800px);
+@include baseline(24px, $widthTabletMax);
 
 html
 {
     font-family:'Trebuchet MS', Helvetica, sans-serif;
 }
-
-p
-{
-    @include margin-leader(1);
-}
-
-h1
-{
-    @include adjust-font-size-to($base-font-size * 4);
-}
-
-h2
-{
-    @include adjust-font-size-to($base-font-size * 3);
-}
-
-h3
-{
-    @include adjust-font-size-to($base-font-size * 2);
-}
-
-// </base-layout>
 
 .l-grid
 {
@@ -54,7 +58,7 @@ h3
 {
     @include zen-clear();
     @include zen-nested-container();
-    height:$base-line-height * 8;
+    height:200px;
 }
 
 .l-brand
@@ -76,7 +80,7 @@ h3
 
 .l-body
 {
-    margin-top:$base-line-height;
+    margin-top:1em;
 }
 
 .l-sidebar

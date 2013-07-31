@@ -32,13 +32,13 @@ Thank you.</p>
 
 <div class="form contact-form">
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'enableClientValidation'=>true,
+    'errorMessageCssClass'=>'is-wrong',
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
 	),
 )); ?>
 
-<p class="note">Fields with <span class="required">*</span> are required.</p>
+<p class="note">Fields with <span class="is-required">*</span> are required.</p>
 
 <?php
 echo $form->errorSummary($model);
@@ -74,6 +74,7 @@ $this->widget('CCaptcha', array(
                 'class'=>'captcha-button',
             ),
         ));
+
 echo $form->labelEx($model, $attr);
 echo $form->textField($model, $attr);
 echo $form->error($model, $attr);

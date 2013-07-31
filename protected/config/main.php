@@ -1,5 +1,7 @@
 <?php
 
+CHtml::$requiredCss = "is-required";
+
 $this_file = dirname(__FILE__);
 
 Yii::setPathOfAlias('actions',$this_file.'/../actions');

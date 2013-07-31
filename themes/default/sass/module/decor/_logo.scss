@@ -1,13 +1,13 @@
 .logo
 {
-    margin:20px 70px;
+    margin:35px 70px;
     width:300px;
 
     // Center logo on smaller displays
     @media screen and (max-width:$widthTabletMax)
     {
         display:block;
-        margin:20px auto 20px auto;
+        margin:35px auto;
     }
 }
 

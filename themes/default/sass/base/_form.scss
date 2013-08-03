@@ -14,16 +14,17 @@ select
     display:block;
 }
 
-input:not([type="checkbox"]),
+input[type="text"],
 textarea
 {
     padding: 0.5em;
     @include border-radius(10px);
+
+    &:focus
+    {
+        border: #00f 2px solid;
+        outline: none;
+        @include border-radius(10px);
+    }
 }
 
-input:focus
-{
-    border: #00f 2px solid;
-    outline: none;
-    @include border-radius(10px);
-}

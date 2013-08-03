@@ -5,4 +5,14 @@
     text-align:center;
     width:50px;
     padding: 2px 8px;
+    margin: 0;
+
+    // preserve same styles.
+    // code smell; special case
+    @media #{$media-phone}
+    {
+        width: 50px;
+        padding: 2px 8px;
+        margin: 0;
+    }
 }

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="language" content="en" />
+    <meta name="language" content="en" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <?php
     $yapp = Yii::app();
@@ -20,7 +21,7 @@
 </head>
 
 <body>
-<div class="l-footer-pusher">
+<div class="l-footer-pusher" id="top">
     <div class="l-grid">
         <div class="l-navbar">
             <?php
@@ -114,10 +115,11 @@
             &copy; <?php echo date('Y'); ?> Lifecycle Building Center.
         </div>
         <div class="l-footer-nav">
+            <a href="#top" class="is-hidden-desktop">Back to top</a>
             <?php
             $this->widget('zii.widgets.CMenu', array(
                 'htmlOptions'=>array(
-                    'class'=>'footer-navmenu'
+                    'class'=>'footer-navmenu is-visible-desktop'
                 ),
                 'items'=>array(
                     array(

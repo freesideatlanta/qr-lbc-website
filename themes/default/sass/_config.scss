@@ -6,10 +6,9 @@ $base-line-height: floor($base-font-size * 1.618);
 $zen-gutter-width: $base-line-height;
 
 // Media query metrics
-
-$widthTabletMin:768px;
-$widthTabletMax:979px;
-$widthPhoneMax:767px;
+$media-phone:   "only screen and (max-width: 480px)";
+$media-tablet:  "only screen and (max-width: 970px)";
+$media-desktop: "only screen and (min-width: 971px)";
 
 $brand-bar-height: $base-line-height*8;
 

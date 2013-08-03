@@ -8,7 +8,7 @@
         border-bottom-style:solid;
         border-bottom-color:#EDEDEA;
 
-        @media screen and (max-width: $widthTabletMax)
+        @media #{$media-tablet}
         {
             border:none;
         }

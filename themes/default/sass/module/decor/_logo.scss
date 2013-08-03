@@ -3,8 +3,7 @@
     margin:35px 70px;
     width:300px;
 
-    // Center logo on smaller displays
-    @media screen and (max-width:$widthTabletMax)
+    @media #{$media-tablet}
     {
         display:block;
         margin:35px auto;

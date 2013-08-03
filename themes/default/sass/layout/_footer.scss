@@ -1,7 +1,18 @@
 @import "compass/layout/sticky-footer";
 
+$footer-height: 100px;
 
-@include sticky-footer($base-line-height*8, ".l-footer-pusher", ".l-footer-pusher-root", "l-footer");
+@media #{$media-tablet}
+{
+    $footer-height: 150px;
+}
+
+@media #{$media-phone}
+{
+    $footer-height: 80px;
+}
+
+@include sticky-footer($footer-height, ".l-footer-pusher", ".l-footer-pusher-root", "l-footer");
 
 .l-footer-grid
 {
@@ -11,8 +22,9 @@
 
 .l-footer
 {
-    @include padding-leader(1);
-    height:$base-line-height*8;
+    @include margin-leader(0.5);
+    @include padding-leader(0.5);
+//    height: $footer-height;
 }
 
 .l-meta
@@ -23,4 +35,18 @@
 .l-footer-nav
 {
     @include zen-grid-item(3, 2);
+}
+
+@media #{$media-phone}
+{
+    .l-meta
+    {
+        @include zen-grid-item(4, 1);
+    }
+
+    .l-footer-nav
+    {
+        @include zen-clear();
+        @include zen-grid-item(4, 1);
+    }
 }

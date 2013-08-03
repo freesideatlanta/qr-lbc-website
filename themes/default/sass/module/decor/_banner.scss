@@ -16,6 +16,12 @@
     height:150px;
     position:relative;
     z-index:100;
+    
+    @media #{$media-phone}
+    {
+        margin-top: -35px;
+        height: 30px;
+    }
 }
 
 .banner-caption
@@ -26,6 +32,12 @@
     padding-top:20px;
     line-height:1em;
     margin: 0;
+
+    @media #{$media-phone}
+    {
+        padding-top: 5px;
+        font-size: 1em;
+    }
 }
 
 .banner-subcaption

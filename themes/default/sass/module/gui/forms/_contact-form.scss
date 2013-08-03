@@ -9,6 +9,12 @@
     {
         resize:none;
         width: 600px;
-        height: $base-line-height * 10;
+        height: 300px;
+
+        @media #{$media-phone}
+        {
+            width: 100%;
+            height: 200px;
+        }
     }
 }

@@ -54,7 +54,7 @@
 }
 
 
-@media (min-width: $widthTabletMin) and (max-width: $widthTabletMax)
+@media #{$media-tablet}
 {
     .is-hidden-desktop
     {
@@ -78,7 +78,7 @@
 }
 
 // Phones
-@media (max-width: $widthPhoneMax)
+@media #{$media-phone}
 {
     .is-hidden-desktop
     {

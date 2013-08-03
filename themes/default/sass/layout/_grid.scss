@@ -1,39 +1,52 @@
-@mixin baseline($bfs, $max-width)
+// W3C
+@viewport
 {
-    @media screen and (max-width: $max-width)
-    {
-        $base-font-size: $bfs;
-        $base-line-height: floor($base-font-size * 1.618);
-        @include establish-baseline($base-font-size);
+    width: device-width;
+}
 
-        p
+// IE10
+@-ms-viewport
+{
+    width: device-width;
+}
+
+@mixin baseline($fontsize, $media)
+{
+    @media #{$media}
+    {
+        $base-font-size: $fontsize;
+        $base-line-height: floor($fontsize * 1.618);
+        @include establish-baseline($fontsize);
+
+        p, li
         {
-            @include margin-leader(1);
+            @include margin-leader(1,$fontsize);
         }
 
         h1
         {
-            @include adjust-font-size-to($base-font-size * 4);
+            @include adjust-font-size-to($fontsize * 3);
         }
-
+        
         h2
         {
-            @include adjust-font-size-to($base-font-size * 3);
+            @include adjust-font-size-to($fontsize * 2.5);
         }
 
         h3
         {
-            @include adjust-font-size-to($base-font-size * 2);
+            @include adjust-font-size-to($fontsize * 2);
         }
     }
 }
 
-@include baseline(16px, 1800px);
-@include baseline(24px, $widthTabletMax);
+@include baseline($base-font-size, $media-desktop);
+@include baseline(floor($base-font-size * 1.2), $media-tablet);
+@include baseline(floor($base-font-size * 1.2), $media-phone);
 
-html
+body
 {
-    font-family:'Trebuchet MS', Helvetica, sans-serif;
+    min-width:360px;
 }
 
 .l-grid
@@ -65,7 +78,7 @@ html
 {
     @include zen-grid-item(5, 1);
 
-    @media screen and (max-width: $widthTabletMax)
+    @media #{$media-tablet}
     {
         @include zen-grid-item(12, 1);
     }
@@ -88,7 +101,7 @@ html
     @include zen-clear();
     @include zen-grid-item(4, 1);
 
-    @media screen and (max-width: $widthTabletMax)
+    @media #{$media-tablet}
     {
         @include zen-clear();
         @include zen-grid-item(12,1);
@@ -99,7 +112,7 @@ html
 {
     @include zen-grid-item(8, 5);
     
-    @media screen and (max-width: $widthTabletMax)
+    @media #{$media-tablet}
     {
         @include zen-clear();
         @include zen-grid-item(12,1);

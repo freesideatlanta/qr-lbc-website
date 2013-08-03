@@ -19,6 +19,13 @@ $button-border-size: 3px;
     width: 180px;
     text-align: center;
     @include margin-leader(1);
+
+    @media #{$media-phone}
+    {
+        width: 100%;
+        margin: 0.5em auto;
+        padding: 0.5em 0;
+    }
 }
 
 @import "data/index";

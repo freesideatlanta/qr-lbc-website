@@ -11,4 +11,9 @@
 {
     padding:($base-line-height/2) 1em;
     border-bottom-width:1px;
+
+    @media #{$media-tablet}
+    {
+        text-align: center;
+    }
 }

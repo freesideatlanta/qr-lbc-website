@@ -1,5 +1,7 @@
 <?php
 
+$this->layout = '//layouts/column2';
+
 $items = "";
 foreach ($assets as $a)
 {

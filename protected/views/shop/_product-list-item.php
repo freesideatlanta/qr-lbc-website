@@ -4,7 +4,7 @@
  */
 
 echo CHtml::image($asset['photos'][0], '', array(
-        'class'=>'product-list-item-image',
+        'class'=>'product-list-thumbnail',
     ));
 
 echo CHtml::tag('h1', array(

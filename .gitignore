@@ -3,3 +3,5 @@ themes/default/css/*
 themes/default/sass/*.css
 images/thumbs/
 *.sass-cache*
+_layouts
+_sass

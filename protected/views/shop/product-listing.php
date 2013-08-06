@@ -5,7 +5,8 @@ foreach ($assets as $a)
 {
     $item = $this->renderPartial(
         '_product-list-item',
-        array('asset'=>$a)
+        array('asset'=>$a),
+        true
     );
 
     $items .= CHtml::tag('li', array(), $item);
@@ -14,7 +15,7 @@ foreach ($assets as $a)
 echo CHtml::tag(
     'ul',
     array(
-        'class'=>'product-listing',
+        'class'=>'product-list',
     ),
     $items
 );

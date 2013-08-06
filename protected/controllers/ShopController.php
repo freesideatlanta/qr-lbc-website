@@ -17,6 +17,7 @@ class ShopController extends Controller
             'category'=>'actions.shop.CategoryAction',
             'donate'  =>'actions.shop.DonateAction',
             'request' =>'actions.shop.RequestAction',
+            'tag'     =>'actions.shop.TagAction',
             'item'    =>'actions.shop.ItemAction'
 		);
 	}

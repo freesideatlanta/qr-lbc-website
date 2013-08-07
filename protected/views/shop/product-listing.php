@@ -2,22 +2,12 @@
 
 $this->layout = '//layouts/column2';
 
-$items = "";
-foreach ($assets as $a)
-{
-    $item = $this->renderPartial(
-        '_product-list-item',
-        array('asset'=>$a),
-        true
-    );
-
-    $items .= CHtml::tag('li', array(), $item);
-}
-
-echo CHtml::tag(
-    'ul',
+$this->widget(
+    'application.widgets.products.ProductsWidget',
     array(
-        'class'=>'product-list',
-    ),
-    $items
+        'heading'  => 'Available Items',
+        'css_class'=> 'product',
+        'assets'   => require(dirname(__FILE__).'/../../phplib/dummy.php'),
+        'show_summary' => true
+    )
 );

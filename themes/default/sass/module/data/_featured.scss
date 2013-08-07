@@ -16,14 +16,19 @@
     }
 }
 
-.featured-item-thumbnail
+.featured-thumbnail
 {
+    display: block;
+    margin:0 auto;
+    height: 200px;
+    background-position: center center;
+    background-size: cover;
+    @include border-radius(20px);
 }
 
-.featured-item-name
+.featured-list-item-heading
 {
+    text-align:center;
     font-size: 1em;
-    text-align: center;
 }
-
 

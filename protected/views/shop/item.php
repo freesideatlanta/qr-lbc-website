@@ -17,7 +17,7 @@ $this->breadcrumbs=array(
     </div>
     <div class="product-meta">
     <h1 class="product-name"><?php echo $asset['name']; ?></h1>
-        <p class="product-summary">Residential Corner Cabinets:  Solid hardwood with glass insets</p>
+    <p class="product-summary"><?php echo $asset['summary']; ?></p>
         <table class="product-attributes">
             <thead></thead>
             <tbody>

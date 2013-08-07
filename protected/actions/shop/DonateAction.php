@@ -23,5 +23,6 @@ class DonateAction extends CAction
     public function run()
     {
         // place the action logic here
+        $this->controller->redirect('/site/contact');
     }
 }

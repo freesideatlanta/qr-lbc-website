@@ -9,5 +9,11 @@
 <?php
 
 $this->widget(
-    'application.widgets.featured.FeaturedWidget'
+    'application.widgets.products.ProductsWidget',
+    array(
+        'heading'  => 'Featured Items',
+        'css_class'=> 'featured',
+        'assets'   => require(dirname(__FILE__).'/../../phplib/dummy.php'),
+        'display_grid'=>true
+    )
 );

@@ -23,9 +23,15 @@ class ItemAction extends CAction
 {
     public function run($id)
     {
+        if (is_null($id) || $id < 0 || $id > 4)
+        {
+            echo "<p>Invalid request for the purposes of this demo! Use IDs 0 through 4 only, please.</p>";
+            Yii::app()->end();
+        }
+
         $this->controller->layout = '//layouts/column2';
 
-        $asset = Yii::app()->get("/asset/$id");
+        // $asset = Yii::app()->get("/asset/$id");
 
         /*
         $json = json_encode(array(
@@ -41,7 +47,9 @@ class ItemAction extends CAction
         print_r($post);
          */
 
+        $assets = require(dirname(__FILE__).'/../../phplib/dummy.php');
 
-        $this->controller->render('item', array('asset'=>$asset));
+
+        $this->controller->render('item', array('asset'=>$assets[$id]));
     }
 }

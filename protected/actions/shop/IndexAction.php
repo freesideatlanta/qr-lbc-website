@@ -22,5 +22,6 @@ class IndexAction extends CAction
     public function run()
     {
         // place the action logic here
+        $this->controller->redirect('/site/index');
     }
 }

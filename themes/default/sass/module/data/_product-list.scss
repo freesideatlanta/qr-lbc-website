@@ -10,25 +10,77 @@ $dim: 100px;
     {
         width: 100%;
         height: $dim;
-        line-height: $dim;
+        line-height: $dim/2;
         overflow: hidden;
+        padding: 0 8px 0 0;
         @include border-radius(20px);
-        @include background-image(linear-gradient(#fff, #ddd));
+        @include background-image(linear-gradient(#fefefe, #eee));
+
+        @media #{$media-phone}
+        {
+            padding: 0;
+            margin: 4px;
+            width: $dim;
+            float: left;
+            background: none;
+            display: hidden;
+        }
     }
 }
 
-.product-list-thumbnail
+.product-thumbnail
 {
-    width:  $dim;
-    height: $dim;
-    float:  left;
-    display: block;
+    @include  border-radius(20px);
+    border:   4px #6E6F71 groove;
+    width:    $dim;
+    height:   $dim;
+    overflow: hidden;
+    float:    left;
+    display:  block;
+    background-position: center center;
+    background-size: cover;
+}
+
+.product-list-item-meta
+{
+    vertical-align: middle;
+    height:$dim;
+    display: inline-block;
+
+    & a
+    {
+        color: #F99621;
+        text-decoration: none;
+
+        &:visited
+        {
+            color: darken(#F99621, 30%);
+        }
+    }
 }
 
 .product-list-item-heading
 {
-    display: inline-block;
-    line-height: normal;
-    vertical-align: middle;
-    margin: 0 0 0 0.5em;
+    font-size: 1.5em;
+    margin: 0 0 0 10px;
 }
+
+.product-list-item-summary
+{
+    width: 100%;
+    position: relative;
+    left: 10px;
+    margin: 0;
+    display: block;
+
+    
+    @media #{$media-phone}
+    {
+        display: hidden;
+    }
+}
+
+@media #{$media-tablet}
+{
+}
+

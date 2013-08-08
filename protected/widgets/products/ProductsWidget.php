@@ -14,6 +14,7 @@ class ProductsWidget extends CWidget
 
         if ($this->display_grid)
         {
+            /*
             $yii->clientScript->registerScript("grid-spacer", "
                 function recalc()
                 {
@@ -34,7 +35,8 @@ class ProductsWidget extends CWidget
                 $(window).resize(function() {
                      recalc(); 
                 });
-            ", CClientScript::POS_READY);
+                ", CClientScript::POS_READY);
+             */
         }
 
         // $data = Yii::app()->get('/asset/?t=featured');

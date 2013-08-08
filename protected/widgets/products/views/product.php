@@ -3,7 +3,7 @@
  * @var $asset array - Asset JSON
  */
 
-echo CHtml::tag('div', array(
+$image = CHtml::tag('div', array(
     'class'=>$this->css_class.'-thumbnail',
     'style'=>'background-image: url('.$asset['photos'][0].');'
     ), '');
@@ -12,6 +12,7 @@ $heading = CHtml::tag('h3', array(
         'class'=>$this->css_class.'-list-item-heading',
     ), $asset["name"]);
 
+echo CHtml::link($image, $asset['url']);
 $heading = CHtml::link($heading, $asset['url']);
 
 if ($this->show_summary)

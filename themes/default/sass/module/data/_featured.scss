@@ -5,14 +5,34 @@
 
 .featured-list
 {
-    list-style:none;
+    list-style: none;
     margin: 0;
+    text-align: center;
 
     & > li
     {
-        float:left;
-        width: 25%;
-        padding:0 4px 4px 0;
+        width: 23%;
+        margin: 0.5em;
+        display: inline-block;
+
+        @media #{$media-phone}
+        {
+            width:300px;
+            display: block;
+            margin: 1em auto;
+        }
+    }
+}
+
+.featured-list-item-meta
+{
+    & a
+    {
+        $c: darken(#F99621, 10%);
+        color: $c;
+        text-decoration: none;
+        padding-bottom: 3px;
+        border-bottom: 1px solid $c;
     }
 }
 
@@ -29,6 +49,9 @@
 .featured-list-item-heading
 {
     text-align:center;
-    font-size: 1em;
+    font-size: 1.5em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 

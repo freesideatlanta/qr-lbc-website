@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+ruby '1.9.3'
+gem 'sass', '>=3.2.0'
+gem 'compass', '~>0.12.2'
+gem 'zen-grids', '~>1.4'
+gem 'color-schemer', '~>0.2.5'
+gem 'fancy-buttons', '~>1.2.0'

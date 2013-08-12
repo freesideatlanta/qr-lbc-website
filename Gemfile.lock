@@ -1,0 +1,29 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    chunky_png (1.2.8)
+    color-schemer (0.2.5)
+      compass (~> 0.12)
+      compass-blend-modes (~> 0.0.2)
+    compass (0.12.2)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
+    compass-blend-modes (0.0.2)
+      compass
+    fancy-buttons (1.2.0)
+      compass (>= 0.11)
+    fssm (0.2.10)
+    sass (3.2.10)
+    zen-grids (1.4)
+      sass (>= 3.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  color-schemer (~> 0.2.5)
+  compass (~> 0.12.2)
+  fancy-buttons (~> 1.2.0)
+  sass (>= 3.2.0)
+  zen-grids (~> 1.4)

@@ -5,3 +5,5 @@ images/thumbs/
 *.sass-cache*
 _layouts
 _sass
+.ruby-version.*
+.ruby-gemset.*

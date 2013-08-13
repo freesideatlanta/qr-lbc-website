@@ -2,39 +2,6 @@
 
 class AssetController extends Controller
 {
-	public function actionAdmin()
-	{
-		$this->render('admin');
-	}
-
-	public function actionCreate($name)
-    {
-        $a = new Asset();
-        $a->name = $name;
-
-        $a->save();
-    }	
-
-	public function actionIndex()
-	{
-		$this->render('index');
-	}
-
-	public function actionRead()
-	{
-		$this->render('read');
-	}
-
-	public function actionUpdate()
-	{
-		$this->render('update');
-	}
-
-	public function actionView()
-	{
-		$this->render('view');
-	}
-
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()
@@ -47,18 +14,30 @@ class AssetController extends Controller
 				'propertyName'=>'propertyValue',
 			),
 		);
-	}
+    }
+    */
 
 	public function actions()
 	{
-		// return external action classes, e.g.:
 		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
+			'index'=>array(
+				'class'=>'actions.asset.IndexAction',
+			),
+			'create'=>array(
+				'class'=>'actions.asset.CreateAction',
+			),
+			'read'=>array(
+				'class'=>'actions.asset.ReadAction',
+			),
+			'update'=>array(
+				'class'=>'actions.asset.UpdateAction',
+			),
+			'delete'=>array(
+				'class'=>'actions.asset.DeleteAction',
+			),
+			'admin'=>array(
+				'class'=>'actions.asset.AdminAction',
 			),
 		);
 	}
-	*/
 }

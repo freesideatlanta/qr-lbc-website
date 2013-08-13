@@ -35,9 +35,6 @@ class AssetController extends Controller
 			'delete'=>array(
 				'class'=>'actions.asset.DeleteAction',
 			),
-			'admin'=>array(
-				'class'=>'actions.asset.AdminAction',
-			),
 		);
 	}
 }

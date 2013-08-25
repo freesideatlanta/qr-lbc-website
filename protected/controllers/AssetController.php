@@ -31,10 +31,16 @@ class AssetController extends Controller
 			),
 			'update'=>array(
 				'class'=>'actions.asset.UpdateAction',
-			),
+            ),
+            'view'=>array(
+                'class'=>'actions.asset.ViewAction',
+            ),
 			'delete'=>array(
 				'class'=>'actions.asset.DeleteAction',
-			),
+            ),
+            'admin'=>array(
+                'class'=>'actions.asset.AdminAction',
+            ),
 		);
 	}
 }

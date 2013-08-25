@@ -37,7 +37,7 @@ class UploadedImage
         // IMPORTANT: This is how everyone else will find the photo.
         // Make sure it ends up in persistent storage with meaningful
         // data around it, since it is not a human friendly name.
-        $this->url = $yii->baseUrl.'/'.$fn
+        $this->url = $yii->baseUrl.'/'.$fn;
 
         $yii = Yii::app();
         return $this->image->saveAs($yii->basePath.'/'.$fn);

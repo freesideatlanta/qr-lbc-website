@@ -9,7 +9,7 @@ class AdminAction extends CAction
 {
     public function run()
     {
-        $assets = Yii::app()->get('/assets');
-        $this->controller->render('admin', array(''));
+        $assets = require(dirname(__FILE__).'/../../phplib/dummy.php'); // Yii::app()->get('/asset');
+        $this->controller->render('admin', array('assets'=>$assets));
     }
 }

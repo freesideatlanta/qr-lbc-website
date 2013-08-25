@@ -1,0 +1,14 @@
+.button.button-danger
+{
+    @include lbc-button(#F00);
+}
+
+.button.button-action
+{
+    @include lbc-button(#F99621);
+}
+
+.button.button-neutral
+{
+    @include lbc-button(#FEFEFE);
+}

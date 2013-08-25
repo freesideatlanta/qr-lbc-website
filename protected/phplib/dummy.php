@@ -17,7 +17,7 @@ for ($i = 0; $i < 20; ++$i)
         'url'=>"/asset/$i",
         'photos'=>array('http://dummyimage.com/600x400&text=%20/'.rand_color()),
         'attributes'=>array(
-            'Size'=>'',
+            'Size'=>'12" x 12"',
             'Qty. Available'=>'43',
             'Price'=>$h*100,
         ),

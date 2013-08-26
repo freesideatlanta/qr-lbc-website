@@ -7,23 +7,23 @@
  * @package application.models
  */
 
-class UploadedImage
+class UploadedImage extends CFormModel
 {
     public $image;
     public $url;
  
     /*
-     * Saves uploaded photo to the filesystem, naming
+     * Saves uploaded image to the filesystem, naming
      * it after it's own MD5 sum. Returns URL to
-     * uploaded photo.
+     * uploaded image.
      *
      * @param string $imgPath Webroot relative directory to store image.
      * @return boolean True if file was successfully saved
      */
 
-    public function processPhoto($imgPath)
+    public function saveImage($imgPath)
     {
-        // Extract the photo
+        // Extract the image
         $this->image = CUploadedFile::getInstance($this,'image');
 
         // Compute new file name based on MD5 sum.
@@ -34,13 +34,14 @@ class UploadedImage
         $ext = pathinfo($orig_name, PATHINFO_EXTENSION);
         $fn  = $imgPath . '/' . $md5 . '.' . $ext;
 
-        // IMPORTANT: This is how everyone else will find the photo.
+        // IMPORTANT: This is how everyone else will find the image.
         // Make sure it ends up in persistent storage with meaningful
         // data around it, since it is not a human friendly name.
-        $this->url = $yii->baseUrl.'/'.$fn;
 
         $yii = Yii::app();
-        return $this->image->saveAs($yii->basePath.'/'.$fn);
+        $this->url = $yii->baseUrl.'/'.$fn;
+
+        return $this->image->saveAs($yii->basePath.'/../'.$fn);
     }
 
     /*
@@ -50,8 +51,7 @@ class UploadedImage
     public function rules()
     {
         return array(
-            array('photo', 'required'),
-            array('photo','file', 'types'=>'jpg, gif, png'),
+            array('image','file', 'types'=>'jpg, gif, png'),
         );
     }
 }

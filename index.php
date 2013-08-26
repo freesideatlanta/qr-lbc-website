@@ -10,7 +10,10 @@ defined('YII_DEBUG') or define('YII_DEBUG',true);
 defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 
 require_once($yii);
-require_once(dirname(__FILE__).'/protected/phplib/array_column.php');
-require_once(dirname(__FILE__).'/protected/phplib/RestCurlClient.php');
+
+$inc_dir = dirname(__FILE__).'/protected/phplib/';
+require_once($inc_dir.'array_column.php');
+require_once($inc_dir.'RestCurlClient.php');
+require_once($inc_dir.'QratitudeHelper.php');
 
 Yii::createWebApplication($config)->run();

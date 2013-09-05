@@ -2,19 +2,16 @@
 
 /**
  * An item in the inventory.
+ *
+ * This class represents a single item in the inventory
+ * of a business.
+ *
+ * @author Sage Lennon Gerard
+ * @package application.models
  */
 
 class Asset extends CFormModel
 {
-    public $name;   // Human-friendly name of the asset
-    public $tags;   // Comma-delimited tags describing the asset.
-
-    /**
-     * @var array(AssetCustomAttribute) User defined attributes
-     */
-
-    public $custom; // Custom attributes. Array of AssetCustomAttribute models
-
     /**
      * @var int Represents PK in back end
      *
@@ -24,6 +21,24 @@ class Asset extends CFormModel
      */
 
     public $id;
+
+    /**
+     * @var string Human-friendly name of the asset
+     */
+
+    public $name;
+    
+    /**
+     * @var string Comma-delimited tags describing the asset.
+     */
+
+    public $tags;
+
+    /**
+     * @var array(AssetCustomAttribute) User defined attributes
+     */
+
+    public $custom; // Custom attributes. Array of AssetCustomAttribute models
 
     /**
      * @var array(CUploadedFile) Represents uploaded images

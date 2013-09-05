@@ -98,6 +98,9 @@ class Asset extends CFormModel
         return array(
             array('metadata', 'nestedValidate'),
             array('images', 'validateImages'),
+            array('name, tags', 'required'),
+            array('custom, name, tags', 'safe'),
+            array('custom', 'validateCustom')
         );
     }
 
@@ -181,21 +184,6 @@ class Asset extends CFormModel
         }
 
         return true;
-    }
-    
-    /**
-     * Business logic oriented validation rule config
-     *
-     * @return array Array of Yii-standard validation rules
-     */
-
-    public function rules()
-    {
-        return array(
-            array('name, tags', 'required'),
-            array('custom, name, tags', 'safe'),
-            array('custom', 'validateCustom')
-        );
     }
 
     /**

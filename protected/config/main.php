@@ -46,6 +46,9 @@ return array(
             'from'=>'no-reply@qratitude',
             'subject_prefix'=>'QRatitude - ',
         ),
+        'FlashBehavior'=>array(
+            'class'=>'application.behaviors.FlashBehavior',
+        ),
         'UrlCryptBehavior'=>array(
             'class'=>'application.behaviors.UrlCryptBehavior',
             'key'=>'f$%*dgB08Ef95oxz@$'

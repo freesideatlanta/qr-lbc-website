@@ -1,61 +1,57 @@
 <?php
 
+/**
+ * Saves new asset from a form.
+ */
+
 class CreateAction extends CAction
 {
     public function run()
     {
-        $model = new AssetFormModel();
+        $asset = new Asset();
+        $yii   = Yii::app();
+
+        $yii->clientScript->registerScriptFile(
+            $this->controller->createUrl('/js/asset-form.js'),
+            CClientScript::POS_END
+        );
+
+        // header('Content-Type: text/plain');
+        // die(var_export($_POST));
+        $images = CUploadedFile::getInstancesByName('images');
 
         // collect input
-        if(isset($_POST["AssetFormModel"]))
+        if(isset(
+            $_POST["AssetMetadata"],
+            $_POST['AssetCustomAttribute'],
+            $images
+        ))
         {
-            if (isset($_POST['attr-names']) && isset($_POST['attr-vals']))
-            {
-                $combined = array_combine(
-                    $_POST['attr-names'],
-                    $_POST['attr-vals']);
+            $asset->populate(
+                 $_POST["AssetMetadata"],
+                 $_POST['AssetCustomAttribute'],
+                 $images
+            );
 
-                if ($combined === FALSE)
+            if ($asset->validate())
+            {
+                if (!$asset->save())
                 {
-                    $model->addError('pairs', 'All custom attributes must have values and'.
-                        'vise-versa. Do not leave any blanks in the table below.');
+                    throw new Exception('507',
+                            "Sorry! Something broke. Please try again.");
                 }
-
-                $model->pairs = $combined;
-                die(var_export($model->pairs));
-            }
-            
-            $model->attributes=$_POST["AssetFormModel"];
-
-            if (!$model->validate() ||
-                !$this->postAsset($model))
-            {
-                $this->controller->render('create',
-                    array('model'=>$model));
+                else
+                {
+                    $yii->user->setFlash('success', "Asset saved!");
+                }
             }
         }
         else
         {
-            $this->controller->render('create',
-                array('model'=>$model));
+            $asset->metadata->custom =
+                AssetMetadata::getDefaultCustomAttrs();
         }
+
+        $this->controller->render('create', array('asset'=>$asset));
     }
-
-    public function postAsset($model)
-    {
-        try
-        {
-            // Yii::app()->uploadPhoto($model->photo);
-
-            Yii::app()->post("/asset", $model->toArray());
-        }
-        catch(Exception $e)
-        {
-            // silently return, since rendering the form
-            // again should show user error.
-            return false;
-        }
-
-        return true;
-    }    
 }

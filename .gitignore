@@ -1,7 +1,8 @@
 php_errors.log
 themes/default/css/*
 themes/default/sass/*.css
-images/thumbs/
+images/thumbs
+images/assets
 *.sass-cache*
 _layouts
 _sass

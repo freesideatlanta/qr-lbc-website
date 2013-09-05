@@ -1,11 +1,13 @@
 <?php
 
 /** 
- * Static helpers for common operations between the front end and back end.
+ * This is an interface for the back end. Application state must be 
+ * manipulated through this class.
  * 
  * The back end of the application is not powered by Yii, and is interfaced
  * with in particular ways. This class makes it easier to talk to the back
- * end.
+ * end. The additional layer let's the Yii application work without getting
+ * too coupled with backend communication.
  *
  * @author Sage Gerard
  * @package application.phplib
@@ -28,7 +30,11 @@ class QratitudeHelper
      * @return array Associative array matching JSON schema for assets
      */
 
-    public static function encodeAsset($assetFormModel, $uploadedPhotoModel)
+    public static function encodeAsset(
+        $assetFormModel,
+        $uploadedPhotoModel,
+        $customAttrs
+    )
     {
         $out = array();
         $out['name'] = $assetFormModel->name;
@@ -41,8 +47,45 @@ class QratitudeHelper
 
         $out['photos']     = array($uploadedPhotoModel->url);
         $out['tags']       = $tags;
-        $out['attributes'] = $assetFormModel->pairs;
+        $out['attributes'] = array();
+
+        foreach ($customAttrs as $a)
+        {
+            $out['attributes'][$a->key] = $a->val;
+        }
 
         return $out;
+    }
+
+    public static function getAsset($id)
+    {
+        $a = new Asset();
+    }
+
+    /**
+     * Saves an image to the back end.
+     *
+     * @param CUploadedFile $file
+     * @return bool True if successful.
+     */
+
+    public static function saveImage($file)
+    {
+        // Compute new file name based on MD5 sum.
+        $tmp_name  = $file->getTempName();
+        $orig_name = $file->getName();
+
+        $md5 = md5_file($tmp_name);
+        $ext = pathinfo($orig_name, PATHINFO_EXTENSION);
+        $fn  = $imgPath . '/' . $md5 . '.' . $ext;
+
+        // IMPORTANT: This is how everyone else will find the image.
+        // Make sure it ends up in persistent storage with meaningful
+        // data around it, since it is not a human friendly name.
+
+        $yii = Yii::app();
+        $this->url = $yii->baseUrl.'/'.$fn;
+
+        return $file->saveAs($yii->basePath.'/../'.$fn);
     }
 }

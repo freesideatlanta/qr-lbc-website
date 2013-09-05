@@ -1,8 +1,9 @@
 <?php
 
 /**
- * Custom attribute for back end asset.
+ * User defined attribute for asset.
  */
+
 class AssetCustomAttribute extends CFormModel
 {
     public $key;

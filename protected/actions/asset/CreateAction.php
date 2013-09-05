@@ -33,7 +33,7 @@ class CreateAction extends CAction
 
             if ($asset->validate())
             {
-                if (!$asset->save())
+                if (!$asset->saveNew())
                 {
                     throw new Exception('507',
                             "Sorry! Something broke. Please try again.");

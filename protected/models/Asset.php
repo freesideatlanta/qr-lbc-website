@@ -38,7 +38,7 @@ class Asset extends CFormModel
      * @var array(AssetCustomAttribute) User defined attributes
      */
 
-    public $custom; // Custom attributes. Array of AssetCustomAttribute models
+    public $custom;
 
     /**
      * @var array(CUploadedFile) Represents uploaded images
@@ -61,7 +61,6 @@ class Asset extends CFormModel
     public function rules()
     {
         return array(
-            array('metadata', 'nestedValidate'),
             array('images', 'validateImages'),
             array('name, tags', 'required'),
             array('custom, name, tags', 'safe'),
@@ -80,8 +79,6 @@ class Asset extends CFormModel
 
     public function populate($metadata, $custom, $images)
     {
-        header('Content-Type: text/plain');
-
         $this->attributes = $metadata;
 
         foreach ($custom as $c) {
@@ -91,19 +88,6 @@ class Asset extends CFormModel
         }
 
         $this->images = $images;
-
-        die(var_export($this));
-    }
-
-    /**
-     * Stores asset in back end.
-     *
-     * @return bool True if asset was successfully stored
-     */
-
-    public function save()
-    {
-        return QratitudeHelper::saveAsset($this);
     }
 
     /**
@@ -125,7 +109,35 @@ class Asset extends CFormModel
     }
 
     /**
-     * 
+     * Saves asset to back, assuming it is new.
+     */
+
+    public function saveNew()
+    {
+        $ok = true;
+
+        // Save all uploaded images
+        foreach ($this->images as $i)
+        {
+            $url = QratitudeHelper::saveImage($i);
+            
+            if (is_null($url))
+            {
+                $fn = $i->getName();
+                $this->addError("Failed to upload image $fn");
+            }
+            else
+            {
+                $this->imageUrls[] = $url;
+            }
+        }
+
+        QratitudeHelper::postAsset($this);
+
+        return $ok;
+    }
+
+    /**
      * @return bool If asset exists on the back end
      */
 
@@ -191,7 +203,7 @@ class Asset extends CFormModel
     {
         $ok = true;
 
-        foreach ($attr as $k=>$v)
+        foreach ($this->$attr as $k=>$v)
         {
             if (!$v->validate())
             {

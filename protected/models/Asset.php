@@ -44,48 +44,13 @@ class Asset extends CFormModel
      * @var array(CUploadedFile) Represents uploaded images
      */
 
-    public $images;
-
-    /**
-     * @var AssetMetaData 
-     */
-
-    public $metadata; // Information about the asset
+    public $images = array();
 
     /**
      * @var array(string) Array of URLs to uploaded files
      */
 
     public $imageUrls;
-
-    /**
-     * If an id is passed, then the properties will be populated
-     * with information returned from the back end if the asset
-     * exists. If the asset does not exist in these circumstances,
-     * an exception is thrown.
-     */
-
-    public function __construct($id = null)
-    {
-        if (is_null($id))
-        {
-            $this->images   = array();
-            $this->metadata = new AssetMetadata();    
-        }
-        else
-        {
-            $asset = QratitudeHelper::getAsset($id);
-
-            if (is_null($asset))
-            {
-                throw new CHttpException(404, "Asset not found");
-            }
-
-            $this->attributes = $asset->attributes;
-        }
-
-        parent::__construct();
-    }
 
     /**
      * Business logic oriented validation rule config
@@ -104,11 +69,10 @@ class Asset extends CFormModel
         );
     }
 
-
     /**
      * Populate properties using models collected from form.
      *
-     * @param AssetMetadata $metadata Identifying information for asset
+     * @param Asset Asset containing only identifying information 
      * @param AssetCustomAttribute $custom User-defined attributes
      * @param array(CUploadedFile) $images Array of uploaded images
      * @return void
@@ -118,11 +82,12 @@ class Asset extends CFormModel
     {
         header('Content-Type: text/plain');
 
-        $this->metadata->attributes = $metadata;
+        $this->attributes = $metadata;
+
         foreach ($custom as $c) {
             $n = new AssetCustomAttribute();
             $n->attributes = $c;
-            $this->metadata->custom[] = $n;
+            $this->custom[] = $n;
         }
 
         $this->images = $images;

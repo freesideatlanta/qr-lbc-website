@@ -16,19 +16,17 @@ class CreateAction extends CAction
             CClientScript::POS_END
         );
 
-        // header('Content-Type: text/plain');
-        // die(var_export($_POST));
         $images = CUploadedFile::getInstancesByName('images');
 
         // collect input
         if(isset(
-            $_POST["AssetMetadata"],
+            $_POST["Asset"],
             $_POST['AssetCustomAttribute'],
             $images
         ))
         {
             $asset->populate(
-                 $_POST["AssetMetadata"],
+                 $_POST["Asset"],
                  $_POST['AssetCustomAttribute'],
                  $images
             );
@@ -48,8 +46,7 @@ class CreateAction extends CAction
         }
         else
         {
-            $asset->metadata->custom =
-                AssetMetadata::getDefaultCustomAttrs();
+            $asset->custom = AssetMetadata::getDefaultCustomAttrs();
         }
 
         $this->controller->render('create', array('asset'=>$asset));

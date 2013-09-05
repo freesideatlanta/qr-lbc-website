@@ -1,0 +1,20 @@
+.asset-form
+{
+}
+
+#asset-form-attr-rows
+{
+}
+
+#asset-form-add-button
+{
+    @include lbc-button(#32BF2A);
+    padding: 0 0.3em;
+    font-size: 0.8em;
+}
+
+.MultiFile-remove, .delete-attr
+{
+    @include lbc-button(#F00);
+    padding:0 0.1em;
+}

@@ -6,7 +6,7 @@ $button-font-size: 1.2em;
 $button-border-radius: 8px;
 $button-border-size: 3px;
 
-@mixin lbc-button($color, $width: auto, $width-mobile: 100%)
+@mixin lbc-button($color)
 {
     @include fancy-button(
             $color,
@@ -15,15 +15,14 @@ $button-border-size: 3px;
             $button-border-size
         );
 
-    display: block;
-    width: $width;
     text-align: center;
+}
 
-    @media #{$media-phone}
-    {
-        width: $width-mobile;
-        padding: 0.5em 0;
-    }
+@mixin lbc-button-metric($width, $padding, $display: block)
+{
+    display: $display;
+    width: $width;
+    padding: $padding;
 }
 
 @import "data/index";

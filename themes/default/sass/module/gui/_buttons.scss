@@ -1,14 +1,19 @@
-.button.button-danger
+.button-danger
 {
     @include lbc-button(#F00);
 }
 
-.button.button-action
+.button-action
 {
     @include lbc-button(#F99621);
 }
 
-.button.button-neutral
+.button-neutral
 {
     @include lbc-button(#FEFEFE);
+}
+
+.button-good
+{
+    @include lbc-button(#32BF2A);
 }

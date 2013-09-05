@@ -24,32 +24,27 @@ class QratitudeHelper
      * into JSON when ready. The asset information is 
      * extracted from several models supplied as arguments.
      *
-     * @param AssetFormModel Asset metadata
-     * @param UploadedPhoto Picture of the asset
+     * @param Asset $asset
      *
      * @return array Associative array matching JSON schema for assets
      */
 
-    public static function encodeAsset(
-        $assetFormModel,
-        $uploadedPhotoModel,
-        $customAttrs
-    )
+    public static function encodeAsset($asset)
     {
         $out = array();
-        $out['name'] = $assetFormModel->name;
-        $tags = explode(',', $assetFormModel->tags);
+        $out['name'] = $asset->metadata->name;
+        $tags = explode(',', $asset->metadata->tags);
 
         foreach ($tags as &$t)
         {
             $t = trim($t);
         }
 
-        $out['photos']     = array($uploadedPhotoModel->url);
+        $out['photos']     = $asset->imageUrls;
         $out['tags']       = $tags;
         $out['attributes'] = array();
 
-        foreach ($customAttrs as $a)
+        foreach ($asset->metadata->custom as $a)
         {
             $out['attributes'][$a->key] = $a->val;
         }

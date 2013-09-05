@@ -46,7 +46,7 @@ class CreateAction extends CAction
         }
         else
         {
-            $asset->custom = AssetMetadata::getDefaultCustomAttrs();
+            $asset->custom = Asset::getDefaultCustomAttrs();
         }
 
         $this->controller->render('create', array('asset'=>$asset));

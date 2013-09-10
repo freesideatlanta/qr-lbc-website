@@ -64,6 +64,7 @@ class QratitudeHelper
 
         $out->id        = $json_php['id'];
         $out->name      = $json_php['name'];
+//        $out->summary   = $json_php['summary'];
         $out->tags      = join(',', $json_php['tags']);
         $out->imageUrls = $json_php['photos'];
 
@@ -75,6 +76,25 @@ class QratitudeHelper
             $c->val = $v;
 
             $out->custom[] = $c;
+        }
+
+        return $out;
+    }
+
+    /**
+     * Returns all assets from the back end
+     *
+     * @return array(Asset)
+     */
+
+    public static function getAllAssets()
+    {
+        $json_php = Yii::app()->get("/asset");
+        $out = array();
+
+        foreach ($json_php as &$v)
+        {
+            $out[] = self::decodeAsset($v);
         }
 
         return $out;

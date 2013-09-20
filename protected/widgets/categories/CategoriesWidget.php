@@ -23,7 +23,7 @@ class CategoriesWidget extends CWidget
             
         ", CClientScript::POS_READY);
 
-        $data = Yii::app()->get('/category');
+        $data = Yii::app()->get('/categories');
 
         $items = "";
 

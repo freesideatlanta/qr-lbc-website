@@ -30,7 +30,7 @@ class CategoriesWidget extends CWidget
         foreach ($data['categories'] as $c)
         {
             $a = CHtml::link($c, array(
-                '/shop/tag',
+                '/asset/tag',
                 't'=>$c
              ));
 

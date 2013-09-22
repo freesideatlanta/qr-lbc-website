@@ -32,6 +32,12 @@ class SiteController extends Controller
             'error'=>array(
                 'class'=>'actions.site.Error',
              ),
+             'donate'=>array(
+                 'class'=>'actions.site.DonateAction',
+             ),
+             'request'=>array(
+                 'class'=>'actions.site.RequestAction',
+             ),
 		);
 	}
 

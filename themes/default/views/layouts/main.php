@@ -71,7 +71,7 @@
 
             <div class="l-large-nav is-visible-desktop">
             <ul class="large-nav">
-                <a class="large-nav-pic-link" href="/shop">
+                <a class="large-nav-pic-link" href="/asset">
                     <li>
                         <img
                             src="/images/shop.png"
@@ -80,7 +80,7 @@
                         <span class="large-nav-icon-caption">Shop</span>
                     </li>
                 </a>
-                <a class="large-nav-pic-link" href="/shop/donate">
+                <a class="large-nav-pic-link" href="/site/donate">
                     <li>
                         <img
                             src="/images/donate.png"
@@ -89,7 +89,7 @@
                         <span class="large-nav-icon-caption">Donate</span>
                     </li>
                 </a>
-                <a class="large-nav-pic-link" href="/shop/request">
+                <a class="large-nav-pic-link" href="/site/request">
                     <li>
                         <img
                             src="/images/request-materials.png"
@@ -149,15 +149,15 @@
                     ),
                     array(
                         'label'=>'Shop',
-                        'url'=>array('/shop'),
+                        'url'=>array('/asset'),
                     ),
                     array(
                         'label'=>'Donate Materials',
-                        'url'=>array('/shop/donate'),
+                        'url'=>array('/site/donate'),
                     ),
                     array(
                         'label'=>'Request Materials',
-                        'url'=>array('/shop/request'),
+                        'url'=>array('/site/request'),
                     ),
                 ),
             )); ?>

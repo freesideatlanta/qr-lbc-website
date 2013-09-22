@@ -15,6 +15,90 @@
 
 class QratitudeHelper
 {
+
+    /**
+     * Generates JSON request body representing passed credentials.
+     * @return string Credentials JSON
+     */
+
+    public static function encodeCredentials($username, $password)
+    {
+        $json = json_encode(array(
+            'username'=>$username,
+            'password'=>$password
+        ));
+
+        return $json;
+    }
+
+
+
+    /**
+     * Generates array of authentication headers to be appended to\
+     * another array for a call to curl_setopt_array.
+     *
+     * @return array Array to use in call to curl_setopt_array
+     */
+
+    public static function getCredentialHeaders($username, $password)
+    {
+        $http_options = array(
+            CURLOPT_HTTPHEADER=>array(
+                "username: $username",
+            )
+        );
+
+        return $http_options;
+    }
+
+
+
+
+    /**
+     * Creates a new user with given credentials.
+     */
+
+    public static function createUser($username, $password)
+    {
+        $json = self::encodeCredentials($username, $password);
+        Yii::app()->post('/users', $json);
+    }
+
+
+
+
+    /**
+     * Generates a new token for given credentials.
+     *
+     * @return string Token for session
+     */
+
+    public static function getToken($username, $password)
+    {
+        $json  = self::encodeCredentials($username, $password);
+        $token = Yii::app()->post('/tokens', $json);
+
+        return $token;
+    }
+
+
+
+
+    /**
+     * True if the passed token is associated with passed credentials
+     *
+     * @return boolean
+     */
+
+    public static function validateToken($token, $username, $password)
+    {
+        $http_options = self::getCredentialHeaders($username, $password);
+        Yii::app()->get('/tokens', $http_options);
+    }
+
+
+
+
     /**
      * Returns PHP array that follows asset JSON schema.
      *

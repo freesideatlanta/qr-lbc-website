@@ -3,7 +3,7 @@
 $items = "";
 foreach ($assets as $a)
 {
-    $item   = $this->render('product', array('asset'=>$a), true);
+    $item   = $this->render('product-list-item', array('asset'=>$a), true);
     $item   = CHtml::tag('li', array(), $item);
     $items .= $item;
 }

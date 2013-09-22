@@ -1,57 +1,46 @@
 <?php
 
+/**
+ * Renders an array of assets.
+ */
+
 class ProductsWidget extends CWidget
 {
-    public $assets             = array();
-    public $heading            = "Products";
-    public $css_class          = "css-class";
-    public $show_summary       = false;
-    public $display_grid       = false;
+    public $assets         = array();
+    public $heading        = "Products";
+    public $empty_message  = "There are no products to show.";
+    public $css_class      = "css-class";
+    public $view           = 'product-listing';
 
     public function run()
     {
         $yii = Yii::app();
 
-        if ($this->display_grid)
-        {
-            /*
-            $yii->clientScript->registerScript("grid-spacer", "
-                function recalc()
-                {
-                    var li = $('.".$this->css_class."-list > li');
-                    var parent = $('.".$this->css_class."-list').width();
-                    var box = li.width();
-
-                    var columns = Math.floor(parent/box);
-
-                    var space = (parent - (box * columns)) / columns;
-
-                    li.css('margin-left', space/2);
-                    li.css('margin-right', space/2);
-                }
-
-                recalc();
-
-                $(window).resize(function() {
-                     recalc(); 
-                });
-                ", CClientScript::POS_READY);
-             */
-        }
-
-        // $data = Yii::app()->get('/asset/?t=featured');
-
-        $html = "";
-
-        $html .= CHtml::tag('h1', array(
+        $html = CHtml::tag('h1', array(
             'class'=>$this->css_class.'-heading'),
             $this->heading);
 
-        $html .= $this->render('product-listing',
-            array('assets'=>$this->assets), true);
+        if (empty($this->assets))
+        {
+            $html .= CHtml::tag(
+                'p',
+                array('class'=>$this->css_class.'-empty-message'),
+                $this->empty_message
+            );
+        }
+        else
+        {
+            $html .= $this->render(
+                $this->view,
+                array('assets'=>$this->assets),
+                true
+            );
+        }
 
-        echo CHtml::tag('div',
+        $html = CHtml::tag('div',
             array('class'=>$this->css_class),
             $html);
+
+        echo $html;
     }
 }

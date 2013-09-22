@@ -10,7 +10,8 @@ class ProductsWidget extends CWidget
     public $heading        = "Products";
     public $empty_message  = "There are no products to show.";
     public $css_class      = "css-class";
-    public $view           = 'product-listing';
+    public $view           = 'simple';
+    public $view_vars      = array('show_summary'=>false);
 
     public function run()
     {
@@ -31,7 +32,7 @@ class ProductsWidget extends CWidget
         else
         {
             $html .= $this->render(
-                $this->view,
+                'product-listing',
                 array('assets'=>$this->assets),
                 true
             );

@@ -1,24 +1,27 @@
 <?php
 /**
- * @var $asset array - Asset JSON
+ * @var $asset Asset Asset to render
  */
 
 $image = CHtml::tag('div', array(
     'class'=>$this->css_class.'-thumbnail',
-    'style'=>'background-image: url('.$asset['photos'][0].');'
+    'style'=>'background-image: url('.$asset->imageUrls[0].');'
     ), '');
 
 $heading = CHtml::tag('h3', array(
         'class'=>$this->css_class.'-list-item-heading',
-    ), $asset["name"]);
+    ), $asset->name);
 
-echo CHtml::link($image, $asset['url']);
-$heading = CHtml::link($heading, $asset['url']);
+$view_url = '/asset/view/'.$asset->id;
+
+echo CHtml::link($image, $view_url);
+$heading = CHtml::link($heading, $view_url);
 
 if ($this->show_summary)
 {
-    $s = $asset["summary"];
+    $s = $asset->summary;
 
+    // truncate long summaries with ellipses
     if (strlen($s) > 40)
     {
         $s  = substr($s,  0, 40);

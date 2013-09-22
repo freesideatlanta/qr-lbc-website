@@ -205,7 +205,7 @@ class Asset extends CFormModel
      * Returns the default custom attributes the user
      * can set. Determined by retail outlet admin.
      *
-     * @return array Array of AssetCustomAttribute models reflecting what the user may define by default.
+     * @return array AssetCustomAttributes the user may define by default.
      */
 
     public static function getDefaultCustomAttrs()

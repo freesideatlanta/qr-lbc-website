@@ -40,6 +40,7 @@ class QratitudeHelper
         }
 
         $out['photos']     = $asset->imageUrls;
+        $out['summary']    = $asset->summary;
         $out['tags']       = $tags;
         $out['attributes'] = array();
 
@@ -64,7 +65,7 @@ class QratitudeHelper
 
         $out->id        = $json_php['id'];
         $out->name      = $json_php['name'];
-//        $out->summary   = $json_php['summary'];
+        $out->summary   = $json_php['summary'];
         $out->tags      = join(',', $json_php['tags']);
         $out->imageUrls = $json_php['photos'];
 
@@ -89,7 +90,7 @@ class QratitudeHelper
 
     public static function getAllAssets()
     {
-        $json_php = Yii::app()->get("/asset");
+        $json_php = Yii::app()->get("/assets");
         $out = array();
 
         foreach ($json_php as &$v)
@@ -107,8 +108,50 @@ class QratitudeHelper
 
     public static function getAsset($id)
     {
-        $json_php = Yii::app()->get("/asset/$id");
+        $json_php = Yii::app()->get("/assets/$id");
         return is_null($json_php) ? null : self::decodeAsset($json_php);
+    }
+
+    /**
+     * Returns assets identified by a list of comma delimited tags
+     * @return array(Asset)
+     */
+
+    public static function getAssetsByTags($tags)
+    {
+        $query = "";
+        if (strpos($tags,',') !== FALSE)
+        {
+            $tags = array_map('trim',explode(',', $tags));
+            $query = 't='.implode('t=',$tags);
+        }
+        else
+        {
+            $query = "t=${tags}";
+        }
+
+        $json_php = Yii::app()->get("/assets?${query}");
+
+        $out = array();
+
+        if (!empty($json_php['assets']))
+        {
+            foreach ($json_php as &$v)
+            {
+                $out[] = self::decodeAsset($v);
+            }
+        }
+
+        return $out;
+    }
+
+    /**
+     * Deletes an asset from the back end
+     */
+
+    public static function deleteAsset($id)
+    {
+        Yii::app()->delete("/assets/$id");
     }
 
     /**
@@ -118,7 +161,11 @@ class QratitudeHelper
     public static function postAsset($asset)
     {
         $json_php = self::encodeAsset($asset);
-        Yii::app()->post('/asset', $json_php);
+
+        header('Content-Type: text/plain');
+        die(json_encode($json_php));
+
+        Yii::app()->post('/assets', $json_php);
     }
 
     /**
@@ -130,7 +177,7 @@ class QratitudeHelper
         $json_php = self::encodeAsset($asset);
         $id = $asset->id;
 
-        Yii::app()->put("/asset/$id", $json_php);
+        Yii::app()->put("/assets/$id", $json_php);
     }
 
     /**

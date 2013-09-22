@@ -1,5 +1,6 @@
 <?php
 /* @var $this AssetController */
+/* @var $asset Asset Model to render*/
 
 $this->breadcrumbs=array(
 	'Asset'=>array('/asset'),

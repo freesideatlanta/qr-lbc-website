@@ -15,5 +15,6 @@ $inc_dir = dirname(__FILE__).'/protected/phplib/';
 require_once($inc_dir.'array_column.php');
 require_once($inc_dir.'RestCurlClient.php');
 require_once($inc_dir.'QratitudeHelper.php');
+require_once($inc_dir.'Sugar.php');
 
 Yii::createWebApplication($config)->run();

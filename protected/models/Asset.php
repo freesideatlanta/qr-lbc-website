@@ -13,10 +13,10 @@
 class Asset extends CFormModel
 {
     /**
-     * @var int Represents PK in back end
+     * @var string Represents PK in back end
      *
      * This is the UID for the asset in the back.
-     * Yii cannot touch the back-end directoy,
+     * Yii cannot touch the database directly,
      * so this is only used for indexing purposes
      */
 
@@ -33,6 +33,12 @@ class Asset extends CFormModel
      */
 
     public $tags;
+    
+    /**
+     * @var string Brief, human-friendly description of the asset.
+     */
+
+    public $summary;
 
     /**
      * @var array(AssetCustomAttribute) User defined attributes
@@ -62,8 +68,8 @@ class Asset extends CFormModel
     {
         return array(
             array('images', 'validateImages'),
-            array('name, tags', 'required'),
-            array('custom, name, tags', 'safe'),
+            array('name, tags, summary', 'required'),
+            array('custom, name, tags, summary', 'safe'),
             array('custom', 'validateCustom')
         );
     }
@@ -109,10 +115,13 @@ class Asset extends CFormModel
     }
 
     /**
-     * Saves asset to back, assuming it is new.
+     * Saves uploaded images to disk.
+     * URLs to images are kept in Asset::imageUrls
+     *
+     * @return bool True if all images are saves successfully
      */
 
-    public function saveNew()
+    public function saveImages()
     {
         $ok = true;
 
@@ -125,6 +134,7 @@ class Asset extends CFormModel
             {
                 $fn = $i->getName();
                 $this->addError("Failed to upload image $fn");
+                $ok = false;
             }
             else
             {
@@ -132,7 +142,35 @@ class Asset extends CFormModel
             }
         }
 
+        return $ok;
+    }
+
+    /**
+     * Saves asset to back, assuming it is new.
+     * @return True if successful
+     */
+
+    public function saveNew()
+    {
+        $ok = true;
+
+        $ok &= $this->saveImages();
         QratitudeHelper::postAsset($this);
+
+        return $ok;
+    }
+    
+    /**
+     * Saves existing asset to back
+     * @return True if successful
+     */
+
+    public function save()
+    {
+        $ok = true;
+
+        $ok &= $this->saveImages();
+        QratitudeHelper::putAsset($this);
 
         return $ok;
     }

@@ -256,10 +256,6 @@ class QratitudeHelper
     public static function postAsset($asset)
     {
         $json_php = self::encodeAsset($asset);
-
-        header('Content-Type: text/plain');
-        die(json_encode($json_php));
-
         Yii::app()->post('/assets', $json_php);
     }
 
@@ -287,26 +283,8 @@ class QratitudeHelper
         // Compute new file name based on MD5 sum.
         $tmp_name  = $file->getTempName();
 
-        // $orig_name = $file->getName();
-        // $imgPath   = 'images/assets';
-
         $url = shell_exec("curl -X POST -F file=@${tmp_name} ".
         "http://localhost:8080/qratitude-service/api/photos");
-
-        /*
-        $md5 = md5_file($tmp_name);
-        $ext = pathinfo($orig_name, PATHINFO_EXTENSION);
-        $fn  = $imgPath . '/' . $md5 . '.' . $ext;
-         */
-
-        // IMPORTANT: This is how everyone else will find the image.
-        // Make sure it ends up in persistent storage with meaningful
-        // data around it, since it is not a human friendly name.
-
-        // $yii = Yii::app();
-        // $url = $yii->baseUrl.'/'.$fn;
-
-        // $ok = $file->saveAs($yii->basePath.'/../'.$fn);
     
         $ok = filter_var($url, FILTER_VALIDATE_URL) !== FALSE;
 

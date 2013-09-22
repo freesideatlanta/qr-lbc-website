@@ -41,6 +41,9 @@ class AssetController extends Controller
             'admin'=>array(
                 'class'=>'actions.asset.AdminAction',
             ),
+            'tag'=>array(
+                'class'=>'actions.asset.TagAction',
+            ),
 		);
 	}
 }

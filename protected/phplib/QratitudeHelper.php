@@ -175,6 +175,17 @@ class QratitudeHelper
     public static function getAllAssets()
     {
         $json_php = Yii::app()->get("/assets");
+
+        // what I want is nested one level deep for some reason
+        $json_php = $json_php['assets'];
+
+        if (empty($json_php))
+        {
+            return array();
+        }
+
+        Sugar::dump($json_php);
+
         $out = array();
 
         foreach ($json_php as &$v)
@@ -275,21 +286,29 @@ class QratitudeHelper
     {
         // Compute new file name based on MD5 sum.
         $tmp_name  = $file->getTempName();
-        $orig_name = $file->getName();
-        $imgPath   = 'images/assets';
 
+        // $orig_name = $file->getName();
+        // $imgPath   = 'images/assets';
+
+        $url = shell_exec("curl -X POST -F file=@${tmp_name} ".
+        "http://localhost:8080/qratitude-service/api/photos");
+
+        /*
         $md5 = md5_file($tmp_name);
         $ext = pathinfo($orig_name, PATHINFO_EXTENSION);
         $fn  = $imgPath . '/' . $md5 . '.' . $ext;
+         */
 
         // IMPORTANT: This is how everyone else will find the image.
         // Make sure it ends up in persistent storage with meaningful
         // data around it, since it is not a human friendly name.
 
-        $yii = Yii::app();
-        $url = $yii->baseUrl.'/'.$fn;
+        // $yii = Yii::app();
+        // $url = $yii->baseUrl.'/'.$fn;
 
-        $ok = $file->saveAs($yii->basePath.'/../'.$fn);
+        // $ok = $file->saveAs($yii->basePath.'/../'.$fn);
+    
+        $ok = filter_var($url, FILTER_VALIDATE_URL) !== FALSE;
 
         return $ok ? $url : null;
     }

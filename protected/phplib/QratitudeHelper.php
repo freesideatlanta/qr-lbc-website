@@ -218,7 +218,7 @@ class QratitudeHelper
         if (strpos($tags,',') !== FALSE)
         {
             $tags = array_map('trim',explode(',', $tags));
-            $query = 't='.implode('t=',$tags);
+            $query = 't='.implode('&t=',$tags);
         }
         else
         {
@@ -231,7 +231,7 @@ class QratitudeHelper
 
         if (!empty($json_php['assets']))
         {
-            foreach ($json_php as &$v)
+            foreach ($json_php['assets'] as &$v)
             {
                 $out[] = self::decodeAsset($v);
             }

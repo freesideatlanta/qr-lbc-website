@@ -30,7 +30,8 @@ class JsonRestClientBehavior extends CBehavior
 
     private function _encode_params($arr)
     {
-        return is_array($arr) ? json_encode($arr) : array();
+        return is_array($arr) && count($arr) > 0
+            ? json_encode($arr) : array();
     }
 
     /**
@@ -95,7 +96,7 @@ class JsonRestClientBehavior extends CBehavior
      * will be returned as PHP array.
      */
 
-    public function delete($url, $params = array())
+    public function delete($route, $params = array())
     {
         return json_decode(
                 $this->_rest_client->delete(

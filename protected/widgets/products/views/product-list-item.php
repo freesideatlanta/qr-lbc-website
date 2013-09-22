@@ -17,7 +17,7 @@ $view_url = '/asset/view/'.$asset->id;
 echo CHtml::link($image, $view_url);
 $heading = CHtml::link($heading, $view_url);
 
-if ($this->show_summary)
+if ($show_summary)
 {
     $s = $asset->summary;
 

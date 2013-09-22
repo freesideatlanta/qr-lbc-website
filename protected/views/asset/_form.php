@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This is the form used to create and edit assets.
  * @uses Asset $asset
@@ -6,18 +7,17 @@
 
 $yii          = Yii::app();
 $max_files    = 8;
+$aid          = $this->getAction()->getId();
+$isUpdating   = $aid === "update";
 
-/*
- * This JS allows the user to add and remove custom attributes.
- */
-
-$yii->clientScript->registerScript('asset-form', "
-
-", CClientScript::POS_READY);
-
+$action_route  = $isUpdating ? 'asset/update' : 'asset/create';
+$action_params = $isUpdating ? array('id'=>$asset->id) : array();
 
 $form = $this->beginWidget('CActiveForm', array(
-    'action'=>$yii->createAbsoluteUrl('asset/create'),
+    'action'=>$yii->createUrl(
+        $action_route,
+        $action_params
+    ),
     'enableAjaxValidation'=>true,
     'enableClientValidation'=>true,
     'errorMessageCssClass'=>'is-wrong',
@@ -32,6 +32,8 @@ echo $yii->dumpFlashHtml();
 
 echo CHtml::tag('h1', array(), 'Identification');
 
+
+
 // ASSET NAME
 ////////////////////////////////////////////////////////
 
@@ -40,6 +42,8 @@ $f  = $form->labelEx($asset, $attr);
 $f .= $form->textField($asset, $attr);
 $f .= $form->error($asset, $attr);
 echo CHtml::tag('div', array('class'=>'form-row'), $f);
+
+
 
 // ASSET TAGS
 ////////////////////////////////////////////////////////
@@ -60,6 +64,25 @@ $f .= CHtml::tag(
 $f .= $form->textField($asset, $attr);
 $f .= $form->error($asset, $attr);
 echo CHtml::tag('div', array('class'=>'form-row'), $f);
+
+
+
+// ASSET SUMMARY
+////////////////////////////////////////////////////////
+
+$attr = "summary";
+$f  = $form->labelEx($asset, $attr);
+
+$f .= CHtml::tag('p', array('class'=>'form-sublabel'),
+                 "Breifly describe the object");
+
+$f .= $form->textArea($asset, $attr,
+                      array('class'=>'summary-area'));
+
+$f .= $form->error($asset, $attr);
+echo CHtml::tag('div', array('class'=>'form-row'), $f);
+
+
 
 // IMAGE UPLOAD FORM
 ////////////////////////////////////////////////////////
@@ -86,6 +109,8 @@ $f .= $this->widget('CMultiFileUpload', array(
 ), true);
 
 echo CHtml::tag('div', array('class'=>'form-row'), $f);
+
+
 
 // CUSTOM ATTRIBUTE TABLE
 ////////////////////////////////////////////////////////
@@ -125,12 +150,15 @@ echo CHtml::tag('div', array('class'=>'form-row'), $f);
 </div>
 
 <?php
+
+
 $f = CHtml::submitButton(
-    "Create Asset",
+    $isUpdating ? "Save Changes" : "Create Asset",
     array(
         'class'=>'button-action'
     )
 );
+
 echo CHtml::tag('div', array('class'=>'form-row'), $f);
 
 $this->endWidget();

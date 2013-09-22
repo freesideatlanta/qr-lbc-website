@@ -17,7 +17,7 @@ class UserIdentity extends CUserIdentity
 
 	public function authenticate()
     {
-        $this->_token = QratitudeHelper::login(
+        $this->_token = QratitudeHelper::getToken(
             $this->username,
             $this->password
         );

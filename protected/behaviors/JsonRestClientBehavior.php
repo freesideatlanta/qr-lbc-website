@@ -38,10 +38,10 @@ class JsonRestClientBehavior extends CBehavior
      * GET <route>. Returns JSON body as PHP array.
      */
 
-    public function get($route)
+    public function get($route, $http_options = array())
     {
         return json_decode(
-            $this->_rest_client->get($this->api_prefix.$route),
+            $this->_rest_client->get($this->api_prefix.$route, $http_options),
             true
         );
     }
@@ -62,12 +62,13 @@ class JsonRestClientBehavior extends CBehavior
      * will be returned as PHP array.
      */
 
-    public function post($route, $params = array())
+    public function post($route, $params = array(), $http_options = array())
     {
         return json_decode(
                 $this->_rest_client->post(
                     $this->api_prefix.$route,
-                    $this->_encode_params($params)
+                    $this->_encode_params($params),
+                    $http_options
                 ),
                 true
             );
@@ -79,12 +80,13 @@ class JsonRestClientBehavior extends CBehavior
      * will be returned as PHP array.
      */
 
-    public function put($route, $params = array())
+    public function put($route, $params = array(), $http_options = array())
     {
         return json_decode(
                 $this->_rest_client->put(
                     $this->api_prefix.$route,
-                    $this->_encode_params($params)
+                    $this->_encode_params($params),
+                    $http_options
                 ),
                 true
             );
@@ -96,12 +98,13 @@ class JsonRestClientBehavior extends CBehavior
      * will be returned as PHP array.
      */
 
-    public function delete($route, $params = array())
+    public function delete($route, $params = array(), $http_options = array())
     {
         return json_decode(
                 $this->_rest_client->delete(
                     $this->api_prefix.$route,
-                    $this->_encode_params($params)
+                    $this->_encode_params($params),
+                    $http_options
                 ),
                 true
             );

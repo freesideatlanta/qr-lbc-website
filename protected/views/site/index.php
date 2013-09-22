@@ -8,7 +8,6 @@
 
 <?php
 
-// $assets = require(dirname(__FILE__).'/../../phplib/dummy.php');
 $assets = QratitudeHelper::getAssetsByTags('featured');
 
 $this->widget(
@@ -17,6 +16,5 @@ $this->widget(
         'heading'  => 'Featured Items',
         'css_class'=> 'featured',
         'assets'   => $assets,
-        'display_grid'=>true
     )
 );

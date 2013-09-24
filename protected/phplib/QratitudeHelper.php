@@ -17,18 +17,16 @@ class QratitudeHelper
 {
 
     /**
-     * Generates JSON request body representing passed credentials.
-     * @return string Credentials JSON
+     * Generates request body representing passed credentials.
+     * @return array
      */
 
     public static function encodeCredentials($username, $password)
     {
-        $json = json_encode(array(
+        return array(
             'username'=>$username,
             'password'=>$password
-        ));
-
-        return $json;
+        );
     }
 
 

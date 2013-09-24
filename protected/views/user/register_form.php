@@ -6,6 +6,7 @@
  * @var CActiveForm $form
  */
 
+echo Yii::app()->dumpFlashHtml();
 ?>
 
 <h1>Register</h1>

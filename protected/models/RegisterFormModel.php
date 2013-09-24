@@ -13,10 +13,10 @@
 class RegisterFormModel extends CFormModel
 {
     /**
-     * @var string $email The user's email
+     * @var string $username The user's name
      */
 
-    public $email;
+    public $username;
 
     /**
      * @var string $password The user's unencrypted password.
@@ -39,14 +39,13 @@ class RegisterFormModel extends CFormModel
     public function rules()
     {
         return array(
-            array('email, password, password_confirm', 'required'),
+            array('username, password, password_confirm', 'required'),
             array('password_confirm','compare',
                     'compareAttribute'=>'password'),
+            array('username','length',
+                  'min'=>2,'max'=>15),
             array('password, password_confirm','length',
                   'min'=>6,'max'=>20),
-
-            array('email', 'email'),
-            array('email', 'length', 'max'=>256)
         );
     }
 
@@ -59,71 +58,18 @@ class RegisterFormModel extends CFormModel
     public function attributeLabels()
     {
         return array(
-            'email'=>'Email',
+            'username'=>'Username',
             'password'=>'Password',
             'password_confirm'=>'Confirm Password',
         );
     }
     
     /**
-     * Registers user for isodev.us
-     *
-     * Registers a new account into isodev.us. This involves:
-     *  - Creating a new UserModel, if the email is not already stored.
-     *  - Hashes the password
-     *  - Verifies the email
-     *  - Sends notification emails where appropriate
-     *
+     * Registers user into the system
      */
     public function register()
     {
-        
-        $user = new UserModel;
-        $app = Yii::app();
-        
-        $user->email = $this->email;
-        $user->referrer_id = $app->randomString->generate(8);
-        
-        if ($user->exists('email=:email',array(':email'=>$this->email)))
-        {
-            $this->addError('email','This address already exists. '.
-            'Did you forget your password?');
-        }
-        else
-        {        
-            // verify email domain
-            list($userName, $mailDomain) = explode('@', $user->email);
-            if (checkdnsrr($mailDomain, 'MX'))
-            {
-                $user->hash=$app->hasher->hashPassword($this->password);
-                
-                if ( $user->save() )
-                {
-                    // ask user to verify email address
-                    $verify_hash = $app->encrypt($user->email);
-                    
-                    $email = $app->mail($user->email,
-                        'Registration Successful', 'userWelcome',
-                            array(
-                            'verify_hash' => $verify_hash,
-                            'referrer_id' => $user->referrer_id
-                            )
-                        );
-                }
-                else
-                {         
-                    $errors = var_export($user->getErrors());
-                    Yii::log($errors,'error','system.user.register');
-                    
-                    throw new CHttpException(500,
-                    'Yikes! An internal error occured. '.
-                    'Please try again later.');
-                }
-            }
-            else
-            {
-                $this->addError('email','Invalid email address.');
-            }
-        }
+        QratitudeHelper::createUser($this->username, $this->password);
+        return true;
     }
 }

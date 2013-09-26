@@ -7,7 +7,6 @@
  */
 ?>
 
-
 <h1>Log in</h1>
 <div class="form">
     <?php $form=$this->beginWidget('CActiveForm', array(
@@ -39,12 +38,8 @@
     </div>
     
     <?php
-
-    echo CHtml::link('Register an account', '/user/register',
-                           array('class'=>'register button'));
-                           
+    echo CHtml::link('Register an account', '/user/register');
     echo CHtml::submitButton('Log in');
-    
     ?>
 
 <?php $this->endWidget(); ?>

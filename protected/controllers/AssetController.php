@@ -3,19 +3,17 @@
 class AssetController extends Controller
 {
 	// Uncomment the following methods and override them if needed
-	/*
 	public function filters()
-	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'inlineFilterName',
+    {
+        return array(
 			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
+                'class'=>'application.filters.AuthFilter '.
+                         '+ create update delete',
+
+				'role'=>'admin',
 			),
 		);
     }
-    */
 
 	public function actions()
 	{
@@ -37,9 +35,6 @@ class AssetController extends Controller
             ),
 			'delete'=>array(
 				'class'=>'actions.asset.DeleteAction',
-            ),
-            'admin'=>array(
-                'class'=>'actions.asset.AdminAction',
             ),
             'tag'=>array(
                 'class'=>'actions.asset.TagAction',

@@ -12,9 +12,13 @@ class AuthFilter extends CFilter
     {
         $user = Yii::app()->user;
 
-        $ok   = true;
-        $ok  &= !$user->isGuest;
-        $ok  &= QratitudeHelper::checkRole($user->id, $this->role);
+        $ok  = true;
+        $ok &= !$user->isGuest;
+
+        if (!is_null($this->role))
+        {
+            $ok &= QratitudeHelper::checkRole($user->id, $this->role);
+        }
 
         return $ok;
     }

@@ -7,10 +7,8 @@ class AssetController extends Controller
     {
         return array(
 			array(
-                'class'=>'application.filters.AuthFilter '.
-                         '+ create update delete',
-
-				'role'=>'admin',
+                'filters.AuthFilter + create update delete',
+				'role'=>null,
 			),
 		);
     }

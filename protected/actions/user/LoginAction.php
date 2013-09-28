@@ -22,7 +22,9 @@ class LoginAction extends CAction
                 {
                     // Store token
                     $user = Yii::app()->user;
-                    $user->id = $id->token;
+
+                    $user->setState('backid', $id->getBackId());
+                    $user->setState('token', $id->getToken());
 
                     // Head back to where the user was before.
                     //$return_url = $user->getReturnUrl();

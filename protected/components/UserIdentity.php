@@ -9,6 +9,7 @@
 class UserIdentity extends CUserIdentity
 {
     private $_token;
+    private $_backid;
 
 	/**
 	 * Authenticates user to back end.
@@ -17,12 +18,21 @@ class UserIdentity extends CUserIdentity
 
 	public function authenticate()
     {
-        $this->_token = QratitudeHelper::getToken(
+        $json_php = QratitudeHelper::authenticate(
             $this->username,
             $this->password
         );
+
+        if (is_null($json_php) ||
+            !isset($json_php["token"], $json_php["userid"]))
+        {
+            return false;
+        }
+
+        $this->_token   = $json_php["token"];
+        $this->_backid  = $json_php["userid"];
         
-        return !is_null($this->_token);
+        return true;
     }
 
     /**
@@ -33,5 +43,15 @@ class UserIdentity extends CUserIdentity
     public function getToken()
     {
         return $this->_token;
+    }
+
+    /**
+     * Returns id used by the back end
+     * @return string
+     */
+
+    public function getBackId()
+    {
+        return $this->_backid;
     }
 }

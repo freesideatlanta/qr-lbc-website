@@ -66,22 +66,41 @@ class QratitudeHelper
 
 
     /**
-     * Generates a new token for given credentials.
+     * Authenticates user, generating new token in the process.
      *
-     * @return string Token for session
+     * @return array Array containing user token and id
      */
 
-    public static function getToken($username, $password)
+    public static function authenticate($username, $password)
     {
         $json  = self::encodeCredentials($username, $password);
         $yii   = Yii::app();
         
-        $token = $yii->post('/tokens', $json);
+        $json_php = $yii->post('/tokens', $json);
         $response = $yii->getResponseInfo();
 
-        return $response["http_code"] == 200 ? $token["token"] : null;
+        return $response["http_code"] == 200 ? $json_php : null;
     }
 
+
+
+    /**
+     * True if the user (identified by $user_id) has a particular role
+     *
+     * @return boolean
+     */
+
+    public static function checkRole($user_id, $role)
+    {
+        $user = Yii::app()->get("/user/$user_id");
+        
+        if (is_null($user))
+        {
+            return false;
+        }
+
+        return $role === $user["role"];
+    }
 
 
 
@@ -94,7 +113,11 @@ class QratitudeHelper
     public static function validateToken($token, $username, $password)
     {
         $http_options = self::getCredentialHeaders($username, $password);
+
         Yii::app()->get('/tokens', $http_options);
+
+        $response = $yii->getResponseInfo();
+        return $response["http_code"] == 200;
     }
 
 
@@ -125,9 +148,9 @@ class QratitudeHelper
         }
 
         $out['photos']     = $asset->imageUrls;
-        $out['summary']    = $asset->summary;
         $out['tags']       = $tags;
         $out['attributes'] = array();
+        $out['attibutes']['summary'] = $asset->summary;
 
         foreach ($asset->custom as $a)
         {

@@ -76,7 +76,7 @@ class QratitudeHelper
         $json  = self::encodeCredentials($username, $password);
         $token = Yii::app()->post('/tokens', $json);
 
-        return $token;
+        return $token["token"];
     }
 
 

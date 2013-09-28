@@ -53,7 +53,7 @@ class JsonRestClientBehavior extends CBehavior
 
     public function getResponseInfo()
     {
-        return $_rest_client->response_info;
+        return $this->_rest_client->response_info;
     }
     
     /**

@@ -17,8 +17,8 @@
     echo $form->errorSummary($model); ?>
 
     <div class="row">
-        <?php echo $form->labelEx($model,'email'); ?>
-        <?php echo $form->textField($model,'email',
+        <?php echo $form->labelEx($model,'username'); ?>
+        <?php echo $form->textField($model,'username',
                                     array('tabindex'=>'1')); ?>
     </div>
 

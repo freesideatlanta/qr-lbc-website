@@ -147,6 +147,7 @@ class RestCurlClient {
     }
 
     $this->response_info = curl_getinfo($this->handle);
+    /*
     $code = $this->response_info['http_code'];
 
     if($code == 404) {
@@ -162,5 +163,6 @@ class RestCurlClient {
       throw new HttpServerException('Server response status was: ' . $code .
         ' with response: [' . $res . ']', $code);
     }
+     */
   }
 }

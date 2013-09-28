@@ -1,12 +1,45 @@
 <?php
-class LoginAction extends ActiveFormAction
+
+/**
+ * Creates new session for authenticated user.
+ */
+
+class LoginAction extends CAction
 {
-    protected function afterGoodSubmission($model)
+    protected function run()
     {
-        Yii::log($model->email." has logged in.","info",
-            "application.controllers.user");
-        
-        $return_url = Yii::app()->user->getReturnUrl();
-        $this->controller->redirect( $return_url );
+        $model = new LoginFormModel();
+
+        if (isset($_POST["LoginFormModel"]))
+        {
+            $model->attributes = $_POST["LoginFormModel"];
+
+            if ($model->validate())
+            {
+                $id = new UserIdentity($model->username, $model->password);
+
+                if ($id->authenticate($model->username, $model->password))
+                {
+                    // Store token
+                    $user = Yii::app()->user;
+                    $user->id = $id->token;
+
+                    // Head back to where the user was before.
+                    //$return_url = $user->getReturnUrl();
+                    //$this->controller->redirect($return_url);
+
+                    $this->controller->redirect('/');
+                }
+                else
+                {
+                    Yii::app()->user->setFlash("error",
+                        "Incorrect username or password");
+                }
+            }
+        }
+
+        $this->controller->render('login',array(
+            'model'=>$model,   
+        ));
     }
 }

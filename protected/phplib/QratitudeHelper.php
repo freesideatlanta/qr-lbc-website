@@ -74,9 +74,12 @@ class QratitudeHelper
     public static function getToken($username, $password)
     {
         $json  = self::encodeCredentials($username, $password);
-        $token = Yii::app()->post('/tokens', $json);
+        $yii   = Yii::app();
+        
+        $token = $yii->post('/tokens', $json);
+        $response = $yii->getResponseInfo();
 
-        return $token["token"];
+        return $response["http_code"] == 200 ? $token["token"] : null;
     }
 
 

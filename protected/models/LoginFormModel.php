@@ -10,10 +10,10 @@
 class LoginFormModel extends CFormModel
 {
     /**
-     * @var string $email The user's email address
+     * @var string $username The user's username address
      */
 
-    public $email;
+    public $username;
 
     /**
      * @var string $password The user's unencrypted password to be hashed
@@ -25,10 +25,10 @@ class LoginFormModel extends CFormModel
      * @var boolean $rememberMe Whether or not to store login information in a cookie
      */
 
-    public $rememberMe = false;
+    // public $rememberMe = false;
 
    /**
-     * @var IsolateUserIdentity $_identity Yii {@link CIsolateUserIdentity} instance used to authenticate user.
+     * @var IsolateUserIdentity $_identity Yii instance used to authenticate user.
      */
 
     private $_identity;
@@ -42,10 +42,8 @@ class LoginFormModel extends CFormModel
     public function rules()
     {
         return array(
-            array('email, password', 'required'),
-            array('email', 'email'),
-            array('email', 'length','max'=>256),
-            array('rememberMe', 'boolean'),
+            array('username, password', 'required'),
+            array('username', 'length','min'=>2),
             array('password', 'authenticate'),
             array('password', 'length', 'min'=>6),
         );
@@ -60,7 +58,8 @@ class LoginFormModel extends CFormModel
     public function attributeLabels()
     {
         return array(
-            'rememberMe'=>'Remember me',
+            'username'=>'Username',
+            'password'=>'Password',
         );
     }
 
@@ -72,17 +71,17 @@ class LoginFormModel extends CFormModel
     {
         if(!$this->hasErrors())
         {
-            $this->_identity = new UserIdentity($this->email, $this->password);
+            $this->_identity = new UserIdentity(
+                $this->username, $this->password);
 
             if(!$this->_identity->authenticate())
             {
                 $this->addError('password',
-                                'Incorrect email or password.');
+                                'Incorrect username or password.');
             }
             else
             {
-                $duration=$this->rememberMe ? 3600*24*10 : 0; // 10 days
-                Yii::app()->user->login( $this->_identity, $duration );
+                Yii::app()->user->login($this->_identity);
             }
         }
     }

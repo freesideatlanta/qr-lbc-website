@@ -142,7 +142,7 @@ class RestCurlClient {
 
   private function http_parse_message($res) {
 
-    if(! $res){
+    if($res === FALSE){
       throw new HttpServerException(curl_error($this->handle), -1);
     }
 

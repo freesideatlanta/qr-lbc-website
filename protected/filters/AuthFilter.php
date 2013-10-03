@@ -20,6 +20,13 @@ class AuthFilter extends CFilter
             $ok &= QratitudeHelper::checkRole($user->id, $this->role);
         }
 
-        return $ok;
+        if (!$ok)
+        {
+            $user->loginRequired();
+            return false;
+        }
+
+        $filterChain->run();
+        return true;
     }
 }

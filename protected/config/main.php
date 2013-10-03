@@ -2,7 +2,8 @@
 
 CHtml::$requiredCss = "is-required";
 
-$this_file = dirname(__FILE__);
+$this_file  = dirname(__FILE__);
+$api_prefix = 'http://localhost:8080/qratitude-service/api';
 
 Yii::setPathOfAlias('actions',$this_file.'/../actions');
 Yii::setPathOfAlias('filters',$this_file.'/../filters');
@@ -55,7 +56,7 @@ return array(
         ),
         'JsonRestClientBehavior'=>array(
             'class'=>'application.behaviors.JsonRestClientBehavior',
-            'api_prefix'=>'http://localhost:8080/qratitude-service/api',
+            'api_prefix'=>$api_prefix,
         ),
     ),
 
@@ -125,5 +126,6 @@ return array(
     'params'=>array(
         // this is used in contact page
        'adminEmail'=>'zyrolasting@gmail.com',
+       'api_prefix'=>$api_prefix,
     ),
 );

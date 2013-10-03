@@ -15,7 +15,6 @@
 
 class QratitudeHelper
 {
-
     /**
      * Generates request body representing passed credentials.
      * @return array
@@ -32,27 +31,6 @@ class QratitudeHelper
 
 
     /**
-     * Generates array of authentication headers to be appended to\
-     * another array for a call to curl_setopt_array.
-     *
-     * @return array Array to use in call to curl_setopt_array
-     */
-
-    public static function getCredentialHeaders($username, $password)
-    {
-        $http_options = array(
-            CURLOPT_HTTPHEADER=>array(
-                "username: $username",
-            )
-        );
-
-        return $http_options;
-    }
-
-
-
-
-    /**
      * Creates a new user with given credentials.
      */
 
@@ -61,7 +39,6 @@ class QratitudeHelper
         $json = self::encodeCredentials($username, $password);
         Yii::app()->post('/users', $json);
     }
-
 
 
 
@@ -80,6 +57,41 @@ class QratitudeHelper
         $response = $yii->getResponseInfo();
 
         return $response["http_code"] == 200 ? $json_php : null;
+    }
+
+
+
+    /**
+     * Searches assets by query string
+     */
+
+    public static function searchAssets($s)
+    {
+        $json_php = Yii::app()->get("/assets?s=$s");
+        return self::decodeAssetArray($json_php['assets']);
+    }
+
+
+
+    /**
+     * Creates an array of Asset models from a set of
+     * assets encoded as a PHP associative array
+     * created by json_decode().
+     *
+     * @param $json_php array PHP array of asset data.
+     * @return array(Asset)
+     */
+
+    public static function decodeAssetArray($json_php)
+    {
+        $out = array();
+
+        foreach ($json_php as &$v)
+        {
+            $out[] = self::decodeAsset($v);
+        }
+
+        return $out;
     }
 
 
@@ -122,7 +134,6 @@ class QratitudeHelper
 
 
 
-
     /**
      * Returns PHP array that follows asset JSON schema.
      *
@@ -150,7 +161,7 @@ class QratitudeHelper
         $out['photos']     = $asset->imageUrls;
         $out['tags']       = $tags;
         $out['attributes'] = array();
-        $out['attibutes']['summary'] = $asset->summary;
+        $out['attributes']['summary'] = $asset->summary;
 
         foreach ($asset->custom as $a)
         {
@@ -159,7 +170,9 @@ class QratitudeHelper
 
         return $out;
     }
-    
+
+
+
     /**
      * Returns Asset model from JSON schema
      *
@@ -173,9 +186,12 @@ class QratitudeHelper
 
         $out->id        = $json_php['id'];
         $out->name      = $json_php['name'];
-        $out->summary   = $json_php['summary'];
+        $out->summary   = $json_php['attributes']['summary'];
         $out->tags      = join(',', $json_php['tags']);
         $out->imageUrls = $json_php['photos'];
+
+        // avoid double assignment
+        unset($json_php['attributes']['summary']);
 
         foreach ($json_php['attributes'] as $k=>$v)
         {
@@ -190,6 +206,8 @@ class QratitudeHelper
         return $out;
     }
 
+
+
     /**
      * Returns all assets from the back end
      *
@@ -199,26 +217,10 @@ class QratitudeHelper
     public static function getAllAssets()
     {
         $json_php = Yii::app()->get("/assets");
-
-        // what I want is nested one level deep for some reason
-        $json_php = $json_php['assets'];
-
-        if (empty($json_php))
-        {
-            return array();
-        }
-
-        Sugar::dump($json_php);
-
-        $out = array();
-
-        foreach ($json_php as &$v)
-        {
-            $out[] = self::decodeAsset($v);
-        }
-
-        return $out;
+        return self::decodeAssetArray($json_php['assets']);
     }
+
+
 
     /**
      * Returns Asset instance from the back end by ID.
@@ -231,6 +233,8 @@ class QratitudeHelper
         return is_null($json_php) ? null : self::decodeAsset($json_php);
     }
 
+
+
     /**
      * Returns assets identified by a list of comma delimited tags
      * @return array(Asset)
@@ -238,6 +242,7 @@ class QratitudeHelper
 
     public static function getAssetsByTags($tags)
     {
+        /*
         $query = "";
         if (strpos($tags,',') !== FALSE)
         {
@@ -250,19 +255,13 @@ class QratitudeHelper
         }
 
         $json_php = Yii::app()->get("/assets?${query}");
+        */
 
-        $out = array();
-
-        if (!empty($json_php['assets']))
-        {
-            foreach ($json_php['assets'] as &$v)
-            {
-                $out[] = self::decodeAsset($v);
-            }
-        }
-
-        return $out;
+        $json_php = Yii::app()->get("/assets?t=$tags");
+        return self::decodeAssetArray($json_php['assets']);
     }
+
+
 
     /**
      * Deletes an asset from the back end
@@ -273,6 +272,29 @@ class QratitudeHelper
         Yii::app()->delete("/assets/$id");
     }
 
+
+
+    /**
+     * Throws 403 if a token is not in the
+     * session or the user is not logged in,
+     * otherwise returns token
+     */
+
+    public static function tokenRequired()
+    {
+        $user  = Yii::app()->user;
+        $token = $user->getState('token', null);
+
+        if (is_null($token) || $user->isGuest)
+        {
+            throw new CHttpException(403, "Unauthorized access");
+        }
+
+        return $token;
+    }
+
+
+
     /**
      * Posts new asset to the back end
      */
@@ -280,8 +302,19 @@ class QratitudeHelper
     public static function postAsset($asset)
     {
         $json_php = self::encodeAsset($asset);
-        Yii::app()->post('/assets', $json_php);
+
+        $token = self::tokenRequired();
+
+        $http_options = array(
+            CURLOPT_HTTPHEADER=>array(
+                "token: $token",
+            )
+        );
+
+        Yii::app()->post('/assets', $json_php, $http_options);
     }
+
+
 
     /**
      * Updates an existing asset on the back end
@@ -292,8 +325,11 @@ class QratitudeHelper
         $json_php = self::encodeAsset($asset);
         $id = $asset->id;
 
+        $token = self::tokenRequired();
         Yii::app()->put("/assets/$id", $json_php);
     }
+
+
 
     /**
      * Saves an image to the back end.
@@ -305,11 +341,34 @@ class QratitudeHelper
     public static function saveImage($file)
     {
         // Compute new file name based on MD5 sum.
-        $tmp_name  = $file->getTempName();
+        $tmp_name = $file->getTempName();
+        $token = self::tokenRequired();
 
+        /*
+         //hacky shit
+            
         $url = shell_exec("curl -X POST -F file=@${tmp_name} ".
+        "-H \"token: $token\" ".
         "http://localhost:8080/qratitude-service/api/photos");
-    
+
+         */
+
+        // Upload data to back end
+        $ch = curl_init();
+
+        $data['Filedata'] = "@${tmp_name}";
+
+        curl_setopt($ch, CURLOPT_URL,
+            Yii::app()->params['api_prefix'].'/photos');
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        $response = curl_exec($ch);
+
+        Sugar::dump($response);
+
         $ok = filter_var($url, FILTER_VALIDATE_URL) !== FALSE;
 
         return $ok ? $url : null;

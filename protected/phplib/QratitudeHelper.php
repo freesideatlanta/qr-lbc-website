@@ -257,6 +257,7 @@ class QratitudeHelper
         $json_php = Yii::app()->get("/assets?${query}");
         */
 
+        $tags = urlencode($tags);
         $json_php = Yii::app()->get("/assets?t=$tags");
         return self::decodeAssetArray($json_php['assets']);
     }

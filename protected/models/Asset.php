@@ -133,7 +133,7 @@ class Asset extends CFormModel
             if (is_null($url))
             {
                 $fn = $i->getName();
-                $this->addError("Failed to upload image $fn");
+                $this->addError("images","Failed to upload image $fn");
                 $ok = false;
             }
             else

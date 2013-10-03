@@ -11,10 +11,10 @@ defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 
 require_once($yii);
 
-$inc_dir = dirname(__FILE__).'/protected/phplib/';
-require_once($inc_dir.'array_column.php');
-require_once($inc_dir.'RestCurlClient.php');
-require_once($inc_dir.'QratitudeHelper.php');
-require_once($inc_dir.'Sugar.php');
+// Grab extra hacky code that sucks
+foreach (glob(dirname(__FILE__).'/protected/phplib/*.php') as $f)
+{
+    require_once($f);
+}
 
 Yii::createWebApplication($config)->run();

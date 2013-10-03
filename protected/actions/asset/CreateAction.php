@@ -35,7 +35,7 @@ class CreateAction extends CAction
             {
                 if (!$asset->saveNew())
                 {
-                    throw new Exception('507',
+                    throw new CHttpException(500,
                             "Sorry! Something broke. Please try again.");
                 }
                 else

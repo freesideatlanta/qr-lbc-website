@@ -6,7 +6,7 @@
         <input
             placeholder="Search"
             type="search"
-            name="search"
+            name="q"
             class="sidebar-widget-search" />
     </form>
 

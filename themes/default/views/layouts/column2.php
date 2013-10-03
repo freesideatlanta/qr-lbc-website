@@ -2,7 +2,7 @@
 <?php $this->beginContent('//layouts/main'); ?>
 <div class="l-sidebar">
 
-    <form method="get" action="/shop/search" class="sidebar-widget">
+    <form method="get" action="/asset/search" class="sidebar-widget">
         <input
             placeholder="Search"
             type="search"

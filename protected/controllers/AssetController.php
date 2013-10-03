@@ -37,6 +37,9 @@ class AssetController extends Controller
             'tag'=>array(
                 'class'=>'actions.asset.TagAction',
             ),
+            'search'=>array(
+                'class'=>'actions.asset.SearchAction',
+            ),
 		);
 	}
 }

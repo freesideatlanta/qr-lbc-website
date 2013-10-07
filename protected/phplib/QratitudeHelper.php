@@ -304,6 +304,8 @@ class QratitudeHelper
     {
         $json_php = self::encodeAsset($asset);
 
+        Sugar::dump($json_php);
+
         $token = self::tokenRequired();
 
         $http_options = array(
@@ -341,37 +343,36 @@ class QratitudeHelper
 
     public static function saveImage($file)
     {
-        // Compute new file name based on MD5 sum.
         $tmp_name = $file->getTempName();
         $token = self::tokenRequired();
 
-        /*
-         //hacky shit
-            
-        $url = shell_exec("curl -X POST -F file=@${tmp_name} ".
-        "-H \"token: $token\" ".
-        "http://localhost:8080/qratitude-service/api/photos");
-
-         */
-
-        // Upload data to back end
         $ch = curl_init();
 
-        $data['Filedata'] = "@${tmp_name}";
+        // Forces Content-Type: multipart/formdata
+        $fields = array(
+            "file"=>"@${tmp_name}",
+            "submit"=>"submit"
+        );
 
-        curl_setopt($ch, CURLOPT_URL,
-            Yii::app()->params['api_prefix'].'/photos');
+        $url = Yii::app()->params['api_prefix'].'/photos';
 
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_VERBOSE, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("token: $token"));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+        
         $response = curl_exec($ch);
 
         Sugar::dump($response);
 
-        $ok = filter_var($url, FILTER_VALIDATE_URL) !== FALSE;
+        // Service should return URL to image.
+        // If it does not, something went wrong.
+        $ok = filter_var($response, FILTER_VALIDATE_URL) !== FALSE;
 
-        return $ok ? $url : null;
+        return $ok ? $response : null;
     }
 }

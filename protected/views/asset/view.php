@@ -10,7 +10,9 @@ $this->breadcrumbs=array(
 
 <div class="product">
     <div class="product-display">
-        <img src="<?php echo $asset->imageUrls[0]; ?>"
+        <img src="<?php echo isset($asset->imageUrls[0]) ?
+                        $asset->imageUrls[0] :
+                        Yii::app()->params['default-asset-image']; ?>"
              class="product-image" />
     </div>
     <div class="product-meta">

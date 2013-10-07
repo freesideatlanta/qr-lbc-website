@@ -12,11 +12,15 @@
  */
 
 
+$img_url = isset($asset->imageUrls[0]) ?
+                    $asset->imageUrls[0] :
+                    Yii::app()->params['default-asset-image'];
+
 $image = CHtml::tag(
     'div',
     array(
         'class'=>$this->css_class.'-thumbnail',
-        'style'=>'background-image: url('.$asset->imageUrls[0].');'
+        'style'=>'background-image: url('.$img_url.');'
     ),
     ''
 );

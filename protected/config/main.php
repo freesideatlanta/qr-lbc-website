@@ -127,5 +127,6 @@ return array(
         // this is used in contact page
        'adminEmail'=>'zyrolasting@gmail.com',
        'api_prefix'=>$api_prefix,
+       'default-asset-image'=>'/images/anon-asset.png'
     ),
 );

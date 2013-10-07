@@ -11,7 +11,7 @@
 $assets = QratitudeHelper::getAssetsByTags('featured');
 
 $this->widget(
-    'application.widgets.products.ProductsWidget',
+    'application.widgets.assetlisting.AssetListingWidget',
     array(
         'heading'  => 'Featured Items',
         'css_class'=> 'featured',

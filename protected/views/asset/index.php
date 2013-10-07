@@ -1,6 +1,6 @@
 <?php
 /**
- * Renders asset listing.
+ * Renders listing using {@link AssetListingWidget}
  */
 
 /* @var $this AssetController */
@@ -11,7 +11,7 @@ $this->breadcrumbs=array(
 );
 
 $this->widget(
-    'application.widgets.products.ProductsWidget',
+    'application.widgets.assetlisting.AssetListingWidget',
     array(
         'heading'  => 'Products',
         'css_class'=> 'console',

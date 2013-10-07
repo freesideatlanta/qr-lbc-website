@@ -11,6 +11,7 @@
  * @uses Asset $asset Asset to render
  */
 
+
 $image = CHtml::tag(
     'div',
     array(
@@ -74,7 +75,7 @@ if ($can_edit)
         'a',
         array(
             'class'=>"button button-action",
-            'href'=>"/asset/edit/".$a->id,
+            'href'=>"/asset/edit/".$asset->id,
         ),
         "Edit"
     );
@@ -87,7 +88,7 @@ if ($can_delete)
         'a',
         array(
             'class'=>"button button-danger",
-            'href'=>"/asset/delete/".$a->id,
+            'href'=>"/asset/delete/".$asset->id,
         ),
         "Delete"
     );

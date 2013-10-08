@@ -306,21 +306,34 @@ class QratitudeHelper
 
 
     /**
+     * Returns auth headers QRatitude expects for guarded routes
+     *
      * Throws 403 if a token is not in the
-     * session or the user is not logged in,
-     * otherwise returns token
+     * session or the user is not logged in.
+     * We throw an exception because the front
+     * end should not have exposed any sensitive
+     * actions through the interface to guests.
+     * In other words, if this method is called
+     * by a guest, that is unusual, and therefore
+     * exceptional.
+     *
+     * @return array Flat array of headers for use in curl_setopt()
      */
-    public static function tokenRequired()
+    private static function getAuthHeaders()
     {
         $user  = Yii::app()->user;
         $token = $user->getState('token', null);
+        $username = $user->getName();
 
         if (is_null($token) || $user->isGuest)
         {
             throw new CHttpException(403, "Unauthorized access");
         }
 
-        return $token;
+        return array(
+            "token: $token",
+            "username: $username"
+        );
     }
 
 
@@ -335,14 +348,10 @@ class QratitudeHelper
     {
         $json_php = self::encodeAsset($asset);
 
-        Sugar::dump($json_php);
-
-        $token = self::tokenRequired();
+        $headers = self::getAuthHeaders();
 
         $http_options = array(
-            CURLOPT_HTTPHEADER=>array(
-                "token: $token",
-            )
+            CURLOPT_HTTPHEADER=>$headers
         );
 
         Yii::app()->post('/assets', $json_php, $http_options);
@@ -361,7 +370,12 @@ class QratitudeHelper
         $json_php = self::encodeAsset($asset);
         $id = $asset->id;
 
-        $token = self::tokenRequired();
+        $http_options = array(
+            CURLOPT_HTTPHEADER=>$headers
+        );
+
+        $headers = self::getAuthHeaders();
+
         Yii::app()->put("/assets/$id", $json_php);
     }
 
@@ -376,7 +390,7 @@ class QratitudeHelper
     public static function saveImage($file)
     {
         $tmp_name = $file->getTempName();
-        $token = self::tokenRequired();
+        $headers = self::getAuthHeaders();
 
         $ch = curl_init();
 
@@ -394,17 +408,11 @@ class QratitudeHelper
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array("token: $token"));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
         
         $response = curl_exec($ch);
 
-        Sugar::dump($response);
-
-        // Service should return URL to image.
-        // If it does not, something went wrong.
-        $ok = filter_var($response, FILTER_VALIDATE_URL) !== FALSE;
-
-        return $ok ? $response : null;
+        return !isset($response['url']) ? $response['url'] : null;
     }
 }

@@ -147,7 +147,7 @@ class Asset extends CFormModel
         $ok = true;
 
         $ok &= $this->saveImages();
-        QratitudeHelper::postAsset($this);
+        $ok &= QratitudeHelper::postAsset($this);
 
         return $ok;
     }

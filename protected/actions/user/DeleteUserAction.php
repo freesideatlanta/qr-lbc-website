@@ -5,8 +5,7 @@
  *
  * @author Sage Gerard
  */
-
-class DeleteAction extends CAction
+class DeleteUserAction extends CAction
 {
     /**
      * Tells the back end to delete user by id

@@ -1,14 +1,17 @@
 <?php
 /**
+ * @uses Asset $asset Asset to render
  * Renders a single asset.
- * Exposes the following CSS classes prefixed
- * with {@link ProductsWidget::css_class}
+ */
+
+/*
+ * This view exposes the following CSS classes prefixed
+ * with ProductsWidget::css_class
  *
  * * -list-item-summary
  * * -list-item-meta
  * * -list-item-heading
  *
- * @uses Asset $asset Asset to render
  */
 
 

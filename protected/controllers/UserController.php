@@ -24,14 +24,13 @@ class UserController extends Controller
     public function actions()
     {
         return array(
-        //    'admin'=>'application.actions.user.AdminAction',
-        //    'delete'=>'application.actions.user.DeleteAction',
-            'index'=>'application.actions.user.IndexAction',
+        //    'delete'=>'application.actions.user.DeleteUserAction',
+            'index'=>'application.actions.user.IndexUserAction',
             'login'=>'application.actions.user.LoginAction',
             'logout'=>'application.actions.user.LogoutAction',
             'register'=>'application.actions.user.RegisterAction',
-        //    'update'=>'application.actions.user.UpdateAction',
-        //    'view'=>'application.actions.user.ViewAction',
+        //    'update'=>'application.actions.user.UpdateUserAction',
+        //    'view'=>'application.actions.user.ViewUserAction',
         );
     }
 

@@ -5,8 +5,7 @@
  *
  * @author Sage Gerard
  */
-
-class IndexAction extends CAction
+class IndexUserAction extends CAction
 {
     /**
      * Renders listing of all users

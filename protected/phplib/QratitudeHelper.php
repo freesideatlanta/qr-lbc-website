@@ -17,8 +17,8 @@ class QratitudeHelper
     /**
      * Generates request body representing passed credentials.
      *
-     * @param string $username
-     * @param string $password
+     * @param string $username User-specified string id
+     * @param string $password Unhashed password for given username
      * @return array
      */
     public static function encodeCredentials($username, $password)
@@ -33,8 +33,8 @@ class QratitudeHelper
 
     /**
      * Creates a new user with given credentials.
-     * @param $username
-     * @param $password
+     * @param string $username User-specified string id
+     * @param string $password Unhashed password for given username
      * @return void
      */
     public static function createUser($username, $password)
@@ -48,8 +48,8 @@ class QratitudeHelper
     /**
      * Authenticates user, generating new token in the process.
      *
-     * @param $username
-     * @param $password
+     * @param string $username User-specified string id
+     * @param string $password Unhashed password for given username
      * @return array Array containing user token and id
      */
     public static function authenticate($username, $password)
@@ -71,7 +71,6 @@ class QratitudeHelper
      * @param string $query String used to search assets
      * @return array Array of {@link Asset} instances
      */
-
     public static function searchAssets($query)
     {
         $query = urlencode($query);
@@ -92,7 +91,7 @@ class QratitudeHelper
      * assets encoded as a PHP associative array
      * created by json_decode().
      *
-     * @param $json_php array PHP array of asset data.
+     * @param array $json_php array PHP array of asset data.
      * @return array(Asset)
      */
     public static function decodeAssetArray($json_php)
@@ -115,8 +114,8 @@ class QratitudeHelper
     /**
      * True if the user (identified by $user_id) has a particular role
      *
-     * @param string $user_id
-     * @param string $role
+     * @param string $user_id ID of user known to back end
+     * @param string $role Human readable role for user (i.e. "admin")
      * @return boolean
      */
     public static function checkRole($user_id, $role)
@@ -136,9 +135,9 @@ class QratitudeHelper
     /**
      * True if the passed token is associated with passed credentials
      *
-     * @param string $token
-     * @param string $username
-     * @param string $password
+     * @param string $token Token used for authentication
+     * @param string $username User-specified string id
+     * @param string $password Unhashed password for given username
      * @return boolean
      */
     public static function validateToken($token, $username, $password)
@@ -156,12 +155,12 @@ class QratitudeHelper
     /**
      * Returns PHP array that follows asset JSON schema.
      *
-     * Assets have a JSON representation, and this method
-     * returns a PHP array equivelent that can be encoded
-     * into JSON when ready. The asset information is 
-     * extracted from several models supplied as arguments.
-     *
-     * @param Asset $asset
+     * Assets have a JSON representation, and this method returns
+     * a PHP array equivelent that can be encoded into JSON when
+     * ready. The asset information is extracted from several
+     * models supplied as arguments.
+     * 
+     * @param Asset $asset Asset to encode
      * @return array Associative array matching JSON schema for assets
      */
     public static function encodeAsset($asset)
@@ -246,7 +245,7 @@ class QratitudeHelper
     /**
      * Returns Asset instance from the back end by ID.
      *
-     * @param string $id
+     * @param string $id Asset ID as hex string
      * @return Asset
      */
     public static function getAsset($id)
@@ -296,7 +295,7 @@ class QratitudeHelper
     /**
      * Deletes an asset from the back end
      *
-     * @param string $id
+     * @param string $id Asset ID as hex string
      * @return void
      */
     public static function deleteAsset($id)
@@ -329,7 +328,7 @@ class QratitudeHelper
     /**
      * Posts new asset to the back end
      *
-     * @param Asset $asset
+     * @param Asset $asset Asset to save to back end
      * @return void
      */
     public static function postAsset($asset)
@@ -354,7 +353,7 @@ class QratitudeHelper
     /**
      * Updates an existing asset on the back end
      *
-     * @param Asset $asset
+     * @param Asset $asset Changed asset. Must have valid {@link Asset::id}
      * @return void
      */
     public static function putAsset($asset)
@@ -371,7 +370,7 @@ class QratitudeHelper
     /**
      * Saves an image to the back end.
      *
-     * @param CUploadedFile $file
+     * @param CUploadedFile $file File uploaded for current request
      * @return bool True if successful.
      */
     public static function saveImage($file)

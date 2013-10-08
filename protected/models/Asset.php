@@ -19,43 +19,36 @@ class Asset extends CFormModel
      * Yii cannot touch the database directly,
      * so this is only used for indexing purposes
      */
-
     public $id;
 
     /**
      * @var string Human-friendly name of the asset
      */
-
     public $name;
     
     /**
      * @var string Comma-delimited tags describing the asset.
      */
-
     public $tags;
     
     /**
      * @var string Brief, human-friendly description of the asset.
      */
-
     public $summary;
 
     /**
      * @var array(AssetCustomAttribute) User defined attributes
      */
-
     public $custom;
 
     /**
      * @var array(CUploadedFile) Represents uploaded images
      */
-
     public $images = array();
 
     /**
      * @var array(string) Array of URLs to uploaded files
      */
-
     public $imageUrls;
 
     /**
@@ -77,12 +70,11 @@ class Asset extends CFormModel
     /**
      * Populate properties using models collected from form.
      *
-     * @param Asset Asset containing only identifying information 
+     * @param array $metadata Information about asset
      * @param AssetCustomAttribute $custom User-defined attributes
-     * @param array(CUploadedFile) $images Array of uploaded images
+     * @param array $images Array of {@link CUploadedFile} images
      * @return void
      */
-
     public function populate($metadata, $custom, $images)
     {
         $this->attributes = $metadata;
@@ -99,6 +91,8 @@ class Asset extends CFormModel
     /**
      * Allows a nested model to validate.
      *
+     * @param string $attr Attribute name to validate
+     * @param array $params Data passed to this validator (Not used)
      * @return bool True if validation was successful.
      */
 
@@ -120,7 +114,6 @@ class Asset extends CFormModel
      *
      * @return bool True if all images are saves successfully
      */
-
     public function saveImages()
     {
         $ok = true;
@@ -149,7 +142,6 @@ class Asset extends CFormModel
      * Saves asset to back, assuming it is new.
      * @return True if successful
      */
-
     public function saveNew()
     {
         $ok = true;
@@ -159,12 +151,12 @@ class Asset extends CFormModel
 
         return $ok;
     }
-    
+
+
     /**
      * Saves existing asset to back
      * @return True if successful
      */
-
     public function save()
     {
         $ok = true;
@@ -175,21 +167,26 @@ class Asset extends CFormModel
         return $ok;
     }
 
-    /**
-     * @return bool If asset exists on the back end
-     */
 
+    /**
+     * Returns true if asset exists on the back end
+     *
+     * @param string $id ID of asset as hex string
+     * @return bool True if asset exists
+     */
     public static function doesAssetExist($id)
     {
         return !is_null(QratitudeHelper::getAsset($id));
     }
 
+
     /**
      * Make sure at least one image is uploaded.
      *
+     * @param string $attr Attribute name to validate
+     * @param array $params Data passed to this validator (Not used)
      * @return bool True if validation is successful
      */
-
     public function validateImages($attr, $params)
     {
         if (count($this->$attr) == 0)
@@ -207,7 +204,6 @@ class Asset extends CFormModel
      *
      * @return array AssetCustomAttributes the user may define by default.
      */
-
     public static function getDefaultCustomAttrs()
     {
         $custom_attrs = array();
@@ -234,9 +230,12 @@ class Asset extends CFormModel
     }
 
     /**
-     * Checks to make sure all custom attributes are okay.
+     * Checks to make sure all custom attributes are valid.
+     *
+     * @param string $attr Attribute name to validate
+     * @param array $params Data passed to this validator (Not used)
+     * @return bool True if all custom attributes are valid
      */
-
     public function validateCustom($attr, $params)
     {
         $ok = true;

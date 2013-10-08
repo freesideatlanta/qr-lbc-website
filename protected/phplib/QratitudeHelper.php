@@ -1,7 +1,7 @@
 <?php
 
 /** 
- * This is an interface for the back end. Application state must be 
+ * Interface for the back end. Application state must be 
  * manipulated through this class.
  * 
  * The back end of the application is not powered by Yii, and is interfaced
@@ -12,14 +12,15 @@
  * @author Sage Gerard
  * @package application.phplib
  */
-
 class QratitudeHelper
 {
     /**
      * Generates request body representing passed credentials.
+     *
+     * @param string $username
+     * @param string $password
      * @return array
      */
-
     public static function encodeCredentials($username, $password)
     {
         return array(
@@ -32,8 +33,10 @@ class QratitudeHelper
 
     /**
      * Creates a new user with given credentials.
+     * @param $username
+     * @param $password
+     * @return void
      */
-
     public static function createUser($username, $password)
     {
         $json = self::encodeCredentials($username, $password);
@@ -45,9 +48,10 @@ class QratitudeHelper
     /**
      * Authenticates user, generating new token in the process.
      *
+     * @param $username
+     * @param $password
      * @return array Array containing user token and id
      */
-
     public static function authenticate($username, $password)
     {
         $json  = self::encodeCredentials($username, $password);
@@ -63,11 +67,21 @@ class QratitudeHelper
 
     /**
      * Searches assets by query string
+     *
+     * @param string $query String used to search assets
+     * @return array Array of {@link Asset} instances
      */
 
-    public static function searchAssets($s)
+    public static function searchAssets($query)
     {
-        $json_php = Yii::app()->get("/assets?s=$s");
+        $query = urlencode($query);
+        $json_php = Yii::app()->get("/assets?s=$query");
+
+        if (!isset($json_php['assets']))
+        {
+            return array();
+        }
+
         return self::decodeAssetArray($json_php['assets']);
     }
 
@@ -81,14 +95,16 @@ class QratitudeHelper
      * @param $json_php array PHP array of asset data.
      * @return array(Asset)
      */
-
     public static function decodeAssetArray($json_php)
     {
         $out = array();
 
-        foreach ($json_php as &$v)
+        if (is_array($json_php))
         {
-            $out[] = self::decodeAsset($v);
+            foreach ($json_php as &$v)
+            {
+                $out[] = self::decodeAsset($v);
+            }
         }
 
         return $out;
@@ -99,9 +115,10 @@ class QratitudeHelper
     /**
      * True if the user (identified by $user_id) has a particular role
      *
+     * @param string $user_id
+     * @param string $role
      * @return boolean
      */
-
     public static function checkRole($user_id, $role)
     {
         $user = Yii::app()->get("/user/$user_id");
@@ -119,9 +136,11 @@ class QratitudeHelper
     /**
      * True if the passed token is associated with passed credentials
      *
+     * @param string $token
+     * @param string $username
+     * @param string $password
      * @return boolean
      */
-
     public static function validateToken($token, $username, $password)
     {
         $http_options = self::getCredentialHeaders($username, $password);
@@ -143,10 +162,8 @@ class QratitudeHelper
      * extracted from several models supplied as arguments.
      *
      * @param Asset $asset
-     *
      * @return array Associative array matching JSON schema for assets
      */
-
     public static function encodeAsset($asset)
     {
         $out = array();
@@ -176,10 +193,9 @@ class QratitudeHelper
     /**
      * Returns Asset model from JSON schema
      *
-     * @param Asset $asset JSON representing back end asset
+     * @param array $json_php PHP array (decoded from JSON) of asset data
      * @return Asset Asset object for Yii use
      */
-
     public static function decodeAsset($json_php)
     {
         $out = new Asset();
@@ -213,10 +229,15 @@ class QratitudeHelper
      *
      * @return array(Asset)
      */
-
     public static function getAllAssets()
     {
         $json_php = Yii::app()->get("/assets");
+        
+        if (!isset($json_php['assets']))
+        {
+            return array();
+        }
+
         return self::decodeAssetArray($json_php['assets']);
     }
 
@@ -224,9 +245,10 @@ class QratitudeHelper
 
     /**
      * Returns Asset instance from the back end by ID.
+     *
+     * @param string $id
      * @return Asset
      */
-
     public static function getAsset($id)
     {
         $json_php = Yii::app()->get("/assets/$id");
@@ -237,9 +259,10 @@ class QratitudeHelper
 
     /**
      * Returns assets identified by a list of comma delimited tags
+     *
+     * @param string $tags Comma-delimited set of tags
      * @return array(Asset)
      */
-
     public static function getAssetsByTags($tags)
     {
         /*
@@ -259,6 +282,12 @@ class QratitudeHelper
 
         $tags = urlencode($tags);
         $json_php = Yii::app()->get("/assets?t=$tags");
+        
+        if (!isset($json_php['assets']))
+        {
+            return array();
+        }
+
         return self::decodeAssetArray($json_php['assets']);
     }
 
@@ -266,8 +295,10 @@ class QratitudeHelper
 
     /**
      * Deletes an asset from the back end
+     *
+     * @param string $id
+     * @return void
      */
-
     public static function deleteAsset($id)
     {
         Yii::app()->delete("/assets/$id");
@@ -280,7 +311,6 @@ class QratitudeHelper
      * session or the user is not logged in,
      * otherwise returns token
      */
-
     public static function tokenRequired()
     {
         $user  = Yii::app()->user;
@@ -298,8 +328,10 @@ class QratitudeHelper
 
     /**
      * Posts new asset to the back end
+     *
+     * @param Asset $asset
+     * @return void
      */
-
     public static function postAsset($asset)
     {
         $json_php = self::encodeAsset($asset);
@@ -321,8 +353,10 @@ class QratitudeHelper
 
     /**
      * Updates an existing asset on the back end
+     *
+     * @param Asset $asset
+     * @return void
      */
-    
     public static function putAsset($asset)
     {
         $json_php = self::encodeAsset($asset);
@@ -340,7 +374,6 @@ class QratitudeHelper
      * @param CUploadedFile $file
      * @return bool True if successful.
      */
-
     public static function saveImage($file)
     {
         $tmp_name = $file->getTempName();

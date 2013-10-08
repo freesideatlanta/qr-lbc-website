@@ -8,7 +8,6 @@
  * @version 1.0
  * @package application.controllers
  */
-
 class UserController extends Controller
 {
 
@@ -22,20 +21,16 @@ class UserController extends Controller
      *
      * @return Array of actions used by the controller
      */
-    
     public function actions()
     {
         return array(
         //    'admin'=>'application.actions.user.AdminAction',
         //    'delete'=>'application.actions.user.DeleteAction',
-            'forgot'=>'application.actions.user.ForgotAction',
             'index'=>'application.actions.user.IndexAction',
             'login'=>'application.actions.user.LoginAction',
             'logout'=>'application.actions.user.LogoutAction',
             'register'=>'application.actions.user.RegisterAction',
-            'reset'=>'application.actions.user.ResetPasswordAction',
         //    'update'=>'application.actions.user.UpdateAction',
-        //    'verify'=>'application.actions.user.VerifyAction',
         //    'view'=>'application.actions.user.ViewAction',
         );
     }
@@ -57,8 +52,7 @@ class UserController extends Controller
      * Specifies the access control rules.
      * This method is used by the 'accessControl' filter.
      * @return array access control rules
-     */
-    
+     */ 
     public function accessRules()
     {
         return array(
@@ -82,36 +76,14 @@ class UserController extends Controller
     }
 
     /**
-     * Returns a model by primary key.
-     *
-     * Loads a model by primary key and returns it, if it exists.
-     * If the model does not exist, a 404 error is thrown.
-     *
-     * @param int $id Primary key in database to look up
-     * @return Model
-     */
-     
-    public function loadModel($id)
-    {
-        $model=UserModel::model()->findByPk($id);
-        if($model===null)
-        {
-            throw new CHttpException(404,
-                'The requested page does not exist.');
-        }
-        
-        return $model;
-    }
-
-    /**
      * Performs AJAX validation on a model
      *
      * Performs AJAX validation on a model and
      * echos the result of CActiveForm::validate()
      *
-     * @param $model Model to validate
+     * @param CModel $model to validate
+     * @return void
      */
-    
     protected function performAjaxValidation($model)
     {
         if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')

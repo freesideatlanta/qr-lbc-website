@@ -6,31 +6,21 @@
  * @version 1.0
  * @package application.models
  */
-
 class LoginFormModel extends CFormModel
 {
     /**
      * @var string $username The user's username address
      */
-
     public $username;
 
     /**
      * @var string $password The user's unencrypted password to be hashed
      */
-
     public $password;
 
     /**
-     * @var boolean $rememberMe Whether or not to store login information in a cookie
+     * @var UserIdentity $_identity Used to authenticate user.
      */
-
-    // public $rememberMe = false;
-
-   /**
-     * @var IsolateUserIdentity $_identity Yii instance used to authenticate user.
-     */
-
     private $_identity;
 
     /**
@@ -38,7 +28,6 @@ class LoginFormModel extends CFormModel
      *
      * @return array Yii business rules for the model
      */
-
     public function rules()
     {
         return array(
@@ -54,7 +43,6 @@ class LoginFormModel extends CFormModel
      *
      * @return array Human-friendly attribute labels
      */
-
     public function attributeLabels()
     {
         return array(
@@ -64,9 +52,15 @@ class LoginFormModel extends CFormModel
     }
 
     /**
-     * Authenticates a user
+     * Authenticates a user, logging him in if successful
+     *
+     * The parameters in this method are present by convention,
+     * but are not used. This method is triggered on password
+     * validation.
+     *
+     * @param string $attribute Attribute to validate
+     * @param array $params Data passed to validator
      */
-
     public function authenticate($attribute,$params)
     {
         if(!$this->hasErrors())

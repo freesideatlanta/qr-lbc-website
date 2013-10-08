@@ -2,15 +2,19 @@
 
 /**
  * Lists all users
+ *
+ * @author Sage Gerard
  */
 
 class IndexAction extends CAction
 {
+    /**
+     * Renders listing of all users
+     *
+     * @return void
+     */
     public function run()
-    {        
-        $dataProvider=new CActiveDataProvider('UserModel');
-        $this->controller->render('index',array(
-            'dataProvider'=>$dataProvider,
-        ));
+    {  
+        // TODO: Implement method that gets all user profiles      
     }
 }

@@ -1,22 +1,21 @@
 <?php
 
 /**
- * Deletes a user
+ * Deletes a user from the back end
+ *
+ * @author Sage Gerard
  */
 
 class DeleteAction extends CAction
 {
+    /**
+     * Tells the back end to delete user by id
+     *
+     * @param string $id ID of user to delete
+     * @return void
+     */
     public function run($id)
     {        
-        $this->controller->loadModel($id)->delete();
-
-        // if AJAX request (triggered by deletion via admin grid view),
-        // we should not redirect the browser
-        if(!isset($_GET['ajax']))
-        {
-            $this->controller->redirect(
-                isset($_POST['returnUrl']) ? 
-                      $_POST['returnUrl'] : array('admin'));
-        }
+        // TODO: Implement helper call to delete user
     }
 }

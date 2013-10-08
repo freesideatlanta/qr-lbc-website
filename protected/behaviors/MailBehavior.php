@@ -3,10 +3,16 @@
 /**
  * Sends no-reply emails from the application
  */
-
 class MailBehavior extends CBehavior
 {
+    /**
+     * @var string Email address for From: header
+     */
     public $from;
+
+    /**
+     * @var string Prefix for every email subject line
+     */
     public $subject_prefix = "";
     
     /**
@@ -16,9 +22,9 @@ class MailBehavior extends CBehavior
      * @param string $subject Message subject
      * @param string $view View containing email body
      * @param array $viewVars Data to send to view
+     * @param string $from Optional "from" address to override $this->from.
      */
-
-    public function mail($to, $subject, $view, array $viewVars = array(), $from = null)
+    public function mail($to, $subject, $view, $viewVars = array(), $from = null)
     {
         $email = Yii::app()->email;
         $email->to      = $to;

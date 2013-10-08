@@ -1,11 +1,19 @@
 <?php
 
 /**
- * Edits existing asset
+ * Edits one asset in the inventory
+ *
+ * @author Sage Gerard
  */
 
 class UpdateAction extends CAction
 {
+    /**
+     * Displays form populated with existing asset data to edit.
+     *
+     * @param string $id ID of asset to edit as hex string
+     * @return void
+     */
     public function run($id)
     {
         $asset = null;

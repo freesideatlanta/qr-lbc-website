@@ -20,13 +20,13 @@ class CreateAction extends CAction
 
         // collect input
         if(isset(
-            $_POST["Asset"],
+            $_POST['Asset'],
             $_POST['AssetCustomAttribute'],
             $images
         ))
         {
             $asset->populate(
-                 $_POST["Asset"],
+                 $_POST['Asset'],
                  $_POST['AssetCustomAttribute'],
                  $images
             );

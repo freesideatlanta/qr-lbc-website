@@ -82,7 +82,7 @@ if ($can_edit)
         'a',
         array(
             'class'=>"button button-action",
-            'href'=>"/asset/edit/".$asset->id,
+            'href'=>"/asset/update/".$asset->id,
         ),
         "Edit"
     );

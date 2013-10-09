@@ -44,7 +44,6 @@ class AuthFilter extends CFilter
             return false;
         }
 
-        $filterChain->run();
         return true;
     }
 }

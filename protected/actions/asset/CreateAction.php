@@ -9,6 +9,8 @@ class CreateAction extends CAction
     public function run()
     {
         $asset = new Asset();
+        $asset->scenario = 'create';
+
         $yii   = Yii::app();
 
         $yii->clientScript->registerScriptFile(

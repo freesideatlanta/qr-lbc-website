@@ -34,6 +34,7 @@ class UpdateAction extends CAction
         {
             // Construct replacement
             $asset = new Asset();
+            $asset->scenario = 'update';
             
             $asset->id = $id;
             $asset->populate(
@@ -58,6 +59,7 @@ class UpdateAction extends CAction
         else
         {
             $asset = QratitudeHelper::getAsset($id);
+            $asset->scenario = 'update';
         }
 
         $this->controller->render('update', array('asset'=>$asset));

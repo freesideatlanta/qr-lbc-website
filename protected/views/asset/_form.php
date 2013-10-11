@@ -7,8 +7,7 @@
 
 $yii          = Yii::app();
 $max_files    = 8;
-$aid          = $this->getAction()->getId();
-$isUpdating   = $aid === "update";
+$isUpdating   = $asset->scenario === "update";
 
 $action_route  = $isUpdating ? 'asset/update' : 'asset/create';
 $action_params = $isUpdating ? array('id'=>$asset->id) : array();

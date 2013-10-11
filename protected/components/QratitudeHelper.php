@@ -342,19 +342,23 @@ class QratitudeHelper
      * Posts new asset to the back end
      *
      * @param Asset $asset Asset to save to back end
-     * @return void
+     * @return bool True if successful
      */
     public static function postAsset($asset)
     {
         $json_php = self::encodeAsset($asset);
-
-        $headers = self::getAuthHeaders();
+        $headers  = self::getAuthHeaders();
+        $yii      = Yii::app();
 
         $http_options = array(
             CURLOPT_HTTPHEADER=>$headers
         );
 
-        Yii::app()->post('/assets', $json_php, $http_options);
+
+        $yii->post('/assets', $json_php, $http_options);
+
+        $info = $yii->getResponseInfo();
+        return $info["http_code"] == 201;
     }
 
 
@@ -370,11 +374,10 @@ class QratitudeHelper
         $json_php = self::encodeAsset($asset);
         $id = $asset->id;
 
+        $headers = self::getAuthHeaders();
         $http_options = array(
             CURLOPT_HTTPHEADER=>$headers
         );
-
-        $headers = self::getAuthHeaders();
 
         Yii::app()->put("/assets/$id", $json_php);
     }
@@ -392,11 +395,51 @@ class QratitudeHelper
         $tmp_name = $file->getTempName();
         $headers = self::getAuthHeaders();
 
+        $mime = CFileHelper::getMimeType($tmp_name, null, false);
+        $new_name = null;
+
+        switch ($mime)
+        {
+            case "image/jpeg":
+            case "image/png":
+            case "image/gif":
+                // Add extension to temp file because PHP
+                // stripped it off. The back end
+                // checks for an extension.
+                list($junk, $extension) = explode('/', $mime);
+                
+                $new_name = $tmp_name.".$extension";
+                rename($tmp_name, $new_name);
+
+                if (!file_exists($new_name))
+                {
+                    Yii::log(
+                        "Could not prepare $new_name for upload",
+                        "error",
+                        "application.phplib.QratitudeHelper"
+                    );
+
+                    throw new CHttpException(
+                        500,
+                        "Could not upload image. Please try again."
+                    );
+                }
+
+                break;
+
+            default:
+                throw new CHttpException(415,
+                    "Please only use .jpg, .png or .gif images");
+                break;
+        }
+
+        Yii::trace("Saving image $new_name to back end");
+
         $ch = curl_init();
 
         // Forces Content-Type: multipart/formdata
         $fields = array(
-            "file"=>"@${tmp_name}",
+            "file"=>"@${new_name}",
             "submit"=>"submit"
         );
 
@@ -412,7 +455,19 @@ class QratitudeHelper
         curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
         
         $response = curl_exec($ch);
+        $response = json_decode($response, true);
 
-        return !isset($response['url']) ? $response['url'] : null;
+        // PHP does not like having it's temp files
+        // touched. Put it back so it can be 
+        // deleted as intended.
+        rename($new_name, $tmp_name);
+
+        if (!isset($response['url']))
+        {
+            Yii::trace("Failed to POST image $new_name");
+            return null;
+        }
+
+        return $response['url'];
     }
 }

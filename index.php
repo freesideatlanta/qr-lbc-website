@@ -11,10 +11,4 @@ defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 
 require_once($yii);
 
-// Grab extra hacky code that sucks
-foreach (glob(dirname(__FILE__).'/protected/phplib/*.php') as $f)
-{
-    require_once($f);
-}
-
 Yii::createWebApplication($config)->run();

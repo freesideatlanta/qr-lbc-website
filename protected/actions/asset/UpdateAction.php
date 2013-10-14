@@ -33,21 +33,23 @@ class UpdateAction extends CAction
         ))
         {
             // Construct replacement
-            $asset = new Asset();
+            $old = QratitudeHelper::getAsset($id);
+
+            $asset = clone $old;
             $asset->scenario = 'update';
             
-            $asset->id = $id;
+            
             $asset->populate(
                  $_POST["Asset"],
                  $_POST['AssetCustomAttribute'],
                  $images
             );
-
+            
             if ($asset->validate())
             {
                 if (!$asset->save())
                 {
-                    throw new Exception('507',
+                    throw new CHttpException(507,
                             "Sorry! Something broke. Please try again.");
                 }
                 else

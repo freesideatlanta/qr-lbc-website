@@ -56,11 +56,10 @@ class Asset extends CFormModel
      *
      * @return array Array of Yii-standard validation rules
      */
-
     public function rules()
     {
         return array(
-            array('images', 'validateImages'),
+            array('images', 'validateImages', 'on'=>'create'),
             array('name, tags, summary', 'required'),
             array('custom, name, tags, summary', 'safe'),
             array('custom', 'validateCustom')
@@ -71,20 +70,53 @@ class Asset extends CFormModel
      * Populate properties using models collected from form.
      *
      * @param array $metadata Information about asset
-     * @param AssetCustomAttribute $custom User-defined attributes
+     * @param array $custom_array Array of key value pairs for custom attributes
      * @param array $images Array of {@link CUploadedFile} images
      * @return void
      */
-    public function populate($metadata, $custom, $images)
+    public function populate($metadata, $custom_array, $images)
     {
         $this->attributes = $metadata;
 
-        foreach ($custom as $c) {
-            $n = new AssetCustomAttribute();
-            $n->attributes = $c;
-            $this->custom[] = $n;
+
+        // We want to make sure we do not add redundant attribute keys.
+        // Find all existing custom attribute keys so we overwrite
+        // existing attributes instead of adding a second attribute
+        // with the same key in $this->custom
+        $keys = array();
+
+        if (!empty($this->custom))
+        {
+            foreach ($this->custom as $c)
+            {
+                $keys[] = $c->key;
+            }
         }
 
+        foreach ($custom_array as $c)
+        {
+            $index = array_search($c['key'], $keys, true);
+    
+            // Prevent redefinitions
+            if ($index !== FALSE)
+            {
+                // existing key
+                $this->custom[$index]->val = $c['val'];
+            }
+            else
+            {
+                // key not found.
+                $n = new AssetCustomAttribute();
+                $n->attributes = $c;
+                $this->custom[] = $n;
+            }
+
+        }
+
+        // Note that these represent images
+        // to upload to the back end.
+        // Once finished, use $this->imageUrls
+        // to refer to images associated with the asset
         $this->images = $images;
     }
 
@@ -95,7 +127,6 @@ class Asset extends CFormModel
      * @param array $params Data passed to this validator (Not used)
      * @return bool True if validation was successful.
      */
-
     public function nestedValidate($attr, $params)
     {
         $model = $this->$attr;
@@ -126,6 +157,7 @@ class Asset extends CFormModel
             if (is_null($url))
             {
                 $fn = $i->getName();
+                Yii::trace("Failed to upload image $fn");
                 $this->addError("images","Failed to upload image $fn");
                 $ok = false;
             }
@@ -162,7 +194,7 @@ class Asset extends CFormModel
         $ok = true;
 
         $ok &= $this->saveImages();
-        QratitudeHelper::putAsset($this);
+        $ok &= QratitudeHelper::putAsset($this);
 
         return $ok;
     }

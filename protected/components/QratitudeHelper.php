@@ -372,14 +372,25 @@ class QratitudeHelper
     public static function putAsset($asset)
     {
         $json_php = self::encodeAsset($asset);
+
+        $yii = Yii::app();
+
         $id = $asset->id;
+
+        // Make sure the back end knows what to target.
+        $json_php['id'] = $id;
 
         $headers = self::getAuthHeaders();
         $http_options = array(
             CURLOPT_HTTPHEADER=>$headers
         );
 
-        Yii::app()->put("/assets/$id", $json_php);
+        $response = $yii->put("/assets/$id", $json_php);
+
+        $info = $yii->getResponseInfo();
+        $code = $info["http_code"];
+
+        return $code >= 200 && $code < 300;
     }
 
 

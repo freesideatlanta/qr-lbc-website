@@ -6,4 +6,6 @@
 .captcha-button
 {
     @include lbc-button(#E01B5D);
+    display: block;
+    width: 250px;
 }

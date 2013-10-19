@@ -21,6 +21,34 @@ class CategoriesWidget extends CWidget
                 }
             }); 
             
+            function getWidth()
+            {
+                var x = 0;
+                if (self.innerHeight)
+                {
+                      x = self.innerWidth;
+                }
+                else if (document.documentElement &&
+                         document.documentElement.clientHeight)
+                {
+                      x = document.documentElement.clientWidth;
+                }
+                else if (document.body)
+                {
+                      x = document.body.clientWidth;
+                }
+                return x;
+            }
+
+            // 970px is the defined max-width for tablets
+            // in the theme. Anything more is considered
+            // to be desktop.
+            if (getWidth() > 970)
+            {
+                $('.categories').removeClass('is-hidden');
+                $('#category-expand').html('-');
+            }
+                
         ", CClientScript::POS_READY);
 
         $data = Yii::app()->get('/categories');

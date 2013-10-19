@@ -44,24 +44,28 @@ Thank you.</p>
 echo $form->errorSummary($model);
 
 $attr = 'name';
-echo $form->labelEx($model, $attr);
-echo $form->textField($model, $attr);
-echo $form->error($model, $attr);
+$f  = $form->labelEx($model, $attr);
+$f .= $form->textField($model, $attr);
+$f .= $form->error($model, $attr);
+echo CHtml::tag('div', array('class'=>'form-row'), $f);
 
 $attr = 'email';
-echo $form->labelEx($model, $attr);
-echo $form->textField($model, $attr);
-echo $form->error($model, $attr);
+$f  = $form->labelEx($model, $attr);
+$f .= $form->textField($model, $attr);
+$f .= $form->error($model, $attr);
+echo CHtml::tag('div', array('class'=>'form-row'), $f);
 
 $attr = 'subject';
-echo $form->labelEx($model, $attr);
-echo $form->textField($model, $attr);
-echo $form->error($model, $attr);
+$f  = $form->labelEx($model, $attr);
+$f .= $form->textField($model, $attr);
+$f .= $form->error($model, $attr);
+echo CHtml::tag('div', array('class'=>'form-row'), $f);
 
 $attr = 'body';
-echo $form->labelEx($model, $attr);
-echo $form->textArea($model, $attr);
-echo $form->error($model, $attr);
+$f  = $form->labelEx($model, $attr);
+$f .= $form->textArea($model, $attr);
+$f .= $form->error($model, $attr);
+echo CHtml::tag('div', array('class'=>'form-row'), $f);
 
 echo CHtml::tag('p',array(),"Please type the code below to prove you are human.");
 
@@ -75,9 +79,10 @@ $this->widget('CCaptcha', array(
             ),
         ));
 
-echo $form->labelEx($model, $attr);
-echo $form->textField($model, $attr);
-echo $form->error($model, $attr);
+$f  = $form->labelEx($model, $attr);
+$f .= $form->textField($model, $attr);
+$f .= $form->error($model, $attr);
+echo CHtml::tag('div', array('class'=>'form-row'), $f);
 
 ?>
 

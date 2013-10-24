@@ -1,0 +1,22 @@
+@mixin sprite-pos($width, $height, $bgpos)
+{
+    width: $width;
+    height: $height;
+    background-position: $bgpos;
+}
+
+.sprite
+{
+    background: url('/images/ui.png') no-repeat;
+    display: inline-block;
+}
+
+.sprite-update
+{
+    @include sprite-pos(32px, 32px, 0 -66px);
+}
+
+.sprite-delete
+{
+    @include sprite-pos(32px, 32px, -32px -66px);
+}

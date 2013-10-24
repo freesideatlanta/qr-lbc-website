@@ -8,22 +8,19 @@ $dim: 100px;
 
     & > li
     {
-        width: 100%;
+        width: auto;
+        float: left;
         height: $dim;
-        line-height: $dim/2;
         overflow: hidden;
         padding: 0 8px 0 0;
-        @include border-radius(20px);
-        @include background-image(linear-gradient(#fefefe, #eee));
+        margin: 0 12px 12px 0;
 
         @media #{$media-phone}
         {
             padding: 0;
             margin: 4px;
-            width: $dim;
-            float: left;
-            background: none;
-            display: hidden;
+            width: 100%;
+            float: none;
         }
     }
 }
@@ -31,7 +28,7 @@ $dim: 100px;
 .product-thumbnail
 {
     @include  border-radius(20px);
-    border:   4px #6E6F71 groove;
+    border:   1px #CCC solid;
     width:    $dim;
     height:   $dim;
     overflow: hidden;
@@ -46,6 +43,7 @@ $dim: 100px;
     vertical-align: middle;
     height:$dim;
     display: inline-block;
+    margin: 0 0 0 10px;
 
     & a
     {
@@ -62,7 +60,6 @@ $dim: 100px;
 .product-list-item-heading
 {
     font-size: 1.5em;
-    margin: 0 0 0 10px;
 }
 
 .product-list-item-summary

@@ -31,16 +31,10 @@
     }
 }
 
-.product-buy-button
+// holds buttons
+.product-actions
 {
-    @include lbc-button(#F99621);
-    display: inline-block;
-}
-
-.product-contact-button
-{
-    @include lbc-button(#EEEEEB);
-    display: inline-block;
+    @include leader(1);
 }
 
 .product-name

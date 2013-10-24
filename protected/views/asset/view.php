@@ -38,7 +38,8 @@ $this->breadcrumbs=array(
 
         <?php if (!Yii::app()->user->isGuest) : ?>
         <a class="button button-action"
-           href="<?php echo $this->createUrl('asset/update');?>">Edit</a>
+           href="<?php echo $this->createUrl('asset/update',
+               array('id'=>$asset->id));?>">Edit</a>
         <a class="button button-danger"
            href="<?php echo $this->createUrl('asset/delete',
                array('id'=>$asset->id)); ?>">Delete</a>

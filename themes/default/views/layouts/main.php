@@ -55,6 +55,11 @@
                         'url'=>array('/user/logout'),
                         'visible'=>!$yapp->user->isGuest,
                     ),
+                    array(
+                        'label'=>'Create Asset', 
+                        'url'=>array('/asset/create'),
+                        'visible'=>!$yapp->user->isGuest,
+                    ),
                 ),
             )); ?>
         </div>

@@ -72,6 +72,14 @@ return array(
             'hashPortable'=>false,
             'hashCostLog2'=>10,
         ),
+        'clientScript'=>array(
+            'packages'=>array(
+                'jquery'=>array(
+                    'baseUrl'=>'http://ajax.googleapis.com/ajax/libs/jquery/',
+                    'js'=>array('1.10.2/jquery.min.js'),
+                ),
+            ),
+        ),
 		// uncomment the following to enable URLs in path-format
 		'urlManager'=>array(
             'urlFormat'=>'path',

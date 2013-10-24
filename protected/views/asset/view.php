@@ -6,14 +6,41 @@ $this->breadcrumbs=array(
 	'Asset'=>array('/asset'),
 	'View',
 );
+
+$clientscript = Yii::app()->clientScript;
+$clientscript->registerCssFile('http://fotorama.s3.amazonaws.com/4.4.6/fotorama.css');
+$clientscript->registerCoreScript('jquery');
+$clientscript->registerScriptFile('http://fotorama.s3.amazonaws.com/4.4.6/fotorama.js', CClientScript::POS_END);
+
 ?>
 
 <div class="product">
     <div class="product-display">
-        <img src="<?php echo isset($asset->imageUrls[0]) ?
-                        $asset->imageUrls[0] :
-                        Yii::app()->params['default-asset-image']; ?>"
-             class="product-image" />
+        <?php
+        if (!empty($asset->imageUrls))
+        {
+            // Build fotorama gallery
+            $images = "";
+            foreach ($asset->imageUrls as $url)
+            {
+                $images .= CHtml::image($url, '');
+            }
+
+            $html_options = array(
+                'align'=>'center',
+                'class'=>'fotorama'
+            );
+
+            echo CHtml::tag('div', $html_options, $images);
+        }
+        else
+        {
+            // Show default image
+            $dummy_src = Yii::app()->params['default-asset-image'];
+            echo CHtml::image($dummy_src, '',
+                array('class'=>'product-image'));
+        }
+        ?>
     </div>
     <div class="product-meta">
     <h1 class="product-name"><?php echo $asset->name; ?></h1>

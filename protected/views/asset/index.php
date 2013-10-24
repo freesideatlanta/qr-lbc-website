@@ -14,7 +14,7 @@ $this->widget(
     'application.widgets.assetlisting.AssetListingWidget',
     array(
         'heading'  => 'Products',
-        'css_class'=> 'console',
+        'css_class'=> 'product',
         'assets'   => $assets,
     )
 );

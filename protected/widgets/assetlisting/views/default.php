@@ -64,11 +64,6 @@ if ($this->view_vars['show_summary'])
     );
 }
 
-echo CHtml::tag(
-    'div',
-    array('class'=>$this->css_class.'-list-item-meta'),
-    $meta
-);
 
 // True if user is authorized to see certain buttons.
 // Always true for now.
@@ -78,25 +73,31 @@ $can_delete = true;
 // Add edit button if user is authorized to edit
 if ($can_edit)
 {
-    echo CHtml::tag(
+    $meta .= CHtml::tag(
         'a',
         array(
-            'class'=>"button button-action",
+            'class'=>"sprite sprite-update",
             'href'=>"/asset/update/".$asset->id,
         ),
-        "Edit"
+        ""
     );
 }
 
 // Add delete button if user is authorized to delete
 if ($can_delete)
 {
-    echo CHtml::tag(
+    $meta .= CHtml::tag(
         'a',
         array(
-            'class'=>"button button-danger",
+            'class'=>"sprite sprite-delete",
             'href'=>"/asset/delete/".$asset->id,
         ),
-        "Delete"
+        ""
     );
 }
+
+echo CHtml::tag(
+    'div',
+    array('class'=>$this->css_class.'-list-item-meta'),
+    $meta
+);

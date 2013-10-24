@@ -32,15 +32,17 @@ $this->breadcrumbs=array(
             </tbody>
         </table>
     <div class="product-actions">
-        <a class="button button-action"
-           href="<?php echo $this->createUrl('shop/buy',
-                 array('asset'=>$asset->id)); ?>">Buy</a>
-        <a class="button button-neutral"
-           href="<?php echo $this->createUrl('site/contact');?>">Contact</a>
+        <a class="button button-good"
+           href="<?php echo $this->createUrl('site/contact',
+               array('asset'=>$asset->id)); ?>">Buy</a>
 
+        <?php if (!Yii::app()->user->isGuest) : ?>
+        <a class="button button-action"
+           href="<?php echo $this->createUrl('asset/update');?>">Edit</a>
         <a class="button button-danger"
-           href="<?php echo $this->createUrl('asset/update',
-                 array('id'=>$asset->id)); ?>">Edit</a>
+           href="<?php echo $this->createUrl('asset/delete',
+               array('id'=>$asset->id)); ?>">Delete</a>
+        <?php endif; ?>
     </div>
     </div>
 </div>

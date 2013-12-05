@@ -201,7 +201,8 @@ class QratitudeHelper
 
         $out->id        = $json_php['id'];
         $out->name      = $json_php['name'];
-        $out->summary   = $json_php['attributes']['summary'];
+        $out->summary   = isset($json_php['attributes']['summary']) ?
+                            $json_php['attributes']['summary'] : "";
         $out->tags      = join(',', $json_php['tags']);
         $out->imageUrls = $json_php['photos'];
 
